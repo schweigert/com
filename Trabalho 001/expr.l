@@ -7,6 +7,12 @@ literal \".*\"
 
 %%
 {ws}	{}
+">=" {return T_MAIOR_IGUAL;}
+"<=" {return T_MENOR_IGUAL;}
+"!=" {return T_DIFERENTE;}
+"==" {return T_IGUAL_IGUAL;}
+">" {return T_MAIOR;}
+"<" {return T_MENOR;}
 "+"	{return T_ADICAO;}
 "-"	{return T_SUBTRACAO;}
 "*"	{return T_MULTIPLICACAO;}
@@ -32,12 +38,6 @@ literal \".*\"
 "||" {return T_OR;}
 "true" {return T_TRUE;}
 "false" {return T_FALSE;}
-">=" {return T_MAIOR_IGUAL;}
-"<=" {return T_MENOR_IGUAL;}
-"!=" {return T_DIFERENTE;}
-"==" {return T_IGUAL_IGUAL;}
-">" {return T_MAIOR;}
-"<" {return T_MENOR;}
 {id} {return T_ID;}
 {literal} {return T_LITERAL;}
 \0	{return T_FIM;}

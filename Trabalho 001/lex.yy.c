@@ -377,15 +377,15 @@ struct yy_trans_info
 	};
 static yyconst flex_int16_t yy_accept[89] =
     {   0,
-        0,    0,   39,   38,    1,   36,   22,   38,   38,    7,
-        8,    4,    2,   12,    3,    5,   37,   13,   32,    6,
-       31,   33,   33,   33,   33,   33,   33,   33,   33,   33,
-       33,    9,   38,   10,   35,    1,   29,    0,   34,   23,
-       37,   37,   28,   30,   27,   33,   33,   33,   33,   16,
-       33,   33,   33,   33,   33,   33,   24,   37,    0,   33,
-       33,   33,   11,   33,   33,   33,   33,   33,   33,    0,
-       37,   33,   18,   33,   33,   20,   33,   25,   15,   33,
-       33,   26,   19,   33,   17,   14,   21,    0
+        0,    0,   39,   38,    1,   36,   28,   38,   38,   13,
+       14,   10,    8,   18,    9,   11,   37,   19,    7,   12,
+        6,   33,   33,   33,   33,   33,   33,   33,   33,   33,
+       33,   15,   38,   16,   35,    1,    4,    0,   34,   29,
+       37,   37,    3,    5,    2,   33,   33,   33,   33,   22,
+       33,   33,   33,   33,   33,   33,   30,   37,    0,   33,
+       33,   33,   17,   33,   33,   33,   33,   33,   33,    0,
+       37,   33,   24,   33,   33,   26,   33,   31,   21,   33,
+       33,   32,   25,   33,   23,   20,   27,    0
     } ;
 
 static yyconst flex_int32_t yy_ec[256] =
@@ -792,157 +792,157 @@ YY_RULE_SETUP
 case 2:
 YY_RULE_SETUP
 #line 10 "expr.l"
-{return T_ADICAO;}
+{return T_MAIOR_IGUAL;}
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
 #line 11 "expr.l"
-{return T_SUBTRACAO;}
+{return T_MENOR_IGUAL;}
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
 #line 12 "expr.l"
-{return T_MULTIPLICACAO;}
+{return T_DIFERENTE;}
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
 #line 13 "expr.l"
-{return T_DIVISAO;}
+{return T_IGUAL_IGUAL;}
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
 #line 14 "expr.l"
-{return T_IGUAL;}
+{return T_MAIOR;}
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
 #line 15 "expr.l"
-{return T_ABRE_PARENTESES;}
+{return T_MENOR;}
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
 #line 16 "expr.l"
-{return T_FECHA_PARENTESES;}
+{return T_ADICAO;}
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
 #line 17 "expr.l"
-{return T_ABRE_CHAVES;}
+{return T_SUBTRACAO;}
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
 #line 18 "expr.l"
-{return T_FECHA_CHAVES;}
+{return T_MULTIPLICACAO;}
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
 #line 19 "expr.l"
-{return T_INT;}
+{return T_DIVISAO;}
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
 #line 20 "expr.l"
-{return T_VIRGULA;}
+{return T_IGUAL;}
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
 #line 21 "expr.l"
-{return T_PONTO_E_VIRGULA;}
+{return T_ABRE_PARENTESES;}
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
 #line 22 "expr.l"
-{return T_STRING;}
+{return T_FECHA_PARENTESES;}
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
 #line 23 "expr.l"
-{return T_VOID;}
+{return T_ABRE_CHAVES;}
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
 #line 24 "expr.l"
-{return T_IF;}
+{return T_FECHA_CHAVES;}
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
 #line 25 "expr.l"
-{return T_WHILE;}
+{return T_INT;}
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
 #line 26 "expr.l"
-{return T_ELSE;}
+{return T_VIRGULA;}
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
 #line 27 "expr.l"
-{return T_PRINT;}
+{return T_PONTO_E_VIRGULA;}
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
 #line 28 "expr.l"
-{return T_READ;}
+{return T_STRING;}
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
 #line 29 "expr.l"
-{return T_RETURN;}
+{return T_VOID;}
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
 #line 30 "expr.l"
-{return T_NOT;}
+{return T_IF;}
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
 #line 31 "expr.l"
-{return T_AND;}
+{return T_WHILE;}
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
 #line 32 "expr.l"
-{return T_OR;}
+{return T_ELSE;}
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
 #line 33 "expr.l"
-{return T_TRUE;}
+{return T_PRINT;}
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
 #line 34 "expr.l"
-{return T_FALSE;}
+{return T_READ;}
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
 #line 35 "expr.l"
-{return T_MAIOR_IGUAL;}
+{return T_RETURN;}
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
 #line 36 "expr.l"
-{return T_MENOR_IGUAL;}
+{return T_NOT;}
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
 #line 37 "expr.l"
-{return T_DIFERENTE;}
+{return T_AND;}
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
 #line 38 "expr.l"
-{return T_IGUAL_IGUAL;}
+{return T_OR;}
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
 #line 39 "expr.l"
-{return T_MAIOR;}
+{return T_TRUE;}
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
 #line 40 "expr.l"
-{return T_MENOR;}
+{return T_FALSE;}
 	YY_BREAK
 case 33:
 YY_RULE_SETUP

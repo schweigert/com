@@ -117,6 +117,7 @@ TExpressaoAritmetica : TExpressaoAritmetica T_MULTIPLICACAO FExpressaoAritmetica
 FExpressaoAritmetica : T_ABRE_PARENTESES ExpressaoAritmetica T_FECHA_PARENTESES
 	| T_SUBTRACAO FExpressaoAritmetica
 	| T_NUM
+	| T_ID
 	;
 
 ExpressaoLogica : ExpressaoLogica T_AND FExpressaoLogica
