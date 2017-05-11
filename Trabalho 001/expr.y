@@ -80,7 +80,6 @@ CmdEnquanto : T_WHILE T_ABRE_PARENTESES ExpressaoLogica T_FECHA_PARENTESES Bloco
 
 CmdAtrib : T_ID T_IGUAL ExpressaoAritmetica T_PONTO_E_VIRGULA
 	| T_ID T_IGUAL T_LITERAL T_PONTO_E_VIRGULA
-	| T_ID T_IGUAL ChamadaFuncao T_PONTO_E_VIRGULA
 	;
 
 CmdEscrita : T_PRINT T_ABRE_PARENTESES ExpressaoAritmetica T_FECHA_PARENTESES T_PONTO_E_VIRGULA
@@ -113,6 +112,7 @@ ExpressaoAritmetica : ExpressaoAritmetica T_ADICAO TExpressaoAritmetica
 TExpressaoAritmetica : TExpressaoAritmetica T_MULTIPLICACAO FExpressaoAritmetica
 	| TExpressaoAritmetica T_DIVISAO FExpressaoAritmetica
 	| FExpressaoAritmetica
+	| ChamadaFuncao
 	;
 
 FExpressaoAritmetica : T_ABRE_PARENTESES ExpressaoAritmetica T_FECHA_PARENTESES
