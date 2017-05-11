@@ -2,13 +2,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #define YYSTYPE double
+int __linha__ = 1;
 %}
 
-%token T_ADICAO T_SUBTRACAO T_MULTIPLICACAO T_DIVISAO T_IGUAL T_ABRE_PARENTESES T_FECHA_PARENTESES T_ABRE_CHAVES T_FECHA_CHAVES T_INT T_STRING T_VOID T_IF T_ELSE T_PRINT T_READ T_RETURN T_ID T_LITERAL T_FIM T_NUM T_VIRGULA T_PONTO_E_VIRGULA
+%token T_ADICAO T_SUBTRACAO T_MULTIPLICACAO T_DIVISAO T_IGUAL T_ABRE_PARENTESES T_FECHA_PARENTESES T_ABRE_CHAVES T_FECHA_CHAVES T_INT T_STRING T_VOID T_IF T_WHILE T_ELSE T_PRINT T_READ T_RETURN T_ID T_LITERAL T_FIM T_NUM T_VIRGULA T_PONTO_E_VIRGULA T_AND T_NOT T_OR T_TRUE T_FALSE T_MAIOR_IGUAL T_MENOR_IGUAL T_DIFERENTE T_IGUAL_IGUAL T_MAIOR T_MENOR
 
 %%
-Programa : ListaFuncoes BlocoPrincipal TFIM
-	| BlocoPrincipal TFIM
+Programa : ListaFuncoes BlocoPrincipal T_FIM
+	| BlocoPrincipal T_FIM
 	;
 
 ListaFuncoes : ListaFuncoes Funcao
@@ -24,7 +25,7 @@ TipoRetorno : T_VOID
 	| T_STRING
 	;
 
-DclParametros : DclParametros T_VIRGULA Parametro
+DeclParametros : DeclParametros T_VIRGULA Parametro
 	| Parametro
 	;
 
@@ -47,7 +48,7 @@ Tipo : T_INT
 	;
 
 ListaId : ListaId T_VIRGULA T_ID
-	| ID
+	| T_ID
 	;
 
 Bloco : T_ABRE_CHAVES ListaCmd T_FECHA_CHAVES
@@ -100,13 +101,51 @@ ListaParametros : ListaParametros T_VIRGULA ExpressaoAritmetica
 	| ExpressaoAritmetica
 	| T_LITERAL
 
+// Trabalho 1
+// Expressões Aritméticas
+
+ExpressaoAritmetica : ExpressaoAritmetica T_ADICAO TExpressaoAritmetica
+	| ExpressaoAritmetica T_SUBTRACAO TExpressaoAritmetica
+	| TExpressaoAritmetica
+	;
+
+TExpressaoAritmetica : TExpressaoAritmetica T_MULTIPLICACAO FExpressaoAritmetica
+	| TExpressaoAritmetica T_DIVISAO FExpressaoAritmetica
+	| FExpressaoAritmetica
+	;
+
+FExpressaoAritmetica : T_ABRE_PARENTESES ExpressaoAritmetica T_FECHA_PARENTESES
+	| T_SUBTRACAO FExpressaoAritmetica
+	| T_NUM
+	;
+
+ExpressaoLogica : ExpressaoLogica T_AND FExpressaoLogica
+	| ExpressaoLogica T_OR FExpressaoLogica
+	| FExpressaoLogica
+	;
+
+FExpressaoLogica : T_NOT FExpressaoLogica
+	| T_ABRE_PARENTESES FExpressaoLogica T_FECHA_PARENTESES
+	| T_TRUE
+	| T_FALSE
+	| ExpressaoRelacional
+	;
+
+ExpressaoRelacional	: ExpressaoAritmetica T_MAIOR ExpressaoAritmetica
+	| ExpressaoAritmetica T_MENOR ExpressaoAritmetica
+	| ExpressaoAritmetica T_MAIOR_IGUAL ExpressaoAritmetica
+	| ExpressaoAritmetica T_MENOR_IGUAL ExpressaoAritmetica
+	| ExpressaoAritmetica T_IGUAL_IGUAL ExpressaoAritmetica
+	| ExpressaoAritmetica T_DIFERENTE ExpressaoAritmetica
+	;
+
 
 %%
 #include "lex.yy.c"
 
 int yyerror (char *str)
 {
-	printf("%s - antes %s\n", str, yytext);
+	printf("[Linha%d] - %s - antes %s\n", __linha__,str, yytext);
 	
 } 		 
 

@@ -2,10 +2,16 @@
 
 extern FILE *yyin;
 
-int main()
+
+int main(int c, char *argv[])
 {
-	yyin = stdin;
-	printf("Digite uma expressão:");
+  	FILE * file;
+  	file = fopen (argv[1], "r");
+  	if (file == NULL){
+  		printf("VISH NOT FOUND\n");
+  		return 0;
+  	}
+	yyin = file;
 	yyparse();
 	return 0;
 }

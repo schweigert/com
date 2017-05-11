@@ -1,4 +1,4 @@
-delim	[ \t\n\r]
+delim	[ \t\r]
 ws	{delim}+
 digito	[0-9]
 num	{digito}+(\.{digito}*(E[+-]?{digito}+)?)?
@@ -27,7 +27,19 @@ literal \".*\"
 "print" {return T_PRINT;}
 "read" {return T_READ;}
 "return" {return T_RETURN;}
+"!" {return T_NOT;}
+"&&" {return T_AND;}
+"||" {return T_OR;}
+"true" {return T_TRUE;}
+"false" {return T_FALSE;}
+">=" {return T_MAIOR_IGUAL;}
+"<=" {return T_MENOR_IGUAL;}
+"!=" {return T_DIFERENTE;}
+"==" {return T_IGUAL_IGUAL;}
+">" {return T_MAIOR;}
+"<" {return T_MENOR;}
 {id} {return T_ID;}
 {literal} {return T_LITERAL;}
 \0	{return T_FIM;}
+\n  {__linha__ ++;}
 {num}	{yylval=atof(yytext); return T_NUM;} 
