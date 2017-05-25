@@ -1,8 +1,18 @@
 %{
 #include <stdio.h>
 #include <stdlib.h>
-#define YYSTYPE struct Atributo
+
+typedef struct {
+    struct List *listaId;
+    char nomeId[10];
+    int tipo;
+}Atributo;
+
+
+#define YYSTYPE Atributo
 int __linha__ = 1;
+
+
 %}
 
 %token T_ADICAO T_SUBTRACAO T_MULTIPLICACAO T_DIVISAO T_IGUAL T_ABRE_PARENTESES T_FECHA_PARENTESES T_ABRE_CHAVES T_FECHA_CHAVES T_INT T_DOUBLE T_STRING T_VOID T_IF T_WHILE T_ELSE T_PRINT T_READ T_RETURN T_ID T_LITERAL T_FIM T_NUM T_VIRGULA T_PONTO_E_VIRGULA T_AND T_NOT T_OR T_TRUE T_FALSE T_MAIOR_IGUAL T_MENOR_IGUAL T_DIFERENTE T_IGUAL_IGUAL T_MAIOR T_MENOR
@@ -41,9 +51,9 @@ Declaracoes : Declaracoes Declaracao
 	| Declaracao
 	;
 
-Declaracao : Tipo ListaId T_PONTO_E_VIRGULA {insereTabelaSimbolo($2.listaId, $1.tipo);}
+Declaracao : Tipo ListaId T_PONTO_E_VIRGULA 
 	;
-}
+
 
 Tipo : T_INT {$$.tipo = int;}
 	| T_DOUBLE {$$.tipo = double;}
