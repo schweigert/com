@@ -979,7 +979,7 @@ YY_RULE_SETUP
 case 38:
 YY_RULE_SETUP
 #line 46 "expr.l"
-{yylval=atof(yytext); return T_NUM;} 
+{yylval.double_value=atof(yytext); return T_NUM;} 
 	YY_BREAK
 case 39:
 YY_RULE_SETUP

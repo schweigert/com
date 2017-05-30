@@ -1,6 +1,6 @@
 
-#ifndef _AUX_H_
-#define _AUX_H_
+#ifndef _GEN_H_
+#define _GEN_H_
 
 #define INT 1
 #define DOUBLE 2

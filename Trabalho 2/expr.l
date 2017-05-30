@@ -43,4 +43,4 @@ literal \".*\"
 {literal} {return T_LITERAL;}
 \0	{return T_FIM;}
 \n  {__linha__ ++;}
-{num}	{yylval=atof(yytext); return T_NUM;} 
+{num}	{yylval.double_value=atof(yytext); return T_NUM;} 

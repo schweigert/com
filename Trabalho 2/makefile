@@ -1,5 +1,5 @@
 all:
 	flex expr.l
 	bison --verbose expr.y
-	gcc expr.c expr.tab.c aux.c  -O3 -o "Compiler.o"
+	gcc expr.c expr.tab.c gen.c  -O3 -o "Compiler.o"
 

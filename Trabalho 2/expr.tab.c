@@ -66,11 +66,13 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include "gen.h"
 
 typedef struct {
     struct List *listaId;
     char nomeId[10];
     int tipo;
+    double double_value;
 }Atributo;
 
 
@@ -79,7 +81,7 @@ int __linha__ = 1;
 
 
 
-#line 83 "expr.tab.c" /* yacc.c:339  */
+#line 85 "expr.tab.c" /* yacc.c:339  */
 
 # ifndef YY_NULLPTR
 #  if defined __cplusplus && 201103L <= __cplusplus
@@ -166,7 +168,7 @@ int yyparse (void);
 
 /* Copy the second part of user declarations.  */
 
-#line 170 "expr.tab.c" /* yacc.c:358  */
+#line 172 "expr.tab.c" /* yacc.c:358  */
 
 #ifdef short
 # undef short
@@ -467,14 +469,14 @@ static const yytype_uint8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    21,    21,    22,    25,    26,    29,    30,    33,    34,
-      35,    36,    39,    40,    43,    46,    47,    50,    51,    54,
-      58,    59,    60,    63,    64,    67,    70,    71,    74,    75,
-      76,    77,    78,    79,    80,    83,    84,    87,    88,    91,
-      94,    95,    98,    99,   102,   105,   108,   109,   112,   113,
-     114,   115,   120,   121,   122,   125,   126,   127,   128,   131,
-     132,   133,   134,   137,   138,   139,   142,   143,   144,   145,
-     146,   149,   150,   151,   152,   153,   154
+       0,    23,    23,    24,    27,    28,    31,    32,    35,    36,
+      37,    38,    41,    42,    45,    48,    49,    52,    53,    56,
+      60,    61,    62,    65,    66,    69,    72,    73,    76,    77,
+      78,    79,    80,    81,    82,    85,    86,    89,    90,    93,
+      96,    97,   100,   101,   104,   107,   110,   111,   114,   115,
+     116,   117,   122,   123,   124,   127,   128,   129,   130,   133,
+     134,   135,   136,   139,   140,   141,   144,   145,   146,   147,
+     148,   151,   152,   153,   154,   155,   156
 };
 #endif
 
@@ -1355,37 +1357,37 @@ yyreduce:
   switch (yyn)
     {
         case 20:
-#line 58 "expr.y" /* yacc.c:1646  */
-    {(yyval).tipo = int;}
-#line 1361 "expr.tab.c" /* yacc.c:1646  */
+#line 60 "expr.y" /* yacc.c:1646  */
+    {(yyval).tipo = INT;}
+#line 1363 "expr.tab.c" /* yacc.c:1646  */
     break;
 
   case 21:
-#line 59 "expr.y" /* yacc.c:1646  */
-    {(yyval).tipo = double;}
-#line 1367 "expr.tab.c" /* yacc.c:1646  */
+#line 61 "expr.y" /* yacc.c:1646  */
+    {(yyval).tipo = DOUBLE;}
+#line 1369 "expr.tab.c" /* yacc.c:1646  */
     break;
 
   case 22:
-#line 60 "expr.y" /* yacc.c:1646  */
-    {(yyval).tipo = string;}
-#line 1373 "expr.tab.c" /* yacc.c:1646  */
+#line 62 "expr.y" /* yacc.c:1646  */
+    {(yyval).tipo = STRING;}
+#line 1375 "expr.tab.c" /* yacc.c:1646  */
     break;
 
   case 23:
-#line 63 "expr.y" /* yacc.c:1646  */
+#line 65 "expr.y" /* yacc.c:1646  */
     {(yyval).listaId = insereLista((yyvsp[-2]).listaId, (yyvsp[0]).nomeId);}
-#line 1379 "expr.tab.c" /* yacc.c:1646  */
+#line 1381 "expr.tab.c" /* yacc.c:1646  */
     break;
 
   case 24:
-#line 64 "expr.y" /* yacc.c:1646  */
+#line 66 "expr.y" /* yacc.c:1646  */
     {(yyval).listaId = criaLista((yyvsp[0]).nomeId);}
-#line 1385 "expr.tab.c" /* yacc.c:1646  */
+#line 1387 "expr.tab.c" /* yacc.c:1646  */
     break;
 
 
-#line 1389 "expr.tab.c" /* yacc.c:1646  */
+#line 1391 "expr.tab.c" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -1613,7 +1615,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 158 "expr.y" /* yacc.c:1906  */
+#line 160 "expr.y" /* yacc.c:1906  */
 
 #include "lex.yy.c"
 

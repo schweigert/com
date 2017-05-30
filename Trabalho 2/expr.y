@@ -1,11 +1,13 @@
 %{
 #include <stdio.h>
 #include <stdlib.h>
+#include "gen.h"
 
 typedef struct {
     struct List *listaId;
     char nomeId[10];
     int tipo;
+    double double_value;
 }Atributo;
 
 
@@ -55,9 +57,9 @@ Declaracao : Tipo ListaId T_PONTO_E_VIRGULA
 	;
 
 
-Tipo : T_INT {$$.tipo = int;}
-	| T_DOUBLE {$$.tipo = double;}
-	| T_STRING {$$.tipo = string;}
+Tipo : T_INT {$$.tipo = INT;}
+	| T_DOUBLE {$$.tipo = DOUBLE;}
+	| T_STRING {$$.tipo = STRING;}
 	;
 
 ListaId : ListaId T_VIRGULA T_ID {$$.listaId = insereLista($1.listaId, $3.nomeId);}
