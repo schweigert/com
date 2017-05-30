@@ -1,8 +1,8 @@
-/* A Bison parser, made by GNU Bison 3.0.4.  */
+/* A Bison parser, made by GNU Bison 3.0.2.  */
 
 /* Bison implementation for Yacc-like parsers in C
 
-   Copyright (C) 1984, 1989-1990, 2000-2015 Free Software Foundation, Inc.
+   Copyright (C) 1984, 1989-1990, 2000-2013 Free Software Foundation, Inc.
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -44,7 +44,7 @@
 #define YYBISON 1
 
 /* Bison version.  */
-#define YYBISON_VERSION "3.0.4"
+#define YYBISON_VERSION "3.0.2"
 
 /* Skeleton name.  */
 #define YYSKELETON_NAME "yacc.c"
@@ -66,7 +66,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "gen.h"
+#include "eda.h"
 
 typedef struct {
     struct List *listaId;
@@ -75,13 +75,14 @@ typedef struct {
     double double_value;
 }Atributo;
 
+const struct arvore* tabelaSimbolosGlobais = criarArvore();
 
 #define YYSTYPE Atributo
 int __linha__ = 1;
 
 
 
-#line 85 "expr.tab.c" /* yacc.c:339  */
+#line 86 "expr.tab.c" /* yacc.c:339  */
 
 # ifndef YY_NULLPTR
 #  if defined __cplusplus && 201103L <= __cplusplus
@@ -168,7 +169,7 @@ int yyparse (void);
 
 /* Copy the second part of user declarations.  */
 
-#line 172 "expr.tab.c" /* yacc.c:358  */
+#line 173 "expr.tab.c" /* yacc.c:358  */
 
 #ifdef short
 # undef short
@@ -469,14 +470,14 @@ static const yytype_uint8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    23,    23,    24,    27,    28,    31,    32,    35,    36,
-      37,    38,    41,    42,    45,    48,    49,    52,    53,    56,
-      60,    61,    62,    65,    66,    69,    72,    73,    76,    77,
-      78,    79,    80,    81,    82,    85,    86,    89,    90,    93,
-      96,    97,   100,   101,   104,   107,   110,   111,   114,   115,
-     116,   117,   122,   123,   124,   127,   128,   129,   130,   133,
-     134,   135,   136,   139,   140,   141,   144,   145,   146,   147,
-     148,   151,   152,   153,   154,   155,   156
+       0,    24,    24,    25,    28,    29,    32,    33,    36,    37,
+      38,    39,    42,    43,    46,    49,    50,    53,    54,    57,
+      61,    62,    63,    66,    67,    70,    73,    74,    77,    78,
+      79,    80,    81,    82,    83,    86,    87,    90,    91,    94,
+      97,    98,   101,   102,   105,   108,   111,   112,   115,   116,
+     117,   118,   123,   124,   125,   128,   129,   130,   131,   134,
+     135,   136,   137,   140,   141,   142,   145,   146,   147,   148,
+     149,   152,   153,   154,   155,   156,   157
 };
 #endif
 
@@ -1356,38 +1357,44 @@ yyreduce:
   YY_REDUCE_PRINT (yyn);
   switch (yyn)
     {
-        case 20:
-#line 60 "expr.y" /* yacc.c:1646  */
+        case 19:
+#line 57 "expr.y" /* yacc.c:1646  */
+    {insereListaNaArvore((yyvsp[-1]).listaId, tabelaSimbolosGlobais); printArvore(tabelSimbolosGlobais);}
+#line 1364 "expr.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 20:
+#line 61 "expr.y" /* yacc.c:1646  */
     {(yyval).tipo = INT;}
-#line 1363 "expr.tab.c" /* yacc.c:1646  */
+#line 1370 "expr.tab.c" /* yacc.c:1646  */
     break;
 
   case 21:
-#line 61 "expr.y" /* yacc.c:1646  */
+#line 62 "expr.y" /* yacc.c:1646  */
     {(yyval).tipo = DOUBLE;}
-#line 1369 "expr.tab.c" /* yacc.c:1646  */
+#line 1376 "expr.tab.c" /* yacc.c:1646  */
     break;
 
   case 22:
-#line 62 "expr.y" /* yacc.c:1646  */
+#line 63 "expr.y" /* yacc.c:1646  */
     {(yyval).tipo = STRING;}
-#line 1375 "expr.tab.c" /* yacc.c:1646  */
+#line 1382 "expr.tab.c" /* yacc.c:1646  */
     break;
 
   case 23:
-#line 65 "expr.y" /* yacc.c:1646  */
-    {(yyval).listaId = insereLista((yyvsp[-2]).listaId, (yyvsp[0]).nomeId);}
-#line 1381 "expr.tab.c" /* yacc.c:1646  */
+#line 66 "expr.y" /* yacc.c:1646  */
+    {(yyval).listaId = insereLista((yyvsp[-2]).listaId, (yyvsp[0]).nomeId); printaLista((yyvsp[-2]).listaId);}
+#line 1388 "expr.tab.c" /* yacc.c:1646  */
     break;
 
   case 24:
-#line 66 "expr.y" /* yacc.c:1646  */
-    {(yyval).listaId = criaLista((yyvsp[0]).nomeId);}
-#line 1387 "expr.tab.c" /* yacc.c:1646  */
+#line 67 "expr.y" /* yacc.c:1646  */
+    {(yyval).listaId = criaLista((yyvsp[0]).nomeId); printaLista((yyval).listaId);}
+#line 1394 "expr.tab.c" /* yacc.c:1646  */
     break;
 
 
-#line 1391 "expr.tab.c" /* yacc.c:1646  */
+#line 1398 "expr.tab.c" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -1615,7 +1622,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 160 "expr.y" /* yacc.c:1906  */
+#line 161 "expr.y" /* yacc.c:1906  */
 
 #include "lex.yy.c"
 

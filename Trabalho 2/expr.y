@@ -1,7 +1,7 @@
 %{
 #include <stdio.h>
 #include <stdlib.h>
-#include "gen.h"
+#include "eda.h"
 
 typedef struct {
     struct List *listaId;
@@ -10,6 +10,7 @@ typedef struct {
     double double_value;
 }Atributo;
 
+struct arvore* tabelaSimbolosGlobais = criarArvore();
 
 #define YYSTYPE Atributo
 int __linha__ = 1;
@@ -53,7 +54,7 @@ Declaracoes : Declaracoes Declaracao
 	| Declaracao
 	;
 
-Declaracao : Tipo ListaId T_PONTO_E_VIRGULA 
+Declaracao : Tipo ListaId T_PONTO_E_VIRGULA {insereListaNaArvore($2.listaId, tabelaSimbolosGlobais); printArvore(tabelSimbolosGlobais);}
 	;
 
 
@@ -62,8 +63,8 @@ Tipo : T_INT {$$.tipo = INT;}
 	| T_STRING {$$.tipo = STRING;}
 	;
 
-ListaId : ListaId T_VIRGULA T_ID {$$.listaId = insereLista($1.listaId, $3.nomeId);}
-	| T_ID {$$.listaId = criaLista($1.nomeId);}
+ListaId : ListaId T_VIRGULA T_ID {$$.listaId = insereLista($1.listaId, $3.nomeId); printaLista($1.listaId);}
+	| T_ID {$$.listaId = criaLista($1.nomeId); printaLista($$.listaId);}
 	;
 
 Bloco : T_ABRE_CHAVES ListaCmd T_FECHA_CHAVES
