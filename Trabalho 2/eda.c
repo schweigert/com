@@ -43,6 +43,8 @@ struct arvore* criarArvore(){
 	return ret;
 }
 
+
+
 void insereArvore(struct arvore* arv, char* valor){
 	if(arv->root == NULL){
 		arv->root = criaNo(valor);

@@ -3,6 +3,7 @@
 extern FILE *yyin;
 
 
+
 int main(int c, char *argv[])
 {
   	FILE * file;
@@ -15,4 +16,3 @@ int main(int c, char *argv[])
 	yyparse();
 	return 0;
 }
-

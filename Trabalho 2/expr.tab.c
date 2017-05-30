@@ -1,8 +1,8 @@
-/* A Bison parser, made by GNU Bison 3.0.2.  */
+/* A Bison parser, made by GNU Bison 3.0.4.  */
 
 /* Bison implementation for Yacc-like parsers in C
 
-   Copyright (C) 1984, 1989-1990, 2000-2013 Free Software Foundation, Inc.
+   Copyright (C) 1984, 1989-1990, 2000-2015 Free Software Foundation, Inc.
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -44,7 +44,7 @@
 #define YYBISON 1
 
 /* Bison version.  */
-#define YYBISON_VERSION "3.0.2"
+#define YYBISON_VERSION "3.0.4"
 
 /* Skeleton name.  */
 #define YYSKELETON_NAME "yacc.c"
@@ -75,7 +75,7 @@ typedef struct {
     double double_value;
 }Atributo;
 
-const struct arvore* tabelaSimbolosGlobais = criarArvore();
+struct arvore* tabelaSimbolosGlobais;
 
 #define YYSTYPE Atributo
 int __linha__ = 1;
@@ -1357,44 +1357,50 @@ yyreduce:
   YY_REDUCE_PRINT (yyn);
   switch (yyn)
     {
-        case 19:
-#line 57 "expr.y" /* yacc.c:1646  */
-    {insereListaNaArvore((yyvsp[-1]).listaId, tabelaSimbolosGlobais); printArvore(tabelSimbolosGlobais);}
+        case 2:
+#line 24 "expr.y" /* yacc.c:1646  */
+    {}
 #line 1364 "expr.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 19:
+#line 57 "expr.y" /* yacc.c:1646  */
+    {insereListaNaArvore((yyvsp[-1]).listaId, tabelaSimbolosGlobais); printArvore(tabelaSimbolosGlobais);}
+#line 1370 "expr.tab.c" /* yacc.c:1646  */
     break;
 
   case 20:
 #line 61 "expr.y" /* yacc.c:1646  */
     {(yyval).tipo = INT;}
-#line 1370 "expr.tab.c" /* yacc.c:1646  */
+#line 1376 "expr.tab.c" /* yacc.c:1646  */
     break;
 
   case 21:
 #line 62 "expr.y" /* yacc.c:1646  */
     {(yyval).tipo = DOUBLE;}
-#line 1376 "expr.tab.c" /* yacc.c:1646  */
+#line 1382 "expr.tab.c" /* yacc.c:1646  */
     break;
 
   case 22:
 #line 63 "expr.y" /* yacc.c:1646  */
     {(yyval).tipo = STRING;}
-#line 1382 "expr.tab.c" /* yacc.c:1646  */
+#line 1388 "expr.tab.c" /* yacc.c:1646  */
     break;
 
   case 23:
 #line 66 "expr.y" /* yacc.c:1646  */
     {(yyval).listaId = insereLista((yyvsp[-2]).listaId, (yyvsp[0]).nomeId); printaLista((yyvsp[-2]).listaId);}
-#line 1388 "expr.tab.c" /* yacc.c:1646  */
+#line 1394 "expr.tab.c" /* yacc.c:1646  */
     break;
 
   case 24:
 #line 67 "expr.y" /* yacc.c:1646  */
     {(yyval).listaId = criaLista((yyvsp[0]).nomeId); printaLista((yyval).listaId);}
-#line 1394 "expr.tab.c" /* yacc.c:1646  */
+#line 1400 "expr.tab.c" /* yacc.c:1646  */
     break;
 
 
-#line 1398 "expr.tab.c" /* yacc.c:1646  */
+#line 1404 "expr.tab.c" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -1629,8 +1635,8 @@ yyreturn:
 int yyerror (char *str)
 {
 	printf("[Linha%d] - %s - antes %s\n", __linha__,str, yytext);
-	
-} 		 
+
+}
 
 int yywrap()
 {

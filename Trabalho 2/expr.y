@@ -10,7 +10,7 @@ typedef struct {
     double double_value;
 }Atributo;
 
-struct arvore* tabelaSimbolosGlobais = criarArvore();
+struct arvore* tabelaSimbolosGlobais;
 
 #define YYSTYPE Atributo
 int __linha__ = 1;
@@ -21,7 +21,7 @@ int __linha__ = 1;
 %token T_ADICAO T_SUBTRACAO T_MULTIPLICACAO T_DIVISAO T_IGUAL T_ABRE_PARENTESES T_FECHA_PARENTESES T_ABRE_CHAVES T_FECHA_CHAVES T_INT T_DOUBLE T_STRING T_VOID T_IF T_WHILE T_ELSE T_PRINT T_READ T_RETURN T_ID T_LITERAL T_FIM T_NUM T_VIRGULA T_PONTO_E_VIRGULA T_AND T_NOT T_OR T_TRUE T_FALSE T_MAIOR_IGUAL T_MENOR_IGUAL T_DIFERENTE T_IGUAL_IGUAL T_MAIOR T_MENOR
 
 %%
-Programa : ListaFuncoes BlocoPrincipal
+Programa : ListaFuncoes BlocoPrincipal {}
 	| BlocoPrincipal
 	;
 
@@ -54,7 +54,7 @@ Declaracoes : Declaracoes Declaracao
 	| Declaracao
 	;
 
-Declaracao : Tipo ListaId T_PONTO_E_VIRGULA {insereListaNaArvore($2.listaId, tabelaSimbolosGlobais); printArvore(tabelSimbolosGlobais);}
+Declaracao : Tipo ListaId T_PONTO_E_VIRGULA {insereListaNaArvore($2.listaId, tabelaSimbolosGlobais); printArvore(tabelaSimbolosGlobais);}
 	;
 
 
@@ -164,8 +164,8 @@ ExpressaoRelacional	: ExpressaoAritmetica T_MAIOR ExpressaoAritmetica
 int yyerror (char *str)
 {
 	printf("[Linha%d] - %s - antes %s\n", __linha__,str, yytext);
-	
-} 		 
+
+}
 
 int yywrap()
 {
