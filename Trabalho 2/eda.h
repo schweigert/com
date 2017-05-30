@@ -26,6 +26,7 @@ struct arvore {
 
 };
 
+void printaLista(List*);
 
 struct arvore* criarArvore();
 void insereArvore(struct arvore* arv, char* valor);

@@ -54,7 +54,7 @@ Declaracoes : Declaracoes Declaracao
 	| Declaracao
 	;
 
-Declaracao : Tipo ListaId T_PONTO_E_VIRGULA {insereListaNaArvore($2.listaId, tabelaSimbolosGlobais); printArvore(tabelaSimbolosGlobais);}
+Declaracao : Tipo ListaId T_PONTO_E_VIRGULA {printaLista($2.listaId);insereListaNaArvore($2.listaId, tabelaSimbolosGlobais);}
 	;
 
 
@@ -63,8 +63,8 @@ Tipo : T_INT {$$.tipo = INT;}
 	| T_STRING {$$.tipo = STRING;}
 	;
 
-ListaId : ListaId T_VIRGULA T_ID {$$.listaId = insereLista($1.listaId, $3.nomeId); printaLista($1.listaId);}
-	| T_ID {$$.listaId = criaLista($1.nomeId); printaLista($$.listaId);}
+ListaId : ListaId T_VIRGULA T_ID {$$.listaId = insereLista($1.listaId, $3.nomeId); $$.listaId = $1.listaId;}
+	| T_ID {$$.listaId = criaLista($1.nomeId);}
 	;
 
 Bloco : T_ABRE_CHAVES ListaCmd T_FECHA_CHAVES

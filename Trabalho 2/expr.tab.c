@@ -1365,7 +1365,7 @@ yyreduce:
 
   case 19:
 #line 57 "expr.y" /* yacc.c:1646  */
-    {insereListaNaArvore((yyvsp[-1]).listaId, tabelaSimbolosGlobais); printArvore(tabelaSimbolosGlobais);}
+    {printaLista((yyvsp[-1]).listaId);insereListaNaArvore((yyvsp[-1]).listaId, tabelaSimbolosGlobais);}
 #line 1370 "expr.tab.c" /* yacc.c:1646  */
     break;
 
@@ -1389,13 +1389,13 @@ yyreduce:
 
   case 23:
 #line 66 "expr.y" /* yacc.c:1646  */
-    {(yyval).listaId = insereLista((yyvsp[-2]).listaId, (yyvsp[0]).nomeId); printaLista((yyvsp[-2]).listaId);}
+    {(yyval).listaId = insereLista((yyvsp[-2]).listaId, (yyvsp[0]).nomeId); (yyval).listaId = (yyvsp[-2]).listaId;}
 #line 1394 "expr.tab.c" /* yacc.c:1646  */
     break;
 
   case 24:
 #line 67 "expr.y" /* yacc.c:1646  */
-    {(yyval).listaId = criaLista((yyvsp[0]).nomeId); printaLista((yyval).listaId);}
+    {(yyval).listaId = criaLista((yyvsp[0]).nomeId);}
 #line 1400 "expr.tab.c" /* yacc.c:1646  */
     break;
 
