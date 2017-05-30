@@ -11,11 +11,13 @@ typedef struct List{
 
 List* criaLista (char *id){
 	List *ret = (struct List*)malloc(sizeof(struct List));
+
 	if (ret != NULL){
 		memcpy(ret->id, id, 11);
 		ret->proximo = NULL;
+		printf("Simbolo %s encontrado\n", id);
 	}
-
+	return ret;
 }
 
 void insereLista (struct List *head, char *id){
