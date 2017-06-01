@@ -6,7 +6,7 @@
 typedef struct {
     struct List *listaId;
     char nomeId[10];
-    int tipo;
+    TIPO tipo;
     double double_value;
 }Atributo;
 
@@ -54,7 +54,7 @@ Declaracoes : Declaracoes Declaracao
 	| Declaracao
 	;
 
-Declaracao : Tipo ListaId T_PONTO_E_VIRGULA {printaLista($2.listaId);insereListaNaArvore($2.listaId, tabelaSimbolosGlobais);}
+Declaracao : Tipo ListaId T_PONTO_E_VIRGULA {printaLista($2.listaId);insereListaNaArvore($2.listaId, tabelaSimbolosGlobais, $1.tipo);}
 	;
 
 
@@ -63,7 +63,7 @@ Tipo : T_INT {$$.tipo = INT;}
 	| T_STRING {$$.tipo = STRING;}
 	;
 
-ListaId : ListaId T_VIRGULA T_ID {$$.listaId = insereLista($1.listaId, $3.nomeId); $$.listaId = $1.listaId;}
+ListaId : ListaId T_VIRGULA T_ID {insereLista($1.listaId, $3.nomeId); $$.listaId = $1.listaId;}
 	| T_ID {$$.listaId = criaLista($1.nomeId);}
 	;
 

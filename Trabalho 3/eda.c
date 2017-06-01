@@ -40,6 +40,7 @@ void printaLista (struct List *l){
 struct arvore* criarArvore(){
 	struct arvore* ret = (struct arvore*)malloc(sizeof(struct arvore));
 	ret->root = NULL;
+	ret->qnt = 0;
 	return ret;
 }
 
@@ -47,16 +48,18 @@ struct arvore* criarArvore(){
 
 void insereArvore(struct arvore* arv, char* valor){
 	if(arv->root == NULL){
-		arv->root = criaNo(valor);
+		arv->qnt++;
+		arv->root = criaNo(valor,arv->qnt);
 		return;
 	} else {
-		insereArvoreInternal(arv->root, valor);
+		arv->qnt++;
+		insereArvoreInternal(arv->root, valor,arv->qnt);
 		return;
 	}
 
 }
 
-void insereArvoreInternal(struct no* node, char* valor){
+void insereArvoreInternal(struct no* node, char* valor, int posicao){
 
 	int ret = strcmp(node->valor, valor);
 	if(ret == 0){
@@ -65,26 +68,28 @@ void insereArvoreInternal(struct no* node, char* valor){
 	}
 
 	if(ret >0 && node->maior == NULL){
-		node->maior = criaNo(valor);
+		node->maior = criaNo(valor,posicao);
 		return;
 	}
 
 	if(ret <0 && node->menor == NULL){
-		node->menor = criaNo(valor);
+		node->menor = criaNo(valor,posicao);
 		return;
 	}
 
 	if(ret < 0){
-		insereArvoreInternal(node->menor, valor);
+		insereArvoreInternal(node->menor, valor, posicao);
 	} else {
-		insereArvoreInternal(node->maior, valor);
+		insereArvoreInternal(node->maior, valor, posicao);
 	}
 
 }
 
-struct no* criaNo(char* valor){
+struct no* criaNo(char* valor, int num){
 	struct no* ret = (struct no*)malloc(sizeof(struct no));
 	ret->valor = valor;
+	ret->tipo = NDEFINIDO;
+	ret->num = num;
 	ret->maior = NULL;
 	ret->menor = NULL;
 	return ret;
@@ -100,18 +105,31 @@ void printNodes (struct no* node, int nivel){
 
 	int n = 0;
 	for(n = 0; n < nivel; n ++){
-		printf("\t");
+		printf("  ");
 	}
-	printf("N: %s\n", node->valor);
+	printf("|-- %s / %d / %d\n", node->valor, node->tipo, node->num);
 
 	printNodes(node->maior, nivel +1);
 	printNodes(node->menor, nivel +1);
 }
 
-void insereListaNaArvore(List* lista, struct arvore* arv){
-	if (lista == NULL) return;
+void insereListaNaArvore(List* lista, struct arvore* arv, TIPO tipo){
+	if (lista == NULL){
+		atualizaTipoDaArovre(arv->root, tipo);
+		return;
+	}
 	if (arv == NULL) return;
 
 	insereArvore(arv, (char*)lista->id);
-	insereListaNaArvore((List*)lista->proximo, arv);
+	insereListaNaArvore((List*)lista->proximo, arv, tipo);
+}
+
+void atualizaTipoDaArovre (struct no * root, TIPO tipo)
+{
+	if(root == NULL) return;
+
+	if(root->tipo == NDEFINIDO) root->tipo = tipo;
+
+	atualizaTipoDaArovre(root->maior, tipo);
+	atualizaTipoDaArovre(root->menor, tipo);
 }

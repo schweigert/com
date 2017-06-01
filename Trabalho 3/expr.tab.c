@@ -71,7 +71,7 @@
 typedef struct {
     struct List *listaId;
     char nomeId[10];
-    int tipo;
+    TIPO tipo;
     double double_value;
 }Atributo;
 
@@ -1365,7 +1365,7 @@ yyreduce:
 
   case 19:
 #line 57 "expr.y" /* yacc.c:1646  */
-    {printaLista((yyvsp[-1]).listaId);insereListaNaArvore((yyvsp[-1]).listaId, tabelaSimbolosGlobais);}
+    {printaLista((yyvsp[-1]).listaId);insereListaNaArvore((yyvsp[-1]).listaId, tabelaSimbolosGlobais, (yyvsp[-2]).tipo);}
 #line 1370 "expr.tab.c" /* yacc.c:1646  */
     break;
 
@@ -1389,7 +1389,7 @@ yyreduce:
 
   case 23:
 #line 66 "expr.y" /* yacc.c:1646  */
-    {(yyval).listaId = insereLista((yyvsp[-2]).listaId, (yyvsp[0]).nomeId); (yyval).listaId = (yyvsp[-2]).listaId;}
+    {insereLista((yyvsp[-2]).listaId, (yyvsp[0]).nomeId); (yyval).listaId = (yyvsp[-2]).listaId;}
 #line 1394 "expr.tab.c" /* yacc.c:1646  */
     break;
 
