@@ -3,14 +3,19 @@
 
 #define MAX_COMMAND 10000
 
-struct {
+typedef struct {
   int label;
   int command;
   int arg1;
   int arg2;
-} Cmd;
+} CMD;
 
-struct Cmd CmdList[MAX_COMMAND];
-int CmdIndex = 0;
+
+// Commands
+
+#define CMD_ISTORE 0x0000
+#define CMD_IPUSH 0x0001
+
+void cmdGenerate(int, int, int);
 
 #endif
