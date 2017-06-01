@@ -54,7 +54,7 @@ Declaracoes : Declaracoes Declaracao
 	| Declaracao
 	;
 
-Declaracao : Tipo ListaId T_PONTO_E_VIRGULA {printaLista($2.listaId);insereListaNaArvore($2.listaId, tabelaSimbolosGlobais, $1.tipo);}
+Declaracao : Tipo ListaId T_PONTO_E_VIRGULA {insereListaNaArvore($2.listaId, tabelaSimbolosGlobais, $1.tipo);}
 	;
 
 

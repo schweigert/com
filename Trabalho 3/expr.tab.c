@@ -1365,7 +1365,7 @@ yyreduce:
 
   case 19:
 #line 57 "expr.y" /* yacc.c:1646  */
-    {printaLista((yyvsp[-1]).listaId);insereListaNaArvore((yyvsp[-1]).listaId, tabelaSimbolosGlobais, (yyvsp[-2]).tipo);}
+    {insereListaNaArvore((yyvsp[-1]).listaId, tabelaSimbolosGlobais, (yyvsp[-2]).tipo);}
 #line 1370 "expr.tab.c" /* yacc.c:1646  */
     break;
 
