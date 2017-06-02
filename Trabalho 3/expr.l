@@ -11,6 +11,8 @@ literal \".*\"
 "<=" {return T_MENOR_IGUAL;}
 "!=" {return T_DIFERENTE;}
 "==" {return T_IGUAL_IGUAL;}
+">>" {return T_BIT_DIREITA;}
+"<<" {return T_BIT_ESQUERDA;}
 ">" {return T_MAIOR;}
 "<" {return T_MENOR;}
 "+"	{return T_ADICAO;}

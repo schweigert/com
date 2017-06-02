@@ -100,6 +100,22 @@ void ShowCmdAscii()
       CmdList[i].label
     );
 
+    // ISH[LR]
+    if(CmdList[i].command == CMD_ISHR)
+      printf("%d.\t%d\tISHR\n", i,
+      CmdList[i].label
+    );
+    if(CmdList[i].command == CMD_ISHL)
+      printf("%d.\t%d\tISHL\n", i,
+      CmdList[i].label
+    );
+
+    // ISUB
+    if(CmdList[i].command == CMD_ISUB)
+      printf("%d.\t%d\tISUB\n", i,
+      CmdList[i].label
+    );
+
   }
 }
 
@@ -158,4 +174,19 @@ void CmdIneg ()
 void CmdIrem ()
 {
   cmdGenerate(CMD_IREM, -1, -1);
+}
+
+void CmdIshl ()
+{
+  cmdGenerate(CMD_ISHL, -1, -1);
+}
+
+void CmdIshr ()
+{
+  cmdGenerate(CMD_ISHR, -1, -1);
+}
+
+void CmdIsub ()
+{
+  cmdGenerate(CMD_ISUB, -1, -1);
 }
