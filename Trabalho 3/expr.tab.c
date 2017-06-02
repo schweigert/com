@@ -1400,8 +1400,38 @@ yyreduce:
 #line 1401 "expr.tab.c" /* yacc.c:1646  */
     break;
 
+  case 40:
+#line 98 "expr.y" /* yacc.c:1646  */
+    {CmdIstore(tabelaSimbolosGlobais, (yyvsp[-3]).nomeId);}
+#line 1407 "expr.tab.c" /* yacc.c:1646  */
+    break;
 
-#line 1405 "expr.tab.c" /* yacc.c:1646  */
+  case 52:
+#line 124 "expr.y" /* yacc.c:1646  */
+    {CmdIadd();}
+#line 1413 "expr.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 55:
+#line 129 "expr.y" /* yacc.c:1646  */
+    {CmdImull();}
+#line 1419 "expr.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 61:
+#line 137 "expr.y" /* yacc.c:1646  */
+    {CmdBipush((int)(yyvsp[0]).double_value);}
+#line 1425 "expr.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 62:
+#line 138 "expr.y" /* yacc.c:1646  */
+    {CmdIload(tabelaSimbolosGlobais, (yyvsp[0]).nomeId);}
+#line 1431 "expr.tab.c" /* yacc.c:1646  */
+    break;
+
+
+#line 1435 "expr.tab.c" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires

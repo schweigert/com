@@ -95,7 +95,7 @@ CmdSe : T_IF T_ABRE_PARENTESES ExpressaoLogica T_FECHA_PARENTESES Bloco
 CmdEnquanto : T_WHILE T_ABRE_PARENTESES ExpressaoLogica T_FECHA_PARENTESES Bloco
 	;
 
-CmdAtrib : T_ID T_IGUAL ExpressaoAritmetica T_PONTO_E_VIRGULA
+CmdAtrib : T_ID T_IGUAL ExpressaoAritmetica T_PONTO_E_VIRGULA {CmdIstore(tabelaSimbolosGlobais, $1.nomeId);}
 	| T_ID T_IGUAL T_LITERAL T_PONTO_E_VIRGULA
 	;
 
@@ -121,12 +121,12 @@ ListaParametros : ListaParametros T_VIRGULA ExpressaoAritmetica
 // Trabalho 1
 // Expressões Aritméticas
 
-ExpressaoAritmetica : ExpressaoAritmetica T_ADICAO TExpressaoAritmetica
+ExpressaoAritmetica : ExpressaoAritmetica T_ADICAO TExpressaoAritmetica {CmdIadd();}
 	| ExpressaoAritmetica T_SUBTRACAO TExpressaoAritmetica
 	| TExpressaoAritmetica
 	;
 
-TExpressaoAritmetica : TExpressaoAritmetica T_MULTIPLICACAO FExpressaoAritmetica
+TExpressaoAritmetica : TExpressaoAritmetica T_MULTIPLICACAO FExpressaoAritmetica {CmdImull();}
 	| TExpressaoAritmetica T_DIVISAO FExpressaoAritmetica
 	| FExpressaoAritmetica
 	| ChamadaFuncao
@@ -134,8 +134,8 @@ TExpressaoAritmetica : TExpressaoAritmetica T_MULTIPLICACAO FExpressaoAritmetica
 
 FExpressaoAritmetica : T_ABRE_PARENTESES ExpressaoAritmetica T_FECHA_PARENTESES
 	| T_SUBTRACAO FExpressaoAritmetica
-	| T_NUM
-	| T_ID
+	| T_NUM {CmdBipush((int)$1.double_value);}
+	| T_ID {CmdIload(tabelaSimbolosGlobais, $1.nomeId);}
 	;
 
 ExpressaoLogica : ExpressaoLogica T_AND FExpressaoLogica

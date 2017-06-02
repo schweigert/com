@@ -13,11 +13,16 @@ typedef struct {
 
 // Commands         #Bin ID   #Arg1   #Arg2
 
-#define CMD_ISTORE  0x0000 // Posi    --
-#define CMD_BIPUSH  0x0001 // Number  --
-#define CMD_IADD    0x0002 // --      --
-#define CMD_IMULL   0x0003 // --      --
-#define CMD_ILOAD   0x0004 // Posi    --
+#define CMD_ISTORE    0x0000 // Posi    --
+#define CMD_BIPUSH    0x0001 // Number  --
+#define CMD_IADD      0x0002 // --      --
+#define CMD_IMULL     0x0003 // --      --
+#define CMD_ILOAD     0x0004 // Posi    --
+#define CMD_ICONST_1  0x0005 // --      --
+#define CMD_ICONST_2  0x0006 // --      --
+#define CMD_ICONST_3  0x0007 // --      --
+#define CMD_ICONST_4  0x0008 // --      --
+#define CMD_ICONST_5  0x0009 // --      --
 
 void showCmd();
 
@@ -27,5 +32,8 @@ void cmdGenerate(int, int, int);
 
 // Lista de Comandos em Pilha para a JVM
 void CmdIstore (struct arvore* arv, char* var);
-
+void CmdIadd ();
+void CmdImull ();
+void CmdBipush (int value);
+void CmdIload (struct arvore* arv, char* var);
 #endif
