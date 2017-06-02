@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "eda.h"
+#include "cmd.h"
 extern FILE *yyin;
 extern struct arvore* tabelaSimbolosGlobais;
 
@@ -16,6 +17,7 @@ int main(int c, char *argv[])
 	yyin = file;
 	yyparse();
   printArvore(tabelaSimbolosGlobais);
+  showCmd();
 
 	return 0;
 }

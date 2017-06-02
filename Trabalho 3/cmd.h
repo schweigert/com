@@ -19,6 +19,13 @@ typedef struct {
 #define CMD_IMULL   0x0003 // --      --
 #define CMD_ILOAD   0x0004 // Posi    --
 
+void showCmd();
+
 void cmdGenerate(int, int, int);
+
+#include "eda.h"
+
+// Lista de Comandos em Pilha para a JVM
+void CmdIstore (struct arvore* arv, char* var);
 
 #endif

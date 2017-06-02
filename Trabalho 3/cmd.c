@@ -6,6 +6,20 @@
 CMD CmdList[MAX_COMMAND] = {0};
 int CmdIndex = 0;
 
+void showCmd()
+{
+  int i = 0;
+  printf("\n------------------------");
+  for(i = 0; i < CmdIndex; i++){
+    printf("%d\t%d\t%d\t%d\n",
+      CmdList[i].label,
+      CmdList[i].command,
+      CmdList[i].arg1,
+      CmdList[i].arg2);
+  }
+  printf("------------------------\n");
+}
+
 void cmdGenerate(int command, int arg1, int arg2)
 {
   CmdList[CmdIndex].label = -1;
@@ -18,5 +32,5 @@ void cmdGenerate(int command, int arg1, int arg2)
 void CmdIstore (struct arvore* arv, char* var)
 {
   int posicao = buscaPosicao(arv, var);
-  cmdGenerate()
+  cmdGenerate(CMD_ISTORE, posicao, -1);
 }
