@@ -11,10 +11,13 @@ typedef struct {
 } CMD;
 
 
-// Commands
+// Commands         #Bin ID   #Arg1   #Arg2
 
-#define CMD_ISTORE 0x0000
-#define CMD_IPUSH 0x0001
+#define CMD_ISTORE  0x0000 // Posi    --
+#define CMD_BIPUSH  0x0001 // Number  --
+#define CMD_IADD    0x0002 // --      --
+#define CMD_IMULL   0x0003 // --      --
+#define CMD_ILOAD   0x0004 // Posi    --
 
 void cmdGenerate(int, int, int);
 

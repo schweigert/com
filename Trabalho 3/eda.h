@@ -41,4 +41,7 @@ void printArvore (struct arvore* arv);
 void printNodes (struct no* node, int nivel);
 void insereListaNaArvore(List* lista, struct arvore* arv, TIPO tipo);
 void atualizaTipoDaArovre (struct no * root, TIPO tipo);
+
+int buscaPosicao (struct arvore* arv ,char* valor);
+int buscaPosicaoInternal (struct no* node, char* valor);
 #endif

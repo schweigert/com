@@ -133,3 +133,22 @@ void atualizaTipoDaArovre (struct no * root, TIPO tipo)
 	atualizaTipoDaArovre(root->maior, tipo);
 	atualizaTipoDaArovre(root->menor, tipo);
 }
+
+int buscaPosicao (struct arvore* arv ,char* valor)
+{
+	return buscaPosicaoInternal(arv->root, valor);
+}
+
+int buscaPosicaoInternal (struct no* node, char* valor)
+{
+	if(node == NULL)
+	{
+		printf("Variável %s não foi declarada.\n", valor);
+	}
+	int decisao = strcmp(node->valor, valor);
+
+	if(decisao == 0) return node->num;
+
+	if(decisao > 0) return buscaPosicaoInternal(node->maior, valor);
+	else return buscaPosicaoInternal(node->menor, valor);
+}

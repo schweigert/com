@@ -16,5 +16,6 @@ int main(int c, char *argv[])
 	yyin = file;
 	yyparse();
   printArvore(tabelaSimbolosGlobais);
+
 	return 0;
 }
