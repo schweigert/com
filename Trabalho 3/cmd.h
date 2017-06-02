@@ -23,6 +23,9 @@ typedef struct {
 #define CMD_ICONST_3  0x0007 // --      --
 #define CMD_ICONST_4  0x0008 // --      --
 #define CMD_ICONST_5  0x0009 // --      --
+#define CMD_IDIV      0x000A // --      --
+#define CMD_INEG      0x000B // --      --
+#define CMD_IREM      0x000C // --      --
 
 void showCmd();
 void ShowCmdAscii();
@@ -37,4 +40,7 @@ void CmdIadd ();
 void CmdImull ();
 void CmdBipush (int value);
 void CmdIload (struct arvore* arv, char* var);
+void CmdIdiv ();
+void CmdIneg ();
+void CmdIrem ();
 #endif

@@ -81,6 +81,25 @@ void ShowCmdAscii()
       printf("%d.\t%d\tICONST_5\n", i,
       CmdList[i].label
     );
+
+    // IDIV
+    if(CmdList[i].command == CMD_IDIV)
+      printf("%d.\t%d\tIDIV\n", i,
+      CmdList[i].label
+    );
+
+    // INEG
+    if(CmdList[i].command == CMD_INEG)
+      printf("%d.\t%d\tINEG\n", i,
+      CmdList[i].label
+    );
+
+    // IREM
+    if(CmdList[i].command == CMD_IREM)
+      printf("%d.\t%d\tIREM\n", i,
+      CmdList[i].label
+    );
+
   }
 }
 
@@ -124,4 +143,19 @@ void CmdIload (struct arvore* arv, char* var)
 {
   int posicao = buscaPosicao(arv, var);
   cmdGenerate (CMD_ILOAD, posicao, -1);
+}
+
+void CmdIdiv ()
+{
+  cmdGenerate(CMD_IDIV, -1, -1);
+}
+
+void CmdIneg ()
+{
+  cmdGenerate(CMD_INEG, -1, -1);
+}
+
+void CmdIrem ()
+{
+  cmdGenerate(CMD_IREM, -1, -1);
 }
