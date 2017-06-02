@@ -18,6 +18,6 @@ int main(int c, char *argv[])
 	yyparse();
   printArvore(tabelaSimbolosGlobais);
   showCmd();
-
+  ShowCmdAscii();
 	return 0;
 }

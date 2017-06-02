@@ -25,6 +25,7 @@ typedef struct {
 #define CMD_ICONST_5  0x0009 // --      --
 
 void showCmd();
+void ShowCmdAscii();
 
 void cmdGenerate(int, int, int);
 

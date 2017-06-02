@@ -9,15 +9,79 @@ int CmdIndex = 0;
 void showCmd()
 {
   int i = 0;
-  printf("\n------------------------\n");
+  printf("\n\tBinary Commands:\nID\tL\tC\tA1\tA2\n");
   for(i = 0; i < CmdIndex; i++){
-    printf("%d\t%d\t%d\t%d\n",
+    printf("%d.\t%d\t%d\t%d\t%d\n",i,
       CmdList[i].label,
       CmdList[i].command,
       CmdList[i].arg1,
       CmdList[i].arg2);
   }
-  printf("\n------------------------\n");
+  printf("\n\n");
+}
+
+void ShowCmdAscii()
+{
+  int i = 0;
+  printf("\n\tAscii Commands:\nID\tL\tC\t\tA1\tA2\n");
+
+  for(i = 0; i < CmdIndex; i++)
+  {
+    // ISTORE PRINT
+    if(CmdList[i].command == CMD_ISTORE)
+      printf("%d.\t%d\tISTORE\t\t%d\n", i,
+      CmdList[i].label,
+      CmdList[i].arg1
+    );
+
+    // BIPUSH
+    if(CmdList[i].command == CMD_BIPUSH)
+      printf("%d.\t%d\tBIPUSH\t\t%d\n", i,
+      CmdList[i].label,
+      CmdList[i].arg1
+    );
+
+    // IADD
+    if(CmdList[i].command == CMD_BIPUSH)
+      printf("%d.\t%d\tIADD\n", i,
+      CmdList[i].label
+    );
+
+    // IMULL
+    if(CmdList[i].command == CMD_IMULL)
+      printf("%d.\t%d\tIMULL\n", i,
+      CmdList[i].label
+    );
+
+    // BIPUSH
+    if(CmdList[i].command == CMD_ILOAD)
+      printf("%d.\t%d\tILOAD\t\t%d\n", i,
+      CmdList[i].label,
+      CmdList[i].arg1
+    );
+
+    // I_CONST_[12345]
+    if(CmdList[i].command == CMD_ICONST_1)
+      printf("%d.\t%d\tICONST_1\n", i,
+      CmdList[i].label
+    );
+    if(CmdList[i].command == CMD_ICONST_2)
+      printf("%d.\t%d\tICONST_2\n", i,
+      CmdList[i].label
+    );
+    if(CmdList[i].command == CMD_ICONST_3)
+      printf("%d.\t%d\tICONST_3\n", i,
+      CmdList[i].label
+    );
+    if(CmdList[i].command == CMD_ICONST_4)
+      printf("%d.\t%d\tICONST_4\n", i,
+      CmdList[i].label
+    );
+    if(CmdList[i].command == CMD_ICONST_5)
+      printf("%d.\t%d\tICONST_5\n", i,
+      CmdList[i].label
+    );
+  }
 }
 
 void cmdGenerate(int command, int arg1, int arg2)
