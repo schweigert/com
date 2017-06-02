@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "eda.h"
+#include "cmd.h"
 
 typedef struct {
     struct List *listaId;
