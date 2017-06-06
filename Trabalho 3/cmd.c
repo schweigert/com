@@ -42,7 +42,7 @@ void ShowCmdAscii()
     );
 
     // IADD
-    if(CmdList[i].command == CMD_BIPUSH)
+    if(CmdList[i].command == CMD_IADD)
       printf("%d.\t%d\tIADD\n", i,
       CmdList[i].label
     );
