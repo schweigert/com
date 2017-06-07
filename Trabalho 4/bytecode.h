@@ -1,9 +1,11 @@
 #ifndef _BYTECODE_N_DEF_
 #define _BYTECODE_N_DEF_
 
-void setSource(char* );
-void loadToMain();
-void writeJasmin(char* );
+#include "cmd.h"
+
+void writeJasminBody();
+void writeJasminMain(CMD*, int n);
+void writeJasminExit();
 
 
 #endif

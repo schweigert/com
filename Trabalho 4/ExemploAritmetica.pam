@@ -3,5 +3,7 @@
   a = 1;
   b = 20;
   c = (b + a) * 2;
+  b = a % b;
   print(c);
+  print(2<<1);
 }

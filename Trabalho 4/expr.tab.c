@@ -1377,134 +1377,140 @@ yyreduce:
   YY_REDUCE_PRINT (yyn);
   switch (yyn)
     {
-        case 2:
-#line 25 "expr.y" /* yacc.c:1646  */
-    {}
+        case 15:
+#line 50 "expr.y" /* yacc.c:1646  */
+    {writeJasminMain();}
 #line 1384 "expr.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 16:
+#line 51 "expr.y" /* yacc.c:1646  */
+    {writeJasminMain();}
+#line 1390 "expr.tab.c" /* yacc.c:1646  */
     break;
 
   case 19:
 #line 58 "expr.y" /* yacc.c:1646  */
     {insereListaNaArvore((yyvsp[-1]).listaId, tabelaSimbolosGlobais, (yyvsp[-2]).tipo);}
-#line 1390 "expr.tab.c" /* yacc.c:1646  */
+#line 1396 "expr.tab.c" /* yacc.c:1646  */
     break;
 
   case 20:
 #line 62 "expr.y" /* yacc.c:1646  */
     {(yyval).tipo = INT;}
-#line 1396 "expr.tab.c" /* yacc.c:1646  */
+#line 1402 "expr.tab.c" /* yacc.c:1646  */
     break;
 
   case 21:
 #line 63 "expr.y" /* yacc.c:1646  */
     {(yyval).tipo = DOUBLE;}
-#line 1402 "expr.tab.c" /* yacc.c:1646  */
+#line 1408 "expr.tab.c" /* yacc.c:1646  */
     break;
 
   case 22:
 #line 64 "expr.y" /* yacc.c:1646  */
     {(yyval).tipo = STRING;}
-#line 1408 "expr.tab.c" /* yacc.c:1646  */
+#line 1414 "expr.tab.c" /* yacc.c:1646  */
     break;
 
   case 23:
 #line 67 "expr.y" /* yacc.c:1646  */
     {insereLista((yyvsp[-2]).listaId, (yyvsp[0]).nomeId); (yyval).listaId = (yyvsp[-2]).listaId;}
-#line 1414 "expr.tab.c" /* yacc.c:1646  */
+#line 1420 "expr.tab.c" /* yacc.c:1646  */
     break;
 
   case 24:
 #line 68 "expr.y" /* yacc.c:1646  */
     {(yyval).listaId = criaLista((yyvsp[0]).nomeId);}
-#line 1420 "expr.tab.c" /* yacc.c:1646  */
+#line 1426 "expr.tab.c" /* yacc.c:1646  */
     break;
 
   case 40:
 #line 98 "expr.y" /* yacc.c:1646  */
     {CmdIstore(tabelaSimbolosGlobais, (yyvsp[-3]).nomeId);}
-#line 1426 "expr.tab.c" /* yacc.c:1646  */
+#line 1432 "expr.tab.c" /* yacc.c:1646  */
     break;
 
   case 42:
 #line 102 "expr.y" /* yacc.c:1646  */
     {CmdInvokeOutInt();}
-#line 1432 "expr.tab.c" /* yacc.c:1646  */
+#line 1438 "expr.tab.c" /* yacc.c:1646  */
     break;
 
   case 43:
 #line 103 "expr.y" /* yacc.c:1646  */
     {}
-#line 1438 "expr.tab.c" /* yacc.c:1646  */
+#line 1444 "expr.tab.c" /* yacc.c:1646  */
     break;
 
   case 44:
 #line 106 "expr.y" /* yacc.c:1646  */
     {CmdGetStaticOut();}
-#line 1444 "expr.tab.c" /* yacc.c:1646  */
+#line 1450 "expr.tab.c" /* yacc.c:1646  */
     break;
 
   case 53:
 #line 126 "expr.y" /* yacc.c:1646  */
     {CmdIadd();}
-#line 1450 "expr.tab.c" /* yacc.c:1646  */
+#line 1456 "expr.tab.c" /* yacc.c:1646  */
     break;
 
   case 54:
 #line 127 "expr.y" /* yacc.c:1646  */
     {CmdIsub();}
-#line 1456 "expr.tab.c" /* yacc.c:1646  */
+#line 1462 "expr.tab.c" /* yacc.c:1646  */
     break;
 
   case 55:
 #line 128 "expr.y" /* yacc.c:1646  */
     {CmdIshr();}
-#line 1462 "expr.tab.c" /* yacc.c:1646  */
+#line 1468 "expr.tab.c" /* yacc.c:1646  */
     break;
 
   case 56:
 #line 129 "expr.y" /* yacc.c:1646  */
     {CmdIshl();}
-#line 1468 "expr.tab.c" /* yacc.c:1646  */
+#line 1474 "expr.tab.c" /* yacc.c:1646  */
     break;
 
   case 58:
 #line 133 "expr.y" /* yacc.c:1646  */
     {CmdImull();}
-#line 1474 "expr.tab.c" /* yacc.c:1646  */
+#line 1480 "expr.tab.c" /* yacc.c:1646  */
     break;
 
   case 59:
 #line 134 "expr.y" /* yacc.c:1646  */
     {CmdIdiv();}
-#line 1480 "expr.tab.c" /* yacc.c:1646  */
+#line 1486 "expr.tab.c" /* yacc.c:1646  */
     break;
 
   case 60:
 #line 135 "expr.y" /* yacc.c:1646  */
     {CmdIrem();}
-#line 1486 "expr.tab.c" /* yacc.c:1646  */
+#line 1492 "expr.tab.c" /* yacc.c:1646  */
     break;
 
   case 64:
 #line 141 "expr.y" /* yacc.c:1646  */
     {CmdIneg();}
-#line 1492 "expr.tab.c" /* yacc.c:1646  */
+#line 1498 "expr.tab.c" /* yacc.c:1646  */
     break;
 
   case 65:
 #line 142 "expr.y" /* yacc.c:1646  */
     {CmdBipush((int)(yyvsp[0]).double_value);}
-#line 1498 "expr.tab.c" /* yacc.c:1646  */
+#line 1504 "expr.tab.c" /* yacc.c:1646  */
     break;
 
   case 66:
 #line 143 "expr.y" /* yacc.c:1646  */
     {CmdIload(tabelaSimbolosGlobais, (yyvsp[0]).nomeId);}
-#line 1504 "expr.tab.c" /* yacc.c:1646  */
+#line 1510 "expr.tab.c" /* yacc.c:1646  */
     break;
 
 
-#line 1508 "expr.tab.c" /* yacc.c:1646  */
+#line 1514 "expr.tab.c" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires

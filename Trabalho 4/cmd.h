@@ -2,6 +2,7 @@
 #define _CMD_N_DEF_
 
 #define MAX_COMMAND 10000
+#define MAX_FUNCS 1000
 
 typedef struct {
   int label;
@@ -9,7 +10,6 @@ typedef struct {
   int arg1;
   int arg2;
 } CMD;
-
 
 // Commands               #Bin ID   #Arg1   #Arg2
 #define CMD_ISTORE        0x0000 // Posi    --
@@ -53,5 +53,19 @@ void CmdIshr ();
 void CmdIsub ();
 void CmdGetStaticOut ();
 void CmdInvokeOutInt ();
+
+
+// Operações de chamada do Bytecode
+void loadToMain();
+
+// Operações do Assembler
+void writeCmds();
+void writeJasminInit(char* file);
+void writeJasminBody();
+void writeJasminMain();
+void writeJasminExit();
+
+void callJasmin();
+void rmJasminOut();
 
 #endif

@@ -1,4 +1,4 @@
-.class public Teste1
+.class public testeBasico
 .super java/lang/Object
 
 .method public <init>()V
@@ -9,7 +9,7 @@
 .end method
 
 .method public static main([Ljava/lang/String;)V
-   .limit stack 8
+   .limit stack 2
    .limit locals 4
    iconst_1
    istore 1

@@ -1,10 +1,12 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "cmd.h"
 #include "eda.h"
 
-
 CMD CmdList[MAX_COMMAND] = {0};
+int NumVars = 1;
 int CmdIndex = 0;
+
 
 void showCmd()
 {
@@ -133,6 +135,7 @@ void ShowCmdAscii()
 
 void cmdGenerate(int command, int arg1, int arg2)
 {
+  if(command == CMD_ISTORE) printf("bug");
   CmdList[CmdIndex].label = -1;
   CmdList[CmdIndex].command = command;
   CmdList[CmdIndex].arg1 = arg1;
@@ -170,6 +173,7 @@ void CmdBipush(int value)
 void CmdIload (struct arvore* arv, char* var)
 {
   int posicao = buscaPosicao(arv, var);
+  NumVars = arv->qnt + 1;
   cmdGenerate (CMD_ILOAD, posicao, -1);
 }
 
@@ -210,4 +214,151 @@ void CmdGetStaticOut ()
 
 void CmdInvokeOutInt() {
   cmdGenerate (CMD_INVKOUTI, -1, -1);
+}
+
+
+// Operações do Assembler
+
+FILE *jasminFile = NULL;
+char jasminName[256] = {0};
+
+void writeJasminInit(char* filename)
+{
+  char outname[256];
+  int i = 0;
+  for( ; filename[i] != '.'; i++){
+    outname[i] = filename[i];
+    jasminName[i] = filename[i];
+    jasminName[i+1] = '\0';
+  }
+
+  outname[i] = '.';
+  outname[i+1] = 'j';
+  outname[i+2] = '-';
+  outname[i+3] = '-';
+  outname[i+4] = '\0';
+  jasminFile = fopen(outname, "w");
+
+  if(jasminFile == NULL)
+  {
+    printf("Erro ao iniciar arquivo Assembler\n");
+    exit(-1);
+  }
+}
+
+void writeJasminBody()
+{
+  fprintf(jasminFile,".class public %s\n", jasminName);
+  fprintf(jasminFile,".super java/lang/Object\n\n");
+  fprintf(jasminFile,".method public <init>()V\n");
+  fprintf(jasminFile,"\taload_0\n");
+  fprintf(jasminFile,"\tinvokenonvirtual java/lang/Object/<init>()V\n");
+  fprintf(jasminFile,"\treturn\n");
+  fprintf(jasminFile,".end method\n");
+}
+
+void writeJasminMain()
+{
+  fprintf(jasminFile, "\n\n.method public static main([Ljava/lang/String;)V\n");
+  fprintf(jasminFile, "\t.limit stack 8\n");
+  fprintf(jasminFile, "\t.limit locals %d\n", NumVars);
+
+  writeCmds();
+
+  fprintf(jasminFile, "\treturn\n");
+  fprintf(jasminFile, ".end method\n");
+}
+
+void writeCmds()
+{
+  int i;
+  for(i = 0; i < CmdIndex; i++)
+  {
+
+    if(CmdList[i].command == CMD_ISTORE)
+      fprintf(jasminFile, "\tistore %d\n",CmdList[i].arg1);
+
+    if(CmdList[i].command == CMD_BIPUSH)
+      fprintf(jasminFile, "\tbipush %d\n",CmdList[i].arg1);
+
+    if(CmdList[i].command == CMD_ILOAD)
+      fprintf(jasminFile, "\tiload %d\n",CmdList[i].arg1);
+
+    if(CmdList[i].command == CMD_IADD)
+      fprintf(jasminFile, "\tiadd\n");
+
+    if(CmdList[i].command == CMD_IMULL)
+      fprintf(jasminFile, "\timul\n");
+
+    if(CmdList[i].command == CMD_ICONST_1)
+      fprintf(jasminFile, "\ticonst_1\n");
+
+    if(CmdList[i].command == CMD_ICONST_2)
+      fprintf(jasminFile, "\ticonst_2\n");
+
+    if(CmdList[i].command == CMD_ICONST_3)
+      fprintf(jasminFile, "\ticonst_3\n");
+
+    if(CmdList[i].command == CMD_ICONST_4)
+      fprintf(jasminFile, "\ticonst_4\n");
+
+    if(CmdList[i].command == CMD_ICONST_5)
+      fprintf(jasminFile, "\ticonst_5\n");
+
+    if(CmdList[i].command == CMD_IDIV)
+      fprintf(jasminFile, "\tidiv\n");
+
+    if(CmdList[i].command == CMD_INEG)
+      fprintf(jasminFile, "\tineg\n");
+
+    if(CmdList[i].command == CMD_IREM)
+      fprintf(jasminFile, "\tirem\n");
+
+    if(CmdList[i].command == CMD_ISHL)
+      fprintf(jasminFile, "\tishl\n");
+
+    if(CmdList[i].command == CMD_ISHR)
+      fprintf(jasminFile, "\tishr\n");
+
+    if(CmdList[i].command == CMD_ISUB)
+      fprintf(jasminFile, "\tisub\n");
+
+    if(CmdList[i].command == CMD_GSOUT)
+      fprintf(jasminFile, "\tgetstatic java/lang/System/out Ljava/io/PrintStream;\n");
+
+    if(CmdList[i].command == CMD_INVKOUTI)
+      fprintf(jasminFile, "\tinvokevirtual java/io/PrintStream/println(I)V\n");
+  }
+}
+
+void writeJasminExit()
+{
+  fclose(jasminFile);
+}
+
+void callJasmin()
+{
+
+  char command[2048] = "java -jar jasmin-2.4/jasmin.jar  ";
+
+  char* i = &jasminName[0];
+  char* b = &command[32];
+
+  while(*i != '\0')
+  {
+
+    *b = *i;
+
+    b++;
+    i++;
+  }
+
+  *b = '.';b++;
+  *b = 'j';b++;
+  *b = '-';b++;
+  *b = '-';b++;
+
+  *b = '\0';b++;
+
+  int r = system(command);
 }
