@@ -1,1 +1,1 @@
-java -jar jasmin.jar teste.j
+java -jar jasmin.jar teste1.j

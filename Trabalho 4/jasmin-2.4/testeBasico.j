@@ -9,23 +9,20 @@
 .end method
 
 .method public static main([Ljava/lang/String;)V
-   .limit stack 2
+   .limit stack 8
    .limit locals 4
    iconst_1
-   istore_2
- l1:
+   istore 1
+   bipush 20
+   istore 2
    iload 2
-   bipush 10
-   if_icmpge l2
-   iload 2
+   iload 1
+   iadd
    iconst_2
    imul
-   istore 1
+   istore 3
    getstatic java/lang/System/out Ljava/io/PrintStream;
-   iload_1
+   iload 3
    invokevirtual java/io/PrintStream/println(I)V
-   iinc 2 1
-   goto l1
-  l2:
    return
 .end method
