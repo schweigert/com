@@ -30,10 +30,13 @@ typedef struct {
 #define CMD_ISUB          0x000F // --      --
 #define CMD_GSOUT         0x0010 // --      -- -> getstatic java/lang/System/out Ljava/io/PrintStream;
 #define CMD_INVKOUTI      0x0011 // --      -- -> invokevirtual java/io/PrintStream/println(I)V
-
+#define CMD_INVKOUTL      0x0012 // --      -- -> invokevirtual java/io/PrintStream/println(Ljava/lang/String;)V
+#define CMD_LDC           0x0013 // "str"   -- -> impilha o ponteiro para a string
 
 void showCmd();
 void ShowCmdAscii();
+
+void showLiteralTable();
 
 void cmdGenerate(int, int, int);
 
@@ -53,7 +56,8 @@ void CmdIshr ();
 void CmdIsub ();
 void CmdGetStaticOut ();
 void CmdInvokeOutInt ();
-
+void CmdInvokeOutLiteral ();
+void CmdLdc (char*);
 
 // Operações de chamada do Bytecode
 void loadToMain();

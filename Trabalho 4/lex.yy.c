@@ -992,7 +992,7 @@ YY_RULE_SETUP
 case 38:
 YY_RULE_SETUP
 #line 46 "expr.l"
-{return T_LITERAL;}
+{yylval.strg = yytext;return T_LITERAL;}
 	YY_BREAK
 case 39:
 YY_RULE_SETUP

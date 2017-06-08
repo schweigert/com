@@ -43,7 +43,7 @@ literal \".*\"
 "true" {return T_TRUE;}
 "false" {return T_FALSE;}
 {id} { strncpy(yylval.nomeId, yytext, 10); return T_ID;}
-{literal} {return T_LITERAL;}
+{literal} {yylval.strg = yytext;return T_LITERAL;}
 \0	{return T_FIM;}
 \n  {__linha__ ++;}
 {num}	{yylval.double_value=atof(yytext); return T_NUM;}

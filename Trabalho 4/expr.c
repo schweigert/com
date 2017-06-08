@@ -23,6 +23,7 @@ int main(int c, char *argv[])
 
   printArvore(tabelaSimbolosGlobais);
   showCmd();
+  showLiteralTable();
   ShowCmdAscii();
   writeJasminExit();
 

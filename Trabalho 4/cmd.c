@@ -7,6 +7,8 @@ CMD CmdList[MAX_COMMAND] = {0};
 int NumVars = 1;
 int CmdIndex = 0;
 
+char* LiteralTable[1000];
+int   LiteralTableIndex = 0;
 
 void showCmd()
 {
@@ -130,6 +132,18 @@ void ShowCmdAscii()
       CmdList[i].label
     );
 
+    // CMD_GSOUT
+    if(CmdList[i].command == CMD_INVKOUTL)
+      printf("%d.\t%d\tinvokevirtual java/io/PrintStream/println(Ljava/lang/String;)V\n", i,
+      CmdList[i].label
+    );
+
+    // CMD_LDC
+    if(CmdList[i].command == CMD_LDC)
+      printf("%d.\t%d\tLDC %i(\"%s\")\n", i,
+      CmdList[i].label, CmdList[i].arg1, LiteralTable[CmdList[i].arg1]
+    );
+
   }
 }
 
@@ -216,6 +230,53 @@ void CmdInvokeOutInt() {
   cmdGenerate (CMD_INVKOUTI, -1, -1);
 }
 
+void CmdInvokeOutLiteral ()
+{
+  cmdGenerate (CMD_INVKOUTL, -1, -1);
+}
+
+
+
+char* removeAsps(char* string){
+
+  char* i = string;
+  char* j = malloc(sizeof(256));
+  char* ret = j;
+
+  i++;
+
+  while(1){
+
+    if(*i == '\"'){
+      *j = '\0';
+      break;
+    }
+
+   *j = *i;
+
+   i++;j++;
+
+  }
+
+  return ret;
+
+}
+
+void CmdLdc (char* literal)
+{
+  cmdGenerate (CMD_LDC, LiteralTableIndex, -1);
+  LiteralTable[LiteralTableIndex] = removeAsps(literal);
+  LiteralTableIndex++;
+}
+
+void showLiteralTable()
+{
+  printf("\tLiteral table:\n");
+  int x;
+  for(x = 0; x < LiteralTableIndex; x++){
+    printf("%i.\t%s\n", x,LiteralTable[x]);
+  }
+}
 
 // Operações do Assembler
 
@@ -328,6 +389,12 @@ void writeCmds()
 
     if(CmdList[i].command == CMD_INVKOUTI)
       fprintf(jasminFile, "\tinvokevirtual java/io/PrintStream/println(I)V\n");
+
+    if(CmdList[i].command == CMD_INVKOUTL)
+      fprintf(jasminFile, "\tinvokevirtual java/io/PrintStream/println(Ljava/lang/String;)V\n");
+
+    if(CmdList[i].command == CMD_LDC)
+      fprintf(jasminFile, "\tldc \"%s\"\n", LiteralTable[CmdList[i].arg1]);
   }
 }
 

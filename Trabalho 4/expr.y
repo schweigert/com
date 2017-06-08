@@ -7,6 +7,7 @@
 typedef struct {
     struct List *listaId;
     char nomeId[10];
+    char* strg;
     TIPO tipo;
     double double_value;
 }Atributo;
@@ -99,11 +100,16 @@ CmdAtrib : T_ID T_IGUAL ExpressaoAritmetica T_PONTO_E_VIRGULA {CmdIstore(tabelaS
 	| T_ID T_IGUAL T_LITERAL T_PONTO_E_VIRGULA
 	;
 
-CmdEscrita : T_PRINT CmdEscritaMarcadorI T_ABRE_PARENTESES ExpressaoAritmetica T_FECHA_PARENTESES T_PONTO_E_VIRGULA {CmdInvokeOutInt();}
-	| T_PRINT CmdEscritaMarcadorI T_ABRE_PARENTESES T_LITERAL T_FECHA_PARENTESES T_PONTO_E_VIRGULA {}
+CmdEscrita : T_PRINT CmdEscritaMarcador T_ABRE_PARENTESES ExpressaoAritmetica T_FECHA_PARENTESES T_PONTO_E_VIRGULA {CmdInvokeOutInt();}
+	| T_PRINT CmdEscritaMarcador T_ABRE_PARENTESES T_LITERAL T_FECHA_PARENTESES T_PONTO_E_VIRGULA {
+                                                        CmdLdc($4.strg);
+                                                        CmdInvokeOutLiteral();
+							}
 	;
 
-CmdEscritaMarcadorI : {CmdGetStaticOut();}
+CmdEscritaMarcador : {CmdGetStaticOut();}
+
+
 
 CmdLeitura : T_READ T_ABRE_PARENTESES T_ID T_FECHA_PARENTESES T_PONTO_E_VIRGULA
 	;

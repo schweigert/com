@@ -3,7 +3,7 @@
   a = 1;
   b = 20;
   c = (b + a) * 2;
-  b = a % b;
+  print("(b + a) * 2");
   print(c);
-  print(2<<1);
+  print("Fim algoritmo");
 }

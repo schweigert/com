@@ -65,10 +65,10 @@ Gramática
    39 CmdAtrib: T_ID T_IGUAL ExpressaoAritmetica T_PONTO_E_VIRGULA
    40         | T_ID T_IGUAL T_LITERAL T_PONTO_E_VIRGULA
 
-   41 CmdEscrita: T_PRINT CmdEscritaMarcadorI T_ABRE_PARENTESES ExpressaoAritmetica T_FECHA_PARENTESES T_PONTO_E_VIRGULA
-   42           | T_PRINT CmdEscritaMarcadorI T_ABRE_PARENTESES T_LITERAL T_FECHA_PARENTESES T_PONTO_E_VIRGULA
+   41 CmdEscrita: T_PRINT CmdEscritaMarcador T_ABRE_PARENTESES ExpressaoAritmetica T_FECHA_PARENTESES T_PONTO_E_VIRGULA
+   42           | T_PRINT CmdEscritaMarcador T_ABRE_PARENTESES T_LITERAL T_FECHA_PARENTESES T_PONTO_E_VIRGULA
 
-   43 CmdEscritaMarcadorI: %empty
+   43 CmdEscritaMarcador: %empty
 
    44 CmdLeitura: T_READ T_ABRE_PARENTESES T_ID T_FECHA_PARENTESES T_PONTO_E_VIRGULA
 
@@ -204,7 +204,7 @@ CmdAtrib (60)
     à esquerda: 39 40, à direita: 29
 CmdEscrita (61)
     à esquerda: 41 42, à direita: 30
-CmdEscritaMarcadorI (62)
+CmdEscritaMarcador (62)
     à esquerda: 43, à direita: 41 42
 CmdLeitura (63)
     à esquerda: 44, à direita: 31
@@ -387,12 +387,12 @@ Estado 15
 
 Estado 16
 
-   41 CmdEscrita: T_PRINT . CmdEscritaMarcadorI T_ABRE_PARENTESES ExpressaoAritmetica T_FECHA_PARENTESES T_PONTO_E_VIRGULA
-   42           | T_PRINT . CmdEscritaMarcadorI T_ABRE_PARENTESES T_LITERAL T_FECHA_PARENTESES T_PONTO_E_VIRGULA
+   41 CmdEscrita: T_PRINT . CmdEscritaMarcador T_ABRE_PARENTESES ExpressaoAritmetica T_FECHA_PARENTESES T_PONTO_E_VIRGULA
+   42           | T_PRINT . CmdEscritaMarcador T_ABRE_PARENTESES T_LITERAL T_FECHA_PARENTESES T_PONTO_E_VIRGULA
 
-    $padrão  reduzir usando a regra 43 (CmdEscritaMarcadorI)
+    $padrão  reduzir usando a regra 43 (CmdEscritaMarcador)
 
-    CmdEscritaMarcadorI  ir ao estado 39
+    CmdEscritaMarcador  ir ao estado 39
 
 
 Estado 17
@@ -636,8 +636,8 @@ Estado 38
 
 Estado 39
 
-   41 CmdEscrita: T_PRINT CmdEscritaMarcadorI . T_ABRE_PARENTESES ExpressaoAritmetica T_FECHA_PARENTESES T_PONTO_E_VIRGULA
-   42           | T_PRINT CmdEscritaMarcadorI . T_ABRE_PARENTESES T_LITERAL T_FECHA_PARENTESES T_PONTO_E_VIRGULA
+   41 CmdEscrita: T_PRINT CmdEscritaMarcador . T_ABRE_PARENTESES ExpressaoAritmetica T_FECHA_PARENTESES T_PONTO_E_VIRGULA
+   42           | T_PRINT CmdEscritaMarcador . T_ABRE_PARENTESES T_LITERAL T_FECHA_PARENTESES T_PONTO_E_VIRGULA
 
     T_ABRE_PARENTESES  deslocar, e ir ao estado 69
 
@@ -982,8 +982,8 @@ Estado 68
 
 Estado 69
 
-   41 CmdEscrita: T_PRINT CmdEscritaMarcadorI T_ABRE_PARENTESES . ExpressaoAritmetica T_FECHA_PARENTESES T_PONTO_E_VIRGULA
-   42           | T_PRINT CmdEscritaMarcadorI T_ABRE_PARENTESES . T_LITERAL T_FECHA_PARENTESES T_PONTO_E_VIRGULA
+   41 CmdEscrita: T_PRINT CmdEscritaMarcador T_ABRE_PARENTESES . ExpressaoAritmetica T_FECHA_PARENTESES T_PONTO_E_VIRGULA
+   42           | T_PRINT CmdEscritaMarcador T_ABRE_PARENTESES . T_LITERAL T_FECHA_PARENTESES T_PONTO_E_VIRGULA
 
     T_SUBTRACAO        deslocar, e ir ao estado 41
     T_ABRE_PARENTESES  deslocar, e ir ao estado 42
@@ -1446,14 +1446,14 @@ Estado 108
 
 Estado 109
 
-   42 CmdEscrita: T_PRINT CmdEscritaMarcadorI T_ABRE_PARENTESES T_LITERAL . T_FECHA_PARENTESES T_PONTO_E_VIRGULA
+   42 CmdEscrita: T_PRINT CmdEscritaMarcador T_ABRE_PARENTESES T_LITERAL . T_FECHA_PARENTESES T_PONTO_E_VIRGULA
 
     T_FECHA_PARENTESES  deslocar, e ir ao estado 141
 
 
 Estado 110
 
-   41 CmdEscrita: T_PRINT CmdEscritaMarcadorI T_ABRE_PARENTESES ExpressaoAritmetica . T_FECHA_PARENTESES T_PONTO_E_VIRGULA
+   41 CmdEscrita: T_PRINT CmdEscritaMarcador T_ABRE_PARENTESES ExpressaoAritmetica . T_FECHA_PARENTESES T_PONTO_E_VIRGULA
    52 ExpressaoAritmetica: ExpressaoAritmetica . T_ADICAO TExpressaoAritmetica
    53                    | ExpressaoAritmetica . T_SUBTRACAO TExpressaoAritmetica
    54                    | ExpressaoAritmetica . T_BIT_DIREITA TExpressaoAritmetica
@@ -1796,14 +1796,14 @@ Estado 140
 
 Estado 141
 
-   42 CmdEscrita: T_PRINT CmdEscritaMarcadorI T_ABRE_PARENTESES T_LITERAL T_FECHA_PARENTESES . T_PONTO_E_VIRGULA
+   42 CmdEscrita: T_PRINT CmdEscritaMarcador T_ABRE_PARENTESES T_LITERAL T_FECHA_PARENTESES . T_PONTO_E_VIRGULA
 
     T_PONTO_E_VIRGULA  deslocar, e ir ao estado 150
 
 
 Estado 142
 
-   41 CmdEscrita: T_PRINT CmdEscritaMarcadorI T_ABRE_PARENTESES ExpressaoAritmetica T_FECHA_PARENTESES . T_PONTO_E_VIRGULA
+   41 CmdEscrita: T_PRINT CmdEscritaMarcador T_ABRE_PARENTESES ExpressaoAritmetica T_FECHA_PARENTESES . T_PONTO_E_VIRGULA
 
     T_PONTO_E_VIRGULA  deslocar, e ir ao estado 151
 
@@ -1887,14 +1887,14 @@ Estado 149
 
 Estado 150
 
-   42 CmdEscrita: T_PRINT CmdEscritaMarcadorI T_ABRE_PARENTESES T_LITERAL T_FECHA_PARENTESES T_PONTO_E_VIRGULA .
+   42 CmdEscrita: T_PRINT CmdEscritaMarcador T_ABRE_PARENTESES T_LITERAL T_FECHA_PARENTESES T_PONTO_E_VIRGULA .
 
     $padrão  reduzir usando a regra 42 (CmdEscrita)
 
 
 Estado 151
 
-   41 CmdEscrita: T_PRINT CmdEscritaMarcadorI T_ABRE_PARENTESES ExpressaoAritmetica T_FECHA_PARENTESES T_PONTO_E_VIRGULA .
+   41 CmdEscrita: T_PRINT CmdEscritaMarcador T_ABRE_PARENTESES ExpressaoAritmetica T_FECHA_PARENTESES T_PONTO_E_VIRGULA .
 
     $padrão  reduzir usando a regra 41 (CmdEscrita)
 
