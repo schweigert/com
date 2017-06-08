@@ -144,6 +144,12 @@ void ShowCmdAscii()
       CmdList[i].label, CmdList[i].arg1, LiteralTable[CmdList[i].arg1]
     );
 
+    // CMD_LDCN
+    if(CmdList[i].command == CMD_LDCN)
+      printf("%d.\t%d\tLDC %i\n", i,
+      CmdList[i].label, CmdList[i].arg1
+    );
+
   }
 }
 
@@ -180,7 +186,8 @@ void CmdBipush(int value)
   else if(value == 3) cmdGenerate(CMD_ICONST_3, -1,-1);
   else if(value == 4) cmdGenerate(CMD_ICONST_4, -1,-1);
   else if(value == 5) cmdGenerate(CMD_ICONST_5, -1,-1);
-  else cmdGenerate(CMD_BIPUSH, value, -1);
+  else if(value <= 127 && value >= -128)cmdGenerate(CMD_BIPUSH, value, -1);
+  else cmdGenerate(CMD_LDCN, value, -1);
 }
 
 
@@ -395,6 +402,9 @@ void writeCmds()
 
     if(CmdList[i].command == CMD_LDC)
       fprintf(jasminFile, "\tldc \"%s\"\n", LiteralTable[CmdList[i].arg1]);
+
+    if(CmdList[i].command == CMD_LDCN)
+      fprintf(jasminFile, "\tldc %i\n", CmdList[i].arg1);
   }
 }
 
@@ -428,4 +438,12 @@ void callJasmin()
   *b = '\0';b++;
 
   int r = system(command);
+}
+
+int LastLabel = 0;
+
+int LabelCreate()
+{
+  LastLabel++;
+  return LastLabel;
 }

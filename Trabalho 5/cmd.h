@@ -1,6 +1,8 @@
 #ifndef _CMD_N_DEF_
 #define _CMD_N_DEF_
 
+#include "eda.h"
+
 #define MAX_COMMAND 10000
 #define MAX_FUNCS 1000
 
@@ -32,6 +34,7 @@ typedef struct {
 #define CMD_INVKOUTI      0x0011 // --      -- -> invokevirtual java/io/PrintStream/println(I)V
 #define CMD_INVKOUTL      0x0012 // --      -- -> invokevirtual java/io/PrintStream/println(Ljava/lang/String;)V
 #define CMD_LDC           0x0013 // "str"   -- -> impilha o ponteiro para a string
+#define CMD_LDCN          0x0014 // n       -- -> Empilha uma constante maior
 
 void showCmd();
 void ShowCmdAscii();
@@ -40,7 +43,9 @@ void showLiteralTable();
 
 void cmdGenerate(int, int, int);
 
-#include "eda.h"
+// Lista de Comandos para tratar Label
+
+int LabelCreate();
 
 // Lista de Comandos em Pilha para a JVM
 void CmdIstore (struct arvore* arv, char* var);
@@ -58,6 +63,7 @@ void CmdGetStaticOut ();
 void CmdInvokeOutInt ();
 void CmdInvokeOutLiteral ();
 void CmdLdc (char*);
+void CmdLdcn (int);
 
 // Operações de chamada do Bytecode
 void loadToMain();

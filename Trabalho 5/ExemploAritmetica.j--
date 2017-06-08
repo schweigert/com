@@ -18,11 +18,11 @@
 	iload 2
 	iload 1
 	iadd
-	iconst_2
+	ldc 200
 	imul
 	istore 3
 	getstatic java/lang/System/out Ljava/io/PrintStream;
-	ldc "(b + a) * 2"
+	ldc "(b + a) * 200"
 	invokevirtual java/io/PrintStream/println(Ljava/lang/String;)V
 	getstatic java/lang/System/out Ljava/io/PrintStream;
 	iload 3
