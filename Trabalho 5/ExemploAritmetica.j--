@@ -1,0 +1,34 @@
+.class public ExemploAritmetica
+.super java/lang/Object
+
+.method public <init>()V
+	aload_0
+	invokenonvirtual java/lang/Object/<init>()V
+	return
+.end method
+
+
+.method public static main([Ljava/lang/String;)V
+	.limit stack 8
+	.limit locals 4
+	iconst_1
+	istore 1
+	bipush 20
+	istore 2
+	iload 2
+	iload 1
+	iadd
+	iconst_2
+	imul
+	istore 3
+	getstatic java/lang/System/out Ljava/io/PrintStream;
+	ldc "(b + a) * 2"
+	invokevirtual java/io/PrintStream/println(Ljava/lang/String;)V
+	getstatic java/lang/System/out Ljava/io/PrintStream;
+	iload 3
+	invokevirtual java/io/PrintStream/println(I)V
+	getstatic java/lang/System/out Ljava/io/PrintStream;
+	ldc "Fim algoritmo"
+	invokevirtual java/io/PrintStream/println(Ljava/lang/String;)V
+	return
+.end method
