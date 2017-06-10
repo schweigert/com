@@ -31,6 +31,11 @@ void ShowCmdAscii()
 
   for(i = 0; i < CmdIndex; i++)
   {
+
+    if(CmdList[i].label != -1){
+      printf("\t\tL%d:\n",CmdList[i].label);
+    }
+
     // ISTORE PRINT
     if(CmdList[i].command == CMD_ISTORE)
       printf("%d.\t%d\tISTORE\t\t%d\n", i,
@@ -150,12 +155,54 @@ void ShowCmdAscii()
       CmdList[i].label, CmdList[i].arg1
     );
 
+    // COMPARACOES
+    if(CmdList[i].command == CMD_IF_ICOMPEQ)
+      printf("%d.\t%d\tif_icompeq\tL%d\n", i,
+      CmdList[i].label, CmdList[i].arg1
+    );
+
+    // COMPARACOES
+    if(CmdList[i].command == CMD_IF_ICOMPNE)
+      printf("%d.\t%d\tif_icompne\tL%d\n", i,
+      CmdList[i].label, CmdList[i].arg1
+    );
+
+    // COMPARACOES
+    if(CmdList[i].command == CMD_IF_ICOMPLT)
+      printf("%d.\t%d\tif_icomplt\tL%d\n", i,
+      CmdList[i].label, CmdList[i].arg1
+    );
+    // COMPARACOES
+    if(CmdList[i].command == CMD_IF_ICOMPLE)
+      printf("%d.\t%d\tif_icomple\tL%d\n", i,
+      CmdList[i].label, CmdList[i].arg1
+    );
+    // COMPARACOES
+    if(CmdList[i].command == CMD_IF_ICOMPGT)
+      printf("%d.\t%d\tif_icompgt\tL%d\n", i,
+      CmdList[i].label, CmdList[i].arg1
+    );
+    // COMPARACOES
+    if(CmdList[i].command == CMD_IF_ICOMPGE)
+      printf("%d.\t%d\tif_icompge\tL%d\n", i,
+      CmdList[i].label, CmdList[i].arg1
+    );
+
+    // COMPARACOES
+    if(CmdList[i].command == CMD_GOTO)
+      printf("%d.\t%d\tgoto\tL%d\n", i,
+      CmdList[i].label, CmdList[i].arg1
+    );
+
+  }
+
+  if(CmdList[CmdIndex].label != -1){
+    printf("\t\tL%d:\n",CmdList[CmdIndex].label);
   }
 }
 
 void cmdGenerate(int command, int arg1, int arg2)
 {
-  if(command == CMD_ISTORE) printf("bug");
   if(CmdList[CmdIndex].label == 0) CmdList[CmdIndex].label = -1;
   CmdList[CmdIndex].command = command;
   CmdList[CmdIndex].arg1 = arg1;
@@ -370,6 +417,7 @@ void writeCmds()
   int i;
   for(i = 0; i < CmdIndex; i++)
   {
+    if(CmdList[i].label != -1) fprintf(jasminFile, "Label%d:\n",CmdList[i].label);
 
     if(CmdList[i].command == CMD_ISTORE)
       fprintf(jasminFile, "\tistore %d\n",CmdList[i].arg1);
@@ -433,7 +481,30 @@ void writeCmds()
 
     if(CmdList[i].command == CMD_LDCN)
       fprintf(jasminFile, "\tldc %i\n", CmdList[i].arg1);
+
+    if(CmdList[i].command == CMD_IF_ICOMPEQ)
+      fprintf(jasminFile, "\tif_icmpeq Label%i\n", CmdList[i].arg1);
+
+    if(CmdList[i].command == CMD_IF_ICOMPNE)
+      fprintf(jasminFile, "\tif_icmpne Label%i\n", CmdList[i].arg1);
+
+    if(CmdList[i].command == CMD_IF_ICOMPLT)
+      fprintf(jasminFile, "\tif_icmplt Label%i\n", CmdList[i].arg1);
+
+    if(CmdList[i].command == CMD_IF_ICOMPLE)
+      fprintf(jasminFile, "\tif_icmple Label%i\n", CmdList[i].arg1);
+
+    if(CmdList[i].command == CMD_IF_ICOMPGT)
+      fprintf(jasminFile, "\tif_icmpgt Label%i\n", CmdList[i].arg1);
+
+    if(CmdList[i].command == CMD_IF_ICOMPGE)
+      fprintf(jasminFile, "\tif_icmpge Label%i\n", CmdList[i].arg1);
+
+    if(CmdList[i].command == CMD_GOTO)
+      fprintf(jasminFile, "\tgoto Label%i\n", CmdList[i].arg1);
   }
+
+  if(CmdList[CmdIndex].label != -1) fprintf(jasminFile, "Label%d:\n",CmdList[CmdIndex].label);
 }
 
 void writeJasminExit()
@@ -474,16 +545,19 @@ int LabelCreate()
 {
   LastLabel++;
   CmdList[CmdIndex].label = LastLabel;
+  printf("Criando Label%d em %d\n", LastLabel, CmdIndex);
   return LastLabel;
 }
 
 void LabelUpdate(struct IntList* lista, int label)
 {
   if(lista == NULL) return;
-  CmdList[lista->valor].arg1 = label;
+  printf("Update CMD %d with L%d\n",lista->valor, label);
+  if(CmdList[lista->valor].arg1 == 0)CmdList[lista->valor].arg1 = label;
+  LabelUpdate(lista->proximo, label);
 }
 
 int GetIndexPosition()
 {
-  return CmdIndex -1;
+  return CmdIndex;
 }

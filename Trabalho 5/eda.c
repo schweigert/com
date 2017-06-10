@@ -155,8 +155,10 @@ int buscaPosicaoInternal (struct no* node, char* valor)
 
 void printaIntList(struct IntList* l)
 {
-	if(l == NULL)
+	if(l == NULL){
+		printf("\n");
 		return;
+	}
 
 	printf("->%d", l->valor);
 	printaIntList(l->proximo);

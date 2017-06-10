@@ -6,3 +6,32 @@
 	invokenonvirtual java/lang/Object/<init>()V
 	return
 .end method
+
+
+.method public static main([Ljava/lang/String;)V
+	.limit stack 8
+	.limit locals 3
+	bipush 10
+	istore 1
+	bipush 20
+	istore 2
+	iload 1
+	iload 2
+	if_icmpgt Label1
+	goto Label2
+Label1:
+	getstatic java/lang/System/out Ljava/io/PrintStream;
+	ldc "Y é maior"
+	invokevirtual java/io/PrintStream/println(Ljava/lang/String;)V
+Label2:
+	iload 2
+	iload 1
+	if_icmpge Label3
+	goto Label4
+Label3:
+	getstatic java/lang/System/out Ljava/io/PrintStream;
+	ldc "Z é maior"
+	invokevirtual java/io/PrintStream/println(Ljava/lang/String;)V
+Label4:
+	return
+.end method

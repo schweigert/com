@@ -92,8 +92,8 @@ Retorno : T_RETURN ExpressaoAritmetica T_PONTO_E_VIRGULA
 	| T_RETURN T_LITERAL T_PONTO_E_VIRGULA
 	;
 
-CmdSe : T_IF T_ABRE_PARENTESES ExpressaoLogica T_FECHA_PARENTESES Bloco
-	| T_IF T_ABRE_PARENTESES ExpressaoLogica T_FECHA_PARENTESES Bloco T_ELSE Bloco
+CmdSe : T_IF T_ABRE_PARENTESES ExpressaoLogica T_FECHA_PARENTESES MLogico Bloco { LabelUpdate($3.listav, $5.label); LabelUpdate($3.listaf, LabelCreate());  }
+	| T_IF T_ABRE_PARENTESES ExpressaoLogica T_FECHA_PARENTESES MLogico Bloco T_ELSE Bloco
 	;
 
 CmdEnquanto : T_WHILE T_ABRE_PARENTESES ExpressaoLogica T_FECHA_PARENTESES Bloco
@@ -152,9 +152,9 @@ FExpressaoAritmetica : T_ABRE_PARENTESES ExpressaoAritmetica T_FECHA_PARENTESES
 	| T_ID {CmdIload(tabelaSimbolosGlobais, $1.nomeId);}
 	;
 
-ExpressaoLogica : ExpressaoLogica T_AND MLogico FExpressaoLogica  { LabelUpdate($1.listav, $3.label); $$.listaf =  juntarIntList($1.listaf, $4.listaf); $$.listav = $4.listav;}
+ExpressaoLogica : ExpressaoLogica T_AND MLogico FExpressaoLogica  { LabelUpdate($1.listav, $3.label); $$.listaf =  juntarIntList($1.listaf, $4.listaf);  $$.listav = $4.listav;}
 	| ExpressaoLogica T_OR MLogico FExpressaoLogica { LabelUpdate($1.listaf, $3.label); $$.listav = juntarIntList($1.listav, $4.listav); $$.listaf = $4.listaf; }
-	| FExpressaoLogica { $$.listav = $1.listav; $$.listaf = $1.listaf; }
+	| FExpressaoLogica { $$.listav = $1.listav; $$.listaf = $1.listaf;}
 	;
 
 MLogico : {$$.label = LabelCreate();}
@@ -162,7 +162,15 @@ MLogico : {$$.label = LabelCreate();}
 FExpressaoLogica : T_NOT FExpressaoLogica { $$.listav = $2.listaf; $$.listaf = $2.listav; }
 	| T_ABRE_PARENTESES ExpressaoLogica T_FECHA_PARENTESES { $$.listav = $2.listav; $$.listaf = $2.listaf; }
 	| ExpressaoAritmetica T_IGUAL_IGUAL ExpressaoAritmetica { $$.listav =  criaIntList(GetIndexPosition()); $$.listaf = criaIntList(GetIndexPosition()+1); CmdIfEQ(); CmdGOTO();}
-	;
+  | ExpressaoAritmetica T_DIFERENTE ExpressaoAritmetica { $$.listav =  criaIntList(GetIndexPosition()); $$.listaf = criaIntList(GetIndexPosition()+1); CmdIfNE(); CmdGOTO();}
+  | ExpressaoAritmetica T_MAIOR ExpressaoAritmetica { $$.listav =  criaIntList(GetIndexPosition()); $$.listaf = criaIntList(GetIndexPosition()+1); CmdIfGT(); CmdGOTO();}
+  | ExpressaoAritmetica T_MAIOR_IGUAL ExpressaoAritmetica { $$.listav =  criaIntList(GetIndexPosition()); $$.listaf = criaIntList(GetIndexPosition()+1); CmdIfGE(); CmdGOTO();}
+  | ExpressaoAritmetica T_MENOR ExpressaoAritmetica { $$.listav =  criaIntList(GetIndexPosition()); $$.listaf = criaIntList(GetIndexPosition()+1); CmdIfLT(); CmdGOTO();}
+  | ExpressaoAritmetica T_MENOR_IGUAL ExpressaoAritmetica { $$.listav =  criaIntList(GetIndexPosition()); $$.listaf = criaIntList(GetIndexPosition()+1); CmdIfLE(); CmdGOTO();}
+
+
+
+  ;
 
 
 
