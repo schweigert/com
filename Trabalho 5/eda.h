@@ -45,7 +45,8 @@ void insereLista (struct List *head, char *id);
 void printaIntList(struct IntList*);
 struct IntList* criaIntList(int valor);
 void insereIntList(struct IntList* head, int valor);
-void juntarIntList(struct IntList* head, struct IntList* bunda);
+struct IntList* juntarIntList(struct IntList* head, struct IntList* bunda);
+void juntarIntListInternal(struct IntList* cabeca, struct IntList* bunda);
 
 struct arvore* criarArvore();
 void insereArvore(struct arvore* arv, char* valor);

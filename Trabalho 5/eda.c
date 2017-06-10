@@ -181,12 +181,18 @@ void insereIntList(struct IntList* head, int valor)
 }
 
 
-void juntarIntList(struct IntList* head, struct IntList* bunda)
+struct IntList* juntarIntList(struct IntList* head, struct IntList* bunda)
 {
-	if(head->proximo == NULL){
-		head->proximo = bunda;
+	juntarIntListInternal(head, bunda);
+	return head;
+}
+
+void juntarIntListInternal(struct IntList* cabeca, struct IntList* bunda)
+{
+	if(cabeca->proximo == NULL){
+		cabeca->proximo = bunda;
 		return;
 	}
 
-	juntarIntList(head->proximo, bunda);
+	juntarIntList(cabeca->proximo, bunda);
 }

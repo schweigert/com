@@ -10,6 +10,9 @@ typedef struct {
     char* strg;
     TIPO tipo;
     double double_value;
+    struct IntList* listav;
+    struct IntList* listaf;
+    int label;
 }Atributo;
 
 struct arvore* tabelaSimbolosGlobais;
@@ -149,25 +152,18 @@ FExpressaoAritmetica : T_ABRE_PARENTESES ExpressaoAritmetica T_FECHA_PARENTESES
 	| T_ID {CmdIload(tabelaSimbolosGlobais, $1.nomeId);}
 	;
 
-ExpressaoLogica : ExpressaoLogica T_AND FExpressaoLogica
-	| ExpressaoLogica T_OR FExpressaoLogica
-	| FExpressaoLogica
+ExpressaoLogica : ExpressaoLogica T_AND MLogico FExpressaoLogica  { LabelUpdate($1.listav, $3.label); $$.listaf =  juntarIntList($1.listaf, $4.listaf); $$.listav = $4.listav;}
+	| ExpressaoLogica T_OR MLogico FExpressaoLogica { LabelUpdate($1.listaf, $3.label); $$.listav = juntarIntList($1.listav, $4.listav); $$.listaf = $4.listaf; }
+	| FExpressaoLogica { $$.listav = $1.listav; $$.listaf = $1.listaf; }
 	;
 
-FExpressaoLogica : T_NOT FExpressaoLogica
-	| T_ABRE_PARENTESES FExpressaoLogica T_FECHA_PARENTESES
-	| T_TRUE
-	| T_FALSE
-	| ExpressaoRelacional
+MLogico : {$$.label = LabelCreate();}
+
+FExpressaoLogica : T_NOT FExpressaoLogica { $$.listav = $2.listaf; $$.listaf = $2.listav; }
+	| T_ABRE_PARENTESES ExpressaoLogica T_FECHA_PARENTESES { $$.listav = $2.listav; $$.listaf = $2.listaf; }
+	| ExpressaoAritmetica T_IGUAL_IGUAL ExpressaoAritmetica { $$.listav =  criaIntList(GetIndexPosition()); $$.listaf = criaIntList(GetIndexPosition()+1); CmdIfEQ(); CmdGOTO();}
 	;
 
-ExpressaoRelacional	: ExpressaoAritmetica T_MAIOR ExpressaoAritmetica
-	| ExpressaoAritmetica T_MENOR ExpressaoAritmetica
-	| ExpressaoAritmetica T_MAIOR_IGUAL ExpressaoAritmetica
-	| ExpressaoAritmetica T_MENOR_IGUAL ExpressaoAritmetica
-	| ExpressaoAritmetica T_IGUAL_IGUAL ExpressaoAritmetica
-	| ExpressaoAritmetica T_DIFERENTE ExpressaoAritmetica
-	;
 
 
 %%

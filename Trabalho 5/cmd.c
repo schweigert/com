@@ -156,7 +156,7 @@ void ShowCmdAscii()
 void cmdGenerate(int command, int arg1, int arg2)
 {
   if(command == CMD_ISTORE) printf("bug");
-  CmdList[CmdIndex].label = -1;
+  if(CmdList[CmdIndex].label == 0) CmdList[CmdIndex].label = -1;
   CmdList[CmdIndex].command = command;
   CmdList[CmdIndex].arg1 = arg1;
   CmdList[CmdIndex].arg2 = arg2;
@@ -265,6 +265,11 @@ void CmdIfGT()
 void CmdIfGE()
 {
   cmdGenerate(CMD_IF_ICOMPGE, 0, -1);
+}
+
+void CmdGOTO()
+{
+  cmdGenerate(CMD_GOTO, 0, -1);
 }
 
 char* removeAsps(char* string){
@@ -468,5 +473,17 @@ int LastLabel = 0;
 int LabelCreate()
 {
   LastLabel++;
+  CmdList[CmdIndex].label = LastLabel;
   return LastLabel;
+}
+
+void LabelUpdate(struct IntList* lista, int label)
+{
+  if(lista == NULL) return;
+  CmdList[lista->valor].arg1 = label;
+}
+
+int GetIndexPosition()
+{
+  return CmdIndex -1;
 }

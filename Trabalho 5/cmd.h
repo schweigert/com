@@ -41,7 +41,7 @@ typedef struct {
 #define CMD_IF_ICOMPLE    0x0018 // Label   --
 #define CMD_IF_ICOMPGT    0x0019 // Label   --
 #define CMD_IF_ICOMPGE    0x001A // Label   --
-
+#define CMD_GOTO          0x001B // Label   --
 
 void showCmd();
 void ShowCmdAscii();
@@ -53,6 +53,8 @@ void cmdGenerate(int, int, int);
 // Lista de Comandos para tratar Label
 
 int LabelCreate();
+void LabelUpdate(struct IntList* lista, int label);
+int GetIndexPosition();
 
 // Lista de Comandos em Pilha para a JVM
 void CmdIstore (struct arvore* arv, char* var);
@@ -78,6 +80,8 @@ void CmdIfLT();
 void CmdIfLE();
 void CmdIfGT();
 void CmdIfGE();
+
+void CmdGOTO();
 
 // Operações de chamada do Bytecode
 void loadToMain();
