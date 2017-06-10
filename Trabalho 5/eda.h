@@ -13,6 +13,13 @@ typedef struct List{
 	struct List *proximo;
 }List;
 
+struct IntList {
+
+  int valor;
+  struct IntList *proximo;
+
+};
+
 struct no {
 
   char *valor;
@@ -23,6 +30,8 @@ struct no {
 
 };
 
+
+
 struct arvore {
 
   struct no *root;
@@ -32,6 +41,11 @@ struct arvore {
 void printaLista(List*);
 List* criaLista (char *id);
 void insereLista (struct List *head, char *id);
+
+void printaIntList(struct IntList*);
+struct IntList* criaIntList(int valor);
+void insereIntList(struct IntList* head, int valor);
+void juntarIntList(struct IntList* head, struct IntList* bunda);
 
 struct arvore* criarArvore();
 void insereArvore(struct arvore* arv, char* valor);

@@ -15,9 +15,9 @@ void showCmd()
   int i = 0;
   printf("\n\tBinary Commands:\nID\tL\tC\tA1\tA2\n");
   for(i = 0; i < CmdIndex; i++){
-    printf("%d.\t%d\t%d\t%d\t%d\n",i,
+    printf("%d.\t%d\t%04X\t%d\t%d\n",i,
       CmdList[i].label,
-      CmdList[i].command,
+      (unsigned)CmdList[i].command,
       CmdList[i].arg1,
       CmdList[i].arg2);
   }
@@ -242,7 +242,30 @@ void CmdInvokeOutLiteral ()
   cmdGenerate (CMD_INVKOUTL, -1, -1);
 }
 
-
+void CmdIfEQ()
+{
+  cmdGenerate(CMD_IF_ICOMPEQ, 0, -1);
+}
+void CmdIfNE()
+{
+  cmdGenerate(CMD_IF_ICOMPNE, 0, -1);
+}
+void CmdIfLT()
+{
+  cmdGenerate(CMD_IF_ICOMPLT, 0, -1);
+}
+void CmdIfLE()
+{
+  cmdGenerate(CMD_IF_ICOMPLE, 0, -1);
+}
+void CmdIfGT()
+{
+  cmdGenerate(CMD_IF_ICOMPGT, 0, -1);
+}
+void CmdIfGE()
+{
+  cmdGenerate(CMD_IF_ICOMPGE, 0, -1);
+}
 
 char* removeAsps(char* string){
 

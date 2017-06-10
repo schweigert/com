@@ -35,6 +35,13 @@ typedef struct {
 #define CMD_INVKOUTL      0x0012 // --      -- -> invokevirtual java/io/PrintStream/println(Ljava/lang/String;)V
 #define CMD_LDC           0x0013 // "str"   -- -> impilha o ponteiro para a string
 #define CMD_LDCN          0x0014 // n       -- -> Empilha uma constante maior
+#define CMD_IF_ICOMPEQ    0x0015 // Label   --
+#define CMD_IF_ICOMPNE    0x0016 // Label   --
+#define CMD_IF_ICOMPLT    0x0017 // Label   --
+#define CMD_IF_ICOMPLE    0x0018 // Label   --
+#define CMD_IF_ICOMPGT    0x0019 // Label   --
+#define CMD_IF_ICOMPGE    0x001A // Label   --
+
 
 void showCmd();
 void ShowCmdAscii();
@@ -64,6 +71,13 @@ void CmdInvokeOutInt ();
 void CmdInvokeOutLiteral ();
 void CmdLdc (char*);
 void CmdLdcn (int);
+
+void CmdIfEQ();
+void CmdIfNE();
+void CmdIfLT();
+void CmdIfLE();
+void CmdIfGT();
+void CmdIfGE();
 
 // Operações de chamada do Bytecode
 void loadToMain();

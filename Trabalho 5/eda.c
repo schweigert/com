@@ -152,3 +152,41 @@ int buscaPosicaoInternal (struct no* node, char* valor)
 	if(decisao > 0) return buscaPosicaoInternal(node->maior, valor);
 	else return buscaPosicaoInternal(node->menor, valor);
 }
+
+void printaIntList(struct IntList* l)
+{
+	if(l == NULL)
+		return;
+
+	printf("->%d", l->valor);
+	printaIntList(l->proximo);
+}
+
+struct IntList* criaIntList(int valor)
+{
+	struct IntList* ret = malloc(sizeof(struct IntList));
+	ret->proximo = NULL;
+	ret->valor = valor;
+	return ret;
+}
+
+void insereIntList(struct IntList* head, int valor)
+{
+	if(head->proximo == NULL){
+		head->proximo = criaIntList(valor);
+		return;
+	}
+
+	insereIntList(head->proximo, valor);
+}
+
+
+void juntarIntList(struct IntList* head, struct IntList* bunda)
+{
+	if(head->proximo == NULL){
+		head->proximo = bunda;
+		return;
+	}
+
+	juntarIntList(head->proximo, bunda);
+}
