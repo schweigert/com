@@ -93,10 +93,12 @@ Retorno : T_RETURN ExpressaoAritmetica T_PONTO_E_VIRGULA
 	;
 
 CmdSe : T_IF T_ABRE_PARENTESES ExpressaoLogica T_FECHA_PARENTESES MLogico Bloco { LabelUpdate($3.listav, $5.label); LabelUpdate($3.listaf, LabelCreate());  }
-	| T_IF T_ABRE_PARENTESES ExpressaoLogica T_FECHA_PARENTESES MLogico Bloco T_ELSE Bloco
+	| T_IF T_ABRE_PARENTESES ExpressaoLogica T_FECHA_PARENTESES MLogico Bloco NLogico T_ELSE MLogico Bloco {LabelUpdate($3.listav, $5.label); LabelUpdate($3.listaf, $9.label); LabelUpdate($7.listav, LabelCreate());}
 	;
 
-CmdEnquanto : T_WHILE T_ABRE_PARENTESES ExpressaoLogica T_FECHA_PARENTESES Bloco
+NLogico: {$$.listav = criaIntList(GetIndexPosition()); CmdGOTO();}
+
+CmdEnquanto : T_WHILE MLogico T_ABRE_PARENTESES ExpressaoLogica T_FECHA_PARENTESES MLogico Bloco {LabelUpdate($4.listav, $6.label); CmdGOTOLabel($2.label); LabelUpdate($4.listaf, LabelCreate());}
 	;
 
 CmdAtrib : T_ID T_IGUAL ExpressaoAritmetica T_PONTO_E_VIRGULA {CmdIstore(tabelaSimbolosGlobais, $1.nomeId);}

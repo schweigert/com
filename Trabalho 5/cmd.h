@@ -82,6 +82,7 @@ void CmdIfGT();
 void CmdIfGE();
 
 void CmdGOTO();
+void CmdGOTOLabel(int);
 
 // Operações de chamada do Bytecode
 void loadToMain();

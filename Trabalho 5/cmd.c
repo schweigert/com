@@ -319,6 +319,11 @@ void CmdGOTO()
   cmdGenerate(CMD_GOTO, 0, -1);
 }
 
+void CmdGOTOLabel(int label)
+{
+  cmdGenerate(CMD_GOTO, label, -1);
+}
+
 char* removeAsps(char* string){
 
   char* i = string;

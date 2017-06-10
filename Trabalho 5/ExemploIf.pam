@@ -7,7 +7,7 @@
  if(y > z){
     print("Y é maior");
  }
- if(z >= y){
+ else{
     print("Z é maior");
  }
 }
