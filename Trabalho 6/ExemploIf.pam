@@ -1,0 +1,13 @@
+{
+ int y, z;
+
+ y = 10;
+ z = 20;
+
+ if(y > z){
+    print("Y é maior");
+ }
+ else{
+    print("Z é maior");
+ }
+}
