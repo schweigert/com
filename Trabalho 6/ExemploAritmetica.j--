@@ -27,8 +27,34 @@
 	getstatic java/lang/System/out Ljava/io/PrintStream;
 	iload 3
 	invokevirtual java/io/PrintStream/println(I)V
+	iload 3
+	iconst_1
+	iadd
+	istore 3
+	getstatic java/lang/System/out Ljava/io/PrintStream;
+	iload 3
+	invokevirtual java/io/PrintStream/println(I)V
+	iload 3
+	iconst_1
+	isub
+	istore 3
+	getstatic java/lang/System/out Ljava/io/PrintStream;
+	iload 3
+	invokevirtual java/io/PrintStream/println(I)V
+	bipush 10
+	iconst_5
+	iadd
+	iload 3
+	ineg
+	iadd
+	ineg
+	istore 3
+	getstatic java/lang/System/out Ljava/io/PrintStream;
+	iload 3
+	invokevirtual java/io/PrintStream/println(I)V
 	getstatic java/lang/System/out Ljava/io/PrintStream;
 	ldc "Fim algoritmo"
 	invokevirtual java/io/PrintStream/println(Ljava/lang/String;)V
+Label0:
 	return
 .end method

@@ -103,8 +103,11 @@ CmdEnquanto : T_WHILE MLogico T_ABRE_PARENTESES ExpressaoLogica T_FECHA_PARENTES
 
 CmdAtrib : T_ID T_IGUAL ExpressaoAritmetica T_PONTO_E_VIRGULA {CmdIstore(tabelaSimbolosGlobais, $1.nomeId);}
 	| T_ID T_IGUAL T_LITERAL T_PONTO_E_VIRGULA
-  | T_ID T_ADICAO T_IGUAL T_ID { CmdIload(tabelaSimbolosGlobais, $4.nomeId); CmdIload(tabelaSimbolosGlobais, $1.nomeId); CmdIadd(); CmdIstore(tabelaSimbolosGlobais, $1.nomeId); }
-	;
+  | T_ID T_ADICAO T_IGUAL ExpressaoAritmetica T_PONTO_E_VIRGULA{CmdIload(tabelaSimbolosGlobais, $1.nomeId); CmdIadd(); CmdIstore(tabelaSimbolosGlobais, $1.nomeId); }
+  | T_ID T_SUBTRACAO T_IGUAL ExpressaoAritmetica T_PONTO_E_VIRGULA {CmdIload(tabelaSimbolosGlobais, $1.nomeId); CmdIneg(); CmdIadd(); CmdIneg(); CmdIstore(tabelaSimbolosGlobais, $1.nomeId); }
+  | T_ID T_ADICAO T_ADICAO T_PONTO_E_VIRGULA { CmdIload(tabelaSimbolosGlobais, $1.nomeId); CmdBipush(1); CmdIadd(); CmdIstore(tabelaSimbolosGlobais, $1.nomeId); }
+  | T_ID T_SUBTRACAO T_SUBTRACAO T_PONTO_E_VIRGULA { CmdIload(tabelaSimbolosGlobais, $1.nomeId);  CmdBipush(1); CmdIsub(); CmdIstore(tabelaSimbolosGlobais, $1.nomeId); }
+  ;
 
 CmdEscrita : T_PRINT CmdEscritaMarcador T_ABRE_PARENTESES ExpressaoAritmetica T_FECHA_PARENTESES T_PONTO_E_VIRGULA {CmdInvokeOutInt();}
 	| T_PRINT CmdEscritaMarcador T_ABRE_PARENTESES T_LITERAL T_FECHA_PARENTESES T_PONTO_E_VIRGULA {
