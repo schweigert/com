@@ -194,6 +194,17 @@ void ShowCmdAscii()
       CmdList[i].label, CmdList[i].arg1
     );
 
+    // Scan
+    if(CmdList[i].command == CMD_GETSTATICIN)
+      printf("%d.\t%d\tgetstatic java/lang/System/in Ljava/io/InputStream;\n", i,
+      CmdList[i].label
+    );
+
+    if(CmdList[i].command == CMD_READ)
+      printf("%d.\t%d\tinvokevirtual java/io/InputStream/read()I\n", i,
+      CmdList[i].label
+    );
+
   }
 
   if(CmdList[CmdIndex].label != -1){
@@ -322,6 +333,13 @@ void CmdGOTO()
 void CmdGOTOLabel(int label)
 {
   cmdGenerate(CMD_GOTO, label, -1);
+}
+
+void CmdReadInt(struct arvore* arv, char* var)
+{
+  cmdGenerate(CMD_GETSTATICIN, -1, -1);
+  cmdGenerate(CMD_READ, -1, -1);
+  CmdIstore(arv, var);
 }
 
 char* removeAsps(char* string){
@@ -507,6 +525,15 @@ void writeCmds()
 
     if(CmdList[i].command == CMD_GOTO)
       fprintf(jasminFile, "\tgoto Label%i\n", CmdList[i].arg1);
+
+    if(CmdList[i].command == CMD_GETSTATICIN )
+      fprintf(jasminFile, "\tgetstatic java/lang/System/in Ljava/io/InputStream;\n");
+
+    if(CmdList[i].command == CMD_READ )
+      fprintf(jasminFile, "\tinvokevirtual java/io/InputStream/read()I\n");
+
+
+
   }
 
   if(CmdList[CmdIndex].label != -1) fprintf(jasminFile, "Label%d:\n",CmdList[CmdIndex].label);

@@ -42,6 +42,8 @@ typedef struct {
 #define CMD_IF_ICOMPGT    0x0019 // Label   --
 #define CMD_IF_ICOMPGE    0x001A // Label   --
 #define CMD_GOTO          0x001B // Label   --
+#define CMD_GETSTATICIN   0x001C // --      -- -> getstatic java/lang/System/in Ljava/io/InputStream;
+#define CMD_READ          0x001D // --      -- -> invokevirtual java/io/InputStream/read()I \n istore id
 
 void showCmd();
 void ShowCmdAscii();
@@ -71,6 +73,9 @@ void CmdIsub ();
 void CmdGetStaticOut ();
 void CmdInvokeOutInt ();
 void CmdInvokeOutLiteral ();
+
+void CmdReadInt();
+
 void CmdLdc (char*);
 void CmdLdcn (int);
 

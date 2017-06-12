@@ -120,7 +120,7 @@ CmdEscritaMarcador : {CmdGetStaticOut();}
 
 
 
-CmdLeitura : T_READ T_ABRE_PARENTESES T_ID T_FECHA_PARENTESES T_PONTO_E_VIRGULA
+CmdLeitura : T_READ T_ABRE_PARENTESES T_ID T_FECHA_PARENTESES T_PONTO_E_VIRGULA { CmdReadInt(tabelaSimbolosGlobais, $3.nomeId); }
 	;
 
 ChamadaProc :  ChamadaFuncao T_PONTO_E_VIRGULA
