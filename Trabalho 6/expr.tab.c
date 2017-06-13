@@ -1454,7 +1454,7 @@ yyreduce:
 
   case 40:
 #line 101 "expr.y" /* yacc.c:1646  */
-    {LabelUpdate((yyvsp[-3]).listav, (yyvsp[-1]).label); CmdGOTOLabel((yyvsp[-5]).label); LabelUpdate((yyvsp[-3]).listaf, LabelCreate());}
+    {LabelUpdate((yyvsp[-3]).listav, (yyvsp[-1]).label); CmdGOTOLabel((yyvsp[-5]).label); LabelUpdate((yyvsp[-3]).listaf, LabelCreate()); CmdEndWhile();}
 #line 1459 "expr.tab.c" /* yacc.c:1646  */
     break;
 

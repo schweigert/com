@@ -44,6 +44,8 @@ typedef struct {
 #define CMD_GOTO          0x001B // Label   --
 #define CMD_GETSTATICIN   0x001C // --      -- -> getstatic java/lang/System/in Ljava/io/InputStream;
 #define CMD_READ          0x001D // --      -- -> invokevirtual java/io/InputStream/read()I \n istore id
+#define CMD_ENDWHILE      0x001E // --      --
+
 
 void showCmd();
 void ShowCmdAscii();
@@ -88,6 +90,8 @@ void CmdIfGE();
 
 void CmdGOTO();
 void CmdGOTOLabel(int);
+
+void CmdEndWhile();
 
 // Operações de chamada do Bytecode
 void loadToMain();

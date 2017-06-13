@@ -335,6 +335,11 @@ void CmdGOTOLabel(int label)
   cmdGenerate(CMD_GOTO, label, -1);
 }
 
+void CmdEndWhile()
+{
+  cmdGenerate(CMD_ENDWHILE, -1, -1);
+}
+
 void CmdReadInt(struct arvore* arv, char* var)
 {
   cmdGenerate(CMD_GETSTATICIN, -1, -1);

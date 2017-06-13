@@ -11,24 +11,42 @@
 .method public static main([Ljava/lang/String;)V
 	.limit stack 8
 	.limit locals 2
-	iconst_1
+	bipush 0
 	istore 1
 Label1:
 	iload 1
-	bipush 100
-	iconst_1
-	iadd
-	if_icmplt Label2
-	goto Label3
+	bipush 0
+	if_icmpeq Label2
+	goto Label4
 Label2:
-	getstatic java/lang/System/out Ljava/io/PrintStream;
 	iload 1
-	invokevirtual java/io/PrintStream/println(I)V
+	bipush 0
+	if_icmpne Label3
+	goto Label4
+Label3:
 	iload 1
 	iconst_1
 	iadd
 	istore 1
 	goto Label1
-Label3:
+Label4:
+Label5:
+	iload 1
+	bipush 0
+	if_icmpeq Label6
+	goto Label8
+Label6:
+	iload 1
+	bipush 0
+	if_icmpne Label7
+	goto Label8
+Label7:
+	iload 1
+	iconst_1
+	iadd
+	istore 1
+	goto Label5
+Label8:
+Label0:
 	return
 .end method

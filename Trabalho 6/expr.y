@@ -98,7 +98,7 @@ CmdSe : T_IF T_ABRE_PARENTESES ExpressaoLogica T_FECHA_PARENTESES MLogico Bloco 
 
 NLogico: {$$.listav = criaIntList(GetIndexPosition()); CmdGOTO();}
 
-CmdEnquanto : T_WHILE MLogico T_ABRE_PARENTESES ExpressaoLogica T_FECHA_PARENTESES MLogico Bloco {LabelUpdate($4.listav, $6.label); CmdGOTOLabel($2.label); LabelUpdate($4.listaf, LabelCreate());}
+CmdEnquanto : T_WHILE MLogico T_ABRE_PARENTESES ExpressaoLogica T_FECHA_PARENTESES MLogico Bloco {LabelUpdate($4.listav, $6.label); CmdGOTOLabel($2.label); LabelUpdate($4.listaf, LabelCreate()); CmdEndWhile();}
 	;
 
 CmdAtrib : T_ID T_IGUAL ExpressaoAritmetica T_PONTO_E_VIRGULA {CmdIstore(tabelaSimbolosGlobais, $1.nomeId);}
