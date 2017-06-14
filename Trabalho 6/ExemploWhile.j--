@@ -47,6 +47,5 @@ Label7:
 	istore 1
 	goto Label5
 Label8:
-Label0:
 	return
 .end method
