@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "eda.h"
 #include "cmd.h"
+#include "expr.tab.h"
 extern FILE *yyin;
 extern struct arvore* tabelaSimbolosGlobais;
 

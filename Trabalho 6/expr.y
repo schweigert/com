@@ -1,6 +1,7 @@
 %{
 #include <stdio.h>
 #include <stdlib.h>
+#include "expr.tab.h"
 #include "eda.h"
 #include "cmd.h"
 
