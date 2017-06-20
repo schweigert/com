@@ -1,11 +1,11 @@
-Terminals unused in grammar
+Terminais sem uso na gramática
 
    T_FIM
    T_TRUE
    T_FALSE
 
 
-Grammar
+Gramática
 
     0 $accept: Programa $end
 
@@ -123,7 +123,7 @@ Grammar
    82                 | ExpressaoAritmetica T_MENOR_IGUAL ExpressaoAritmetica
 
 
-Terminals, with rules where they appear
+Terminais, com as regras onde eles aparecem
 
 $end (0) 0
 error (256)
@@ -168,268 +168,268 @@ T_MAIOR (295) 79
 T_MENOR (296) 81
 
 
-Nonterminals, with rules where they appear
+Não terminais com as regras onde eles aparecem
 
 $accept (42)
-    on left: 0
+    à esquerda: 0
 Programa (43)
-    on left: 1 2, on right: 0
+    à esquerda: 1 2, à direita: 0
 ListaFuncoes (44)
-    on left: 3 4, on right: 1 3
+    à esquerda: 3 4, à direita: 1 3
 Funcao (45)
-    on left: 5 6, on right: 3 4
+    à esquerda: 5 6, à direita: 3 4
 TipoRetorno (46)
-    on left: 7 8 9 10, on right: 5 6
+    à esquerda: 7 8 9 10, à direita: 5 6
 DeclParametros (47)
-    on left: 11 12, on right: 5 11
+    à esquerda: 11 12, à direita: 5 11
 Parametro (48)
-    on left: 13, on right: 11 12
+    à esquerda: 13, à direita: 11 12
 BlocoPrincipal (49)
-    on left: 14 15, on right: 1 2 5 6
+    à esquerda: 14 15, à direita: 1 2 5 6
 Declaracoes (50)
-    on left: 16 17, on right: 14 16
+    à esquerda: 16 17, à direita: 14 16
 Declaracao (51)
-    on left: 18, on right: 16 17
+    à esquerda: 18, à direita: 16 17
 Tipo (52)
-    on left: 19 20 21, on right: 13 18
+    à esquerda: 19 20 21, à direita: 13 18
 ListaId (53)
-    on left: 22 23, on right: 18 22
+    à esquerda: 22 23, à direita: 18 22
 Bloco (54)
-    on left: 24, on right: 36 37 39
+    à esquerda: 24, à direita: 36 37 39
 ListaCmd (55)
-    on left: 25 26, on right: 14 15 24 25
+    à esquerda: 25 26, à direita: 14 15 24 25
 Comando (56)
-    on left: 27 28 29 30 31 32 33, on right: 25 26
+    à esquerda: 27 28 29 30 31 32 33, à direita: 25 26
 Retorno (57)
-    on left: 34 35, on right: 33
+    à esquerda: 34 35, à direita: 33
 CmdSe (58)
-    on left: 36 37, on right: 27
+    à esquerda: 36 37, à direita: 27
 NLogico (59)
-    on left: 38, on right: 37
+    à esquerda: 38, à direita: 37
 CmdEnquanto (60)
-    on left: 39, on right: 28
+    à esquerda: 39, à direita: 28
 CmdAtrib (61)
-    on left: 40 41 42 43 44 45, on right: 29
+    à esquerda: 40 41 42 43 44 45, à direita: 29
 CmdEscrita (62)
-    on left: 46 47, on right: 30
+    à esquerda: 46 47, à direita: 30
 CmdEscritaMarcador (63)
-    on left: 48, on right: 46 47
+    à esquerda: 48, à direita: 46 47
 CmdLeitura (64)
-    on left: 49, on right: 31
+    à esquerda: 49, à direita: 31
 ChamadaProc (65)
-    on left: 50, on right: 32
+    à esquerda: 50, à direita: 32
 ChamadaFuncao (66)
-    on left: 51 52, on right: 50 66
+    à esquerda: 51 52, à direita: 50 66
 ListaParametros (67)
-    on left: 53 54 55 56, on right: 51 53 54
+    à esquerda: 53 54 55 56, à direita: 51 53 54
 ExpressaoAritmetica (68)
-    on left: 57 58 59 60 61, on right: 34 40 42 43 46 53 55 57 58 59
-    60 67 77 78 79 80 81 82
+    à esquerda: 57 58 59 60 61, à direita: 34 40 42 43 46 53 55 57
+    58 59 60 67 77 78 79 80 81 82
 TExpressaoAritmetica (69)
-    on left: 62 63 64 65 66, on right: 57 58 59 60 61 62 63 64
+    à esquerda: 62 63 64 65 66, à direita: 57 58 59 60 61 62 63 64
 FExpressaoAritmetica (70)
-    on left: 67 68 69 70, on right: 62 63 64 65 68
+    à esquerda: 67 68 69 70, à direita: 62 63 64 65 68
 ExpressaoLogica (71)
-    on left: 71 72 73, on right: 36 37 39 71 72 76
+    à esquerda: 71 72 73, à direita: 36 37 39 71 72 76
 MLogico (72)
-    on left: 74, on right: 36 37 39 71 72
+    à esquerda: 74, à direita: 36 37 39 71 72
 FExpressaoLogica (73)
-    on left: 75 76 77 78 79 80 81 82, on right: 71 72 73 75
+    à esquerda: 75 76 77 78 79 80 81 82, à direita: 71 72 73 75
 
 
-State 0
+Estado 0
 
     0 $accept: . Programa $end
 
-    T_ABRE_CHAVES  shift, and go to state 1
-    T_INT          shift, and go to state 2
-    T_DOUBLE       shift, and go to state 3
-    T_STRING       shift, and go to state 4
-    T_VOID         shift, and go to state 5
+    T_ABRE_CHAVES  deslocar, e ir ao estado 1
+    T_INT          deslocar, e ir ao estado 2
+    T_DOUBLE       deslocar, e ir ao estado 3
+    T_STRING       deslocar, e ir ao estado 4
+    T_VOID         deslocar, e ir ao estado 5
 
-    Programa        go to state 6
-    ListaFuncoes    go to state 7
-    Funcao          go to state 8
-    TipoRetorno     go to state 9
-    BlocoPrincipal  go to state 10
+    Programa        ir ao estado 6
+    ListaFuncoes    ir ao estado 7
+    Funcao          ir ao estado 8
+    TipoRetorno     ir ao estado 9
+    BlocoPrincipal  ir ao estado 10
 
 
-State 1
+Estado 1
 
    14 BlocoPrincipal: T_ABRE_CHAVES . Declaracoes ListaCmd T_FECHA_CHAVES
    15               | T_ABRE_CHAVES . ListaCmd T_FECHA_CHAVES
 
-    T_INT     shift, and go to state 11
-    T_DOUBLE  shift, and go to state 12
-    T_STRING  shift, and go to state 13
-    T_IF      shift, and go to state 14
-    T_WHILE   shift, and go to state 15
-    T_PRINT   shift, and go to state 16
-    T_READ    shift, and go to state 17
-    T_RETURN  shift, and go to state 18
-    T_ID      shift, and go to state 19
+    T_INT     deslocar, e ir ao estado 11
+    T_DOUBLE  deslocar, e ir ao estado 12
+    T_STRING  deslocar, e ir ao estado 13
+    T_IF      deslocar, e ir ao estado 14
+    T_WHILE   deslocar, e ir ao estado 15
+    T_PRINT   deslocar, e ir ao estado 16
+    T_READ    deslocar, e ir ao estado 17
+    T_RETURN  deslocar, e ir ao estado 18
+    T_ID      deslocar, e ir ao estado 19
 
-    Declaracoes    go to state 20
-    Declaracao     go to state 21
-    Tipo           go to state 22
-    ListaCmd       go to state 23
-    Comando        go to state 24
-    Retorno        go to state 25
-    CmdSe          go to state 26
-    CmdEnquanto    go to state 27
-    CmdAtrib       go to state 28
-    CmdEscrita     go to state 29
-    CmdLeitura     go to state 30
-    ChamadaProc    go to state 31
-    ChamadaFuncao  go to state 32
+    Declaracoes    ir ao estado 20
+    Declaracao     ir ao estado 21
+    Tipo           ir ao estado 22
+    ListaCmd       ir ao estado 23
+    Comando        ir ao estado 24
+    Retorno        ir ao estado 25
+    CmdSe          ir ao estado 26
+    CmdEnquanto    ir ao estado 27
+    CmdAtrib       ir ao estado 28
+    CmdEscrita     ir ao estado 29
+    CmdLeitura     ir ao estado 30
+    ChamadaProc    ir ao estado 31
+    ChamadaFuncao  ir ao estado 32
 
 
-State 2
+Estado 2
 
     8 TipoRetorno: T_INT .
 
-    $default  reduce using rule 8 (TipoRetorno)
+    $padrão  reduzir usando a regra 8 (TipoRetorno)
 
 
-State 3
+Estado 3
 
     9 TipoRetorno: T_DOUBLE .
 
-    $default  reduce using rule 9 (TipoRetorno)
+    $padrão  reduzir usando a regra 9 (TipoRetorno)
 
 
-State 4
+Estado 4
 
    10 TipoRetorno: T_STRING .
 
-    $default  reduce using rule 10 (TipoRetorno)
+    $padrão  reduzir usando a regra 10 (TipoRetorno)
 
 
-State 5
+Estado 5
 
     7 TipoRetorno: T_VOID .
 
-    $default  reduce using rule 7 (TipoRetorno)
+    $padrão  reduzir usando a regra 7 (TipoRetorno)
 
 
-State 6
+Estado 6
 
     0 $accept: Programa . $end
 
-    $end  shift, and go to state 33
+    $end  deslocar, e ir ao estado 33
 
 
-State 7
+Estado 7
 
     1 Programa: ListaFuncoes . BlocoPrincipal
     3 ListaFuncoes: ListaFuncoes . Funcao
 
-    T_ABRE_CHAVES  shift, and go to state 1
-    T_INT          shift, and go to state 2
-    T_DOUBLE       shift, and go to state 3
-    T_STRING       shift, and go to state 4
-    T_VOID         shift, and go to state 5
+    T_ABRE_CHAVES  deslocar, e ir ao estado 1
+    T_INT          deslocar, e ir ao estado 2
+    T_DOUBLE       deslocar, e ir ao estado 3
+    T_STRING       deslocar, e ir ao estado 4
+    T_VOID         deslocar, e ir ao estado 5
 
-    Funcao          go to state 34
-    TipoRetorno     go to state 9
-    BlocoPrincipal  go to state 35
+    Funcao          ir ao estado 34
+    TipoRetorno     ir ao estado 9
+    BlocoPrincipal  ir ao estado 35
 
 
-State 8
+Estado 8
 
     4 ListaFuncoes: Funcao .
 
-    $default  reduce using rule 4 (ListaFuncoes)
+    $padrão  reduzir usando a regra 4 (ListaFuncoes)
 
 
-State 9
+Estado 9
 
     5 Funcao: TipoRetorno . T_ID T_ABRE_PARENTESES DeclParametros T_FECHA_PARENTESES BlocoPrincipal
     6       | TipoRetorno . T_ID T_ABRE_PARENTESES T_FECHA_PARENTESES BlocoPrincipal
 
-    T_ID  shift, and go to state 36
+    T_ID  deslocar, e ir ao estado 36
 
 
-State 10
+Estado 10
 
     2 Programa: BlocoPrincipal .
 
-    $default  reduce using rule 2 (Programa)
+    $padrão  reduzir usando a regra 2 (Programa)
 
 
-State 11
+Estado 11
 
    19 Tipo: T_INT .
 
-    $default  reduce using rule 19 (Tipo)
+    $padrão  reduzir usando a regra 19 (Tipo)
 
 
-State 12
+Estado 12
 
    20 Tipo: T_DOUBLE .
 
-    $default  reduce using rule 20 (Tipo)
+    $padrão  reduzir usando a regra 20 (Tipo)
 
 
-State 13
+Estado 13
 
    21 Tipo: T_STRING .
 
-    $default  reduce using rule 21 (Tipo)
+    $padrão  reduzir usando a regra 21 (Tipo)
 
 
-State 14
+Estado 14
 
    36 CmdSe: T_IF . T_ABRE_PARENTESES ExpressaoLogica T_FECHA_PARENTESES MLogico Bloco
    37      | T_IF . T_ABRE_PARENTESES ExpressaoLogica T_FECHA_PARENTESES MLogico Bloco NLogico T_ELSE MLogico Bloco
 
-    T_ABRE_PARENTESES  shift, and go to state 37
+    T_ABRE_PARENTESES  deslocar, e ir ao estado 37
 
 
-State 15
+Estado 15
 
    39 CmdEnquanto: T_WHILE . MLogico T_ABRE_PARENTESES ExpressaoLogica T_FECHA_PARENTESES MLogico Bloco
 
-    $default  reduce using rule 74 (MLogico)
+    $padrão  reduzir usando a regra 74 (MLogico)
 
-    MLogico  go to state 38
+    MLogico  ir ao estado 38
 
 
-State 16
+Estado 16
 
    46 CmdEscrita: T_PRINT . CmdEscritaMarcador T_ABRE_PARENTESES ExpressaoAritmetica T_FECHA_PARENTESES T_PONTO_E_VIRGULA
    47           | T_PRINT . CmdEscritaMarcador T_ABRE_PARENTESES T_LITERAL T_FECHA_PARENTESES T_PONTO_E_VIRGULA
 
-    $default  reduce using rule 48 (CmdEscritaMarcador)
+    $padrão  reduzir usando a regra 48 (CmdEscritaMarcador)
 
-    CmdEscritaMarcador  go to state 39
+    CmdEscritaMarcador  ir ao estado 39
 
 
-State 17
+Estado 17
 
    49 CmdLeitura: T_READ . T_ABRE_PARENTESES T_ID T_FECHA_PARENTESES T_PONTO_E_VIRGULA
 
-    T_ABRE_PARENTESES  shift, and go to state 40
+    T_ABRE_PARENTESES  deslocar, e ir ao estado 40
 
 
-State 18
+Estado 18
 
    34 Retorno: T_RETURN . ExpressaoAritmetica T_PONTO_E_VIRGULA
    35        | T_RETURN . T_LITERAL T_PONTO_E_VIRGULA
 
-    T_SUBTRACAO        shift, and go to state 41
-    T_ABRE_PARENTESES  shift, and go to state 42
-    T_ID               shift, and go to state 43
-    T_LITERAL          shift, and go to state 44
-    T_NUM              shift, and go to state 45
+    T_SUBTRACAO        deslocar, e ir ao estado 41
+    T_ABRE_PARENTESES  deslocar, e ir ao estado 42
+    T_ID               deslocar, e ir ao estado 43
+    T_LITERAL          deslocar, e ir ao estado 44
+    T_NUM              deslocar, e ir ao estado 45
 
-    ChamadaFuncao         go to state 46
-    ExpressaoAritmetica   go to state 47
-    TExpressaoAritmetica  go to state 48
-    FExpressaoAritmetica  go to state 49
+    ChamadaFuncao         ir ao estado 46
+    ExpressaoAritmetica   ir ao estado 47
+    TExpressaoAritmetica  ir ao estado 48
+    FExpressaoAritmetica  ir ao estado 49
 
 
-State 19
+Estado 19
 
    40 CmdAtrib: T_ID . T_IGUAL ExpressaoAritmetica T_PONTO_E_VIRGULA
    41         | T_ID . T_IGUAL T_LITERAL T_PONTO_E_VIRGULA
@@ -440,274 +440,274 @@ State 19
    51 ChamadaFuncao: T_ID . T_ABRE_PARENTESES ListaParametros T_FECHA_PARENTESES
    52              | T_ID . T_ABRE_PARENTESES T_FECHA_PARENTESES
 
-    T_ADICAO           shift, and go to state 50
-    T_SUBTRACAO        shift, and go to state 51
-    T_IGUAL            shift, and go to state 52
-    T_ABRE_PARENTESES  shift, and go to state 53
+    T_ADICAO           deslocar, e ir ao estado 50
+    T_SUBTRACAO        deslocar, e ir ao estado 51
+    T_IGUAL            deslocar, e ir ao estado 52
+    T_ABRE_PARENTESES  deslocar, e ir ao estado 53
 
 
-State 20
+Estado 20
 
    14 BlocoPrincipal: T_ABRE_CHAVES Declaracoes . ListaCmd T_FECHA_CHAVES
    16 Declaracoes: Declaracoes . Declaracao
 
-    T_INT     shift, and go to state 11
-    T_DOUBLE  shift, and go to state 12
-    T_STRING  shift, and go to state 13
-    T_IF      shift, and go to state 14
-    T_WHILE   shift, and go to state 15
-    T_PRINT   shift, and go to state 16
-    T_READ    shift, and go to state 17
-    T_RETURN  shift, and go to state 18
-    T_ID      shift, and go to state 19
+    T_INT     deslocar, e ir ao estado 11
+    T_DOUBLE  deslocar, e ir ao estado 12
+    T_STRING  deslocar, e ir ao estado 13
+    T_IF      deslocar, e ir ao estado 14
+    T_WHILE   deslocar, e ir ao estado 15
+    T_PRINT   deslocar, e ir ao estado 16
+    T_READ    deslocar, e ir ao estado 17
+    T_RETURN  deslocar, e ir ao estado 18
+    T_ID      deslocar, e ir ao estado 19
 
-    Declaracao     go to state 54
-    Tipo           go to state 22
-    ListaCmd       go to state 55
-    Comando        go to state 24
-    Retorno        go to state 25
-    CmdSe          go to state 26
-    CmdEnquanto    go to state 27
-    CmdAtrib       go to state 28
-    CmdEscrita     go to state 29
-    CmdLeitura     go to state 30
-    ChamadaProc    go to state 31
-    ChamadaFuncao  go to state 32
+    Declaracao     ir ao estado 54
+    Tipo           ir ao estado 22
+    ListaCmd       ir ao estado 55
+    Comando        ir ao estado 24
+    Retorno        ir ao estado 25
+    CmdSe          ir ao estado 26
+    CmdEnquanto    ir ao estado 27
+    CmdAtrib       ir ao estado 28
+    CmdEscrita     ir ao estado 29
+    CmdLeitura     ir ao estado 30
+    ChamadaProc    ir ao estado 31
+    ChamadaFuncao  ir ao estado 32
 
 
-State 21
+Estado 21
 
    17 Declaracoes: Declaracao .
 
-    $default  reduce using rule 17 (Declaracoes)
+    $padrão  reduzir usando a regra 17 (Declaracoes)
 
 
-State 22
+Estado 22
 
    18 Declaracao: Tipo . ListaId T_PONTO_E_VIRGULA
 
-    T_ID  shift, and go to state 56
+    T_ID  deslocar, e ir ao estado 56
 
-    ListaId  go to state 57
+    ListaId  ir ao estado 57
 
 
-State 23
+Estado 23
 
    15 BlocoPrincipal: T_ABRE_CHAVES ListaCmd . T_FECHA_CHAVES
    25 ListaCmd: ListaCmd . Comando
 
-    T_FECHA_CHAVES  shift, and go to state 58
-    T_IF            shift, and go to state 14
-    T_WHILE         shift, and go to state 15
-    T_PRINT         shift, and go to state 16
-    T_READ          shift, and go to state 17
-    T_RETURN        shift, and go to state 18
-    T_ID            shift, and go to state 19
+    T_FECHA_CHAVES  deslocar, e ir ao estado 58
+    T_IF            deslocar, e ir ao estado 14
+    T_WHILE         deslocar, e ir ao estado 15
+    T_PRINT         deslocar, e ir ao estado 16
+    T_READ          deslocar, e ir ao estado 17
+    T_RETURN        deslocar, e ir ao estado 18
+    T_ID            deslocar, e ir ao estado 19
 
-    Comando        go to state 59
-    Retorno        go to state 25
-    CmdSe          go to state 26
-    CmdEnquanto    go to state 27
-    CmdAtrib       go to state 28
-    CmdEscrita     go to state 29
-    CmdLeitura     go to state 30
-    ChamadaProc    go to state 31
-    ChamadaFuncao  go to state 32
+    Comando        ir ao estado 59
+    Retorno        ir ao estado 25
+    CmdSe          ir ao estado 26
+    CmdEnquanto    ir ao estado 27
+    CmdAtrib       ir ao estado 28
+    CmdEscrita     ir ao estado 29
+    CmdLeitura     ir ao estado 30
+    ChamadaProc    ir ao estado 31
+    ChamadaFuncao  ir ao estado 32
 
 
-State 24
+Estado 24
 
    26 ListaCmd: Comando .
 
-    $default  reduce using rule 26 (ListaCmd)
+    $padrão  reduzir usando a regra 26 (ListaCmd)
 
 
-State 25
+Estado 25
 
    33 Comando: Retorno .
 
-    $default  reduce using rule 33 (Comando)
+    $padrão  reduzir usando a regra 33 (Comando)
 
 
-State 26
+Estado 26
 
    27 Comando: CmdSe .
 
-    $default  reduce using rule 27 (Comando)
+    $padrão  reduzir usando a regra 27 (Comando)
 
 
-State 27
+Estado 27
 
    28 Comando: CmdEnquanto .
 
-    $default  reduce using rule 28 (Comando)
+    $padrão  reduzir usando a regra 28 (Comando)
 
 
-State 28
+Estado 28
 
    29 Comando: CmdAtrib .
 
-    $default  reduce using rule 29 (Comando)
+    $padrão  reduzir usando a regra 29 (Comando)
 
 
-State 29
+Estado 29
 
    30 Comando: CmdEscrita .
 
-    $default  reduce using rule 30 (Comando)
+    $padrão  reduzir usando a regra 30 (Comando)
 
 
-State 30
+Estado 30
 
    31 Comando: CmdLeitura .
 
-    $default  reduce using rule 31 (Comando)
+    $padrão  reduzir usando a regra 31 (Comando)
 
 
-State 31
+Estado 31
 
    32 Comando: ChamadaProc .
 
-    $default  reduce using rule 32 (Comando)
+    $padrão  reduzir usando a regra 32 (Comando)
 
 
-State 32
+Estado 32
 
    50 ChamadaProc: ChamadaFuncao . T_PONTO_E_VIRGULA
 
-    T_PONTO_E_VIRGULA  shift, and go to state 60
+    T_PONTO_E_VIRGULA  deslocar, e ir ao estado 60
 
 
-State 33
+Estado 33
 
     0 $accept: Programa $end .
 
-    $default  accept
+    $padrão  aceitar
 
 
-State 34
+Estado 34
 
     3 ListaFuncoes: ListaFuncoes Funcao .
 
-    $default  reduce using rule 3 (ListaFuncoes)
+    $padrão  reduzir usando a regra 3 (ListaFuncoes)
 
 
-State 35
+Estado 35
 
     1 Programa: ListaFuncoes BlocoPrincipal .
 
-    $default  reduce using rule 1 (Programa)
+    $padrão  reduzir usando a regra 1 (Programa)
 
 
-State 36
+Estado 36
 
     5 Funcao: TipoRetorno T_ID . T_ABRE_PARENTESES DeclParametros T_FECHA_PARENTESES BlocoPrincipal
     6       | TipoRetorno T_ID . T_ABRE_PARENTESES T_FECHA_PARENTESES BlocoPrincipal
 
-    T_ABRE_PARENTESES  shift, and go to state 61
+    T_ABRE_PARENTESES  deslocar, e ir ao estado 61
 
 
-State 37
+Estado 37
 
    36 CmdSe: T_IF T_ABRE_PARENTESES . ExpressaoLogica T_FECHA_PARENTESES MLogico Bloco
    37      | T_IF T_ABRE_PARENTESES . ExpressaoLogica T_FECHA_PARENTESES MLogico Bloco NLogico T_ELSE MLogico Bloco
 
-    T_SUBTRACAO        shift, and go to state 41
-    T_ABRE_PARENTESES  shift, and go to state 62
-    T_ID               shift, and go to state 43
-    T_NUM              shift, and go to state 45
-    T_NOT              shift, and go to state 63
+    T_SUBTRACAO        deslocar, e ir ao estado 41
+    T_ABRE_PARENTESES  deslocar, e ir ao estado 62
+    T_ID               deslocar, e ir ao estado 43
+    T_NUM              deslocar, e ir ao estado 45
+    T_NOT              deslocar, e ir ao estado 63
 
-    ChamadaFuncao         go to state 46
-    ExpressaoAritmetica   go to state 64
-    TExpressaoAritmetica  go to state 48
-    FExpressaoAritmetica  go to state 49
-    ExpressaoLogica       go to state 65
-    FExpressaoLogica      go to state 66
+    ChamadaFuncao         ir ao estado 46
+    ExpressaoAritmetica   ir ao estado 64
+    TExpressaoAritmetica  ir ao estado 48
+    FExpressaoAritmetica  ir ao estado 49
+    ExpressaoLogica       ir ao estado 65
+    FExpressaoLogica      ir ao estado 66
 
 
-State 38
+Estado 38
 
    39 CmdEnquanto: T_WHILE MLogico . T_ABRE_PARENTESES ExpressaoLogica T_FECHA_PARENTESES MLogico Bloco
 
-    T_ABRE_PARENTESES  shift, and go to state 67
+    T_ABRE_PARENTESES  deslocar, e ir ao estado 67
 
 
-State 39
+Estado 39
 
    46 CmdEscrita: T_PRINT CmdEscritaMarcador . T_ABRE_PARENTESES ExpressaoAritmetica T_FECHA_PARENTESES T_PONTO_E_VIRGULA
    47           | T_PRINT CmdEscritaMarcador . T_ABRE_PARENTESES T_LITERAL T_FECHA_PARENTESES T_PONTO_E_VIRGULA
 
-    T_ABRE_PARENTESES  shift, and go to state 68
+    T_ABRE_PARENTESES  deslocar, e ir ao estado 68
 
 
-State 40
+Estado 40
 
    49 CmdLeitura: T_READ T_ABRE_PARENTESES . T_ID T_FECHA_PARENTESES T_PONTO_E_VIRGULA
 
-    T_ID  shift, and go to state 69
+    T_ID  deslocar, e ir ao estado 69
 
 
-State 41
+Estado 41
 
    68 FExpressaoAritmetica: T_SUBTRACAO . FExpressaoAritmetica
 
-    T_SUBTRACAO        shift, and go to state 41
-    T_ABRE_PARENTESES  shift, and go to state 42
-    T_ID               shift, and go to state 70
-    T_NUM              shift, and go to state 45
+    T_SUBTRACAO        deslocar, e ir ao estado 41
+    T_ABRE_PARENTESES  deslocar, e ir ao estado 42
+    T_ID               deslocar, e ir ao estado 70
+    T_NUM              deslocar, e ir ao estado 45
 
-    FExpressaoAritmetica  go to state 71
+    FExpressaoAritmetica  ir ao estado 71
 
 
-State 42
+Estado 42
 
    67 FExpressaoAritmetica: T_ABRE_PARENTESES . ExpressaoAritmetica T_FECHA_PARENTESES
 
-    T_SUBTRACAO        shift, and go to state 41
-    T_ABRE_PARENTESES  shift, and go to state 42
-    T_ID               shift, and go to state 43
-    T_NUM              shift, and go to state 45
+    T_SUBTRACAO        deslocar, e ir ao estado 41
+    T_ABRE_PARENTESES  deslocar, e ir ao estado 42
+    T_ID               deslocar, e ir ao estado 43
+    T_NUM              deslocar, e ir ao estado 45
 
-    ChamadaFuncao         go to state 46
-    ExpressaoAritmetica   go to state 72
-    TExpressaoAritmetica  go to state 48
-    FExpressaoAritmetica  go to state 49
+    ChamadaFuncao         ir ao estado 46
+    ExpressaoAritmetica   ir ao estado 72
+    TExpressaoAritmetica  ir ao estado 48
+    FExpressaoAritmetica  ir ao estado 49
 
 
-State 43
+Estado 43
 
    51 ChamadaFuncao: T_ID . T_ABRE_PARENTESES ListaParametros T_FECHA_PARENTESES
    52              | T_ID . T_ABRE_PARENTESES T_FECHA_PARENTESES
    70 FExpressaoAritmetica: T_ID .
 
-    T_ABRE_PARENTESES  shift, and go to state 53
+    T_ABRE_PARENTESES  deslocar, e ir ao estado 53
 
-    $default  reduce using rule 70 (FExpressaoAritmetica)
+    $padrão  reduzir usando a regra 70 (FExpressaoAritmetica)
 
 
-State 44
+Estado 44
 
    35 Retorno: T_RETURN T_LITERAL . T_PONTO_E_VIRGULA
 
-    T_PONTO_E_VIRGULA  shift, and go to state 73
+    T_PONTO_E_VIRGULA  deslocar, e ir ao estado 73
 
 
-State 45
+Estado 45
 
    69 FExpressaoAritmetica: T_NUM .
 
-    $default  reduce using rule 69 (FExpressaoAritmetica)
+    $padrão  reduzir usando a regra 69 (FExpressaoAritmetica)
 
 
-State 46
+Estado 46
 
    66 TExpressaoAritmetica: ChamadaFuncao .
 
-    $default  reduce using rule 66 (TExpressaoAritmetica)
+    $padrão  reduzir usando a regra 66 (TExpressaoAritmetica)
 
 
-State 47
+Estado 47
 
    34 Retorno: T_RETURN ExpressaoAritmetica . T_PONTO_E_VIRGULA
    57 ExpressaoAritmetica: ExpressaoAritmetica . T_ADICAO TExpressaoAritmetica
@@ -715,208 +715,208 @@ State 47
    59                    | ExpressaoAritmetica . T_BIT_DIREITA TExpressaoAritmetica
    60                    | ExpressaoAritmetica . T_BIT_ESQUERDA TExpressaoAritmetica
 
-    T_BIT_DIREITA      shift, and go to state 74
-    T_BIT_ESQUERDA     shift, and go to state 75
-    T_ADICAO           shift, and go to state 76
-    T_SUBTRACAO        shift, and go to state 77
-    T_PONTO_E_VIRGULA  shift, and go to state 78
+    T_BIT_DIREITA      deslocar, e ir ao estado 74
+    T_BIT_ESQUERDA     deslocar, e ir ao estado 75
+    T_ADICAO           deslocar, e ir ao estado 76
+    T_SUBTRACAO        deslocar, e ir ao estado 77
+    T_PONTO_E_VIRGULA  deslocar, e ir ao estado 78
 
 
-State 48
+Estado 48
 
    61 ExpressaoAritmetica: TExpressaoAritmetica .
    62 TExpressaoAritmetica: TExpressaoAritmetica . T_MULTIPLICACAO FExpressaoAritmetica
    63                     | TExpressaoAritmetica . T_DIVISAO FExpressaoAritmetica
    64                     | TExpressaoAritmetica . T_RESTO FExpressaoAritmetica
 
-    T_MULTIPLICACAO  shift, and go to state 79
-    T_DIVISAO        shift, and go to state 80
-    T_RESTO          shift, and go to state 81
+    T_MULTIPLICACAO  deslocar, e ir ao estado 79
+    T_DIVISAO        deslocar, e ir ao estado 80
+    T_RESTO          deslocar, e ir ao estado 81
 
-    $default  reduce using rule 61 (ExpressaoAritmetica)
+    $padrão  reduzir usando a regra 61 (ExpressaoAritmetica)
 
 
-State 49
+Estado 49
 
    65 TExpressaoAritmetica: FExpressaoAritmetica .
 
-    $default  reduce using rule 65 (TExpressaoAritmetica)
+    $padrão  reduzir usando a regra 65 (TExpressaoAritmetica)
 
 
-State 50
+Estado 50
 
    42 CmdAtrib: T_ID T_ADICAO . T_IGUAL ExpressaoAritmetica T_PONTO_E_VIRGULA
    44         | T_ID T_ADICAO . T_ADICAO T_PONTO_E_VIRGULA
 
-    T_ADICAO  shift, and go to state 82
-    T_IGUAL   shift, and go to state 83
+    T_ADICAO  deslocar, e ir ao estado 82
+    T_IGUAL   deslocar, e ir ao estado 83
 
 
-State 51
+Estado 51
 
    43 CmdAtrib: T_ID T_SUBTRACAO . T_IGUAL ExpressaoAritmetica T_PONTO_E_VIRGULA
    45         | T_ID T_SUBTRACAO . T_SUBTRACAO T_PONTO_E_VIRGULA
 
-    T_SUBTRACAO  shift, and go to state 84
-    T_IGUAL      shift, and go to state 85
+    T_SUBTRACAO  deslocar, e ir ao estado 84
+    T_IGUAL      deslocar, e ir ao estado 85
 
 
-State 52
+Estado 52
 
    40 CmdAtrib: T_ID T_IGUAL . ExpressaoAritmetica T_PONTO_E_VIRGULA
    41         | T_ID T_IGUAL . T_LITERAL T_PONTO_E_VIRGULA
 
-    T_SUBTRACAO        shift, and go to state 41
-    T_ABRE_PARENTESES  shift, and go to state 42
-    T_ID               shift, and go to state 43
-    T_LITERAL          shift, and go to state 86
-    T_NUM              shift, and go to state 45
+    T_SUBTRACAO        deslocar, e ir ao estado 41
+    T_ABRE_PARENTESES  deslocar, e ir ao estado 42
+    T_ID               deslocar, e ir ao estado 43
+    T_LITERAL          deslocar, e ir ao estado 86
+    T_NUM              deslocar, e ir ao estado 45
 
-    ChamadaFuncao         go to state 46
-    ExpressaoAritmetica   go to state 87
-    TExpressaoAritmetica  go to state 48
-    FExpressaoAritmetica  go to state 49
+    ChamadaFuncao         ir ao estado 46
+    ExpressaoAritmetica   ir ao estado 87
+    TExpressaoAritmetica  ir ao estado 48
+    FExpressaoAritmetica  ir ao estado 49
 
 
-State 53
+Estado 53
 
    51 ChamadaFuncao: T_ID T_ABRE_PARENTESES . ListaParametros T_FECHA_PARENTESES
    52              | T_ID T_ABRE_PARENTESES . T_FECHA_PARENTESES
 
-    T_SUBTRACAO         shift, and go to state 41
-    T_ABRE_PARENTESES   shift, and go to state 42
-    T_FECHA_PARENTESES  shift, and go to state 88
-    T_ID                shift, and go to state 43
-    T_LITERAL           shift, and go to state 89
-    T_NUM               shift, and go to state 45
+    T_SUBTRACAO         deslocar, e ir ao estado 41
+    T_ABRE_PARENTESES   deslocar, e ir ao estado 42
+    T_FECHA_PARENTESES  deslocar, e ir ao estado 88
+    T_ID                deslocar, e ir ao estado 43
+    T_LITERAL           deslocar, e ir ao estado 89
+    T_NUM               deslocar, e ir ao estado 45
 
-    ChamadaFuncao         go to state 46
-    ListaParametros       go to state 90
-    ExpressaoAritmetica   go to state 91
-    TExpressaoAritmetica  go to state 48
-    FExpressaoAritmetica  go to state 49
+    ChamadaFuncao         ir ao estado 46
+    ListaParametros       ir ao estado 90
+    ExpressaoAritmetica   ir ao estado 91
+    TExpressaoAritmetica  ir ao estado 48
+    FExpressaoAritmetica  ir ao estado 49
 
 
-State 54
+Estado 54
 
    16 Declaracoes: Declaracoes Declaracao .
 
-    $default  reduce using rule 16 (Declaracoes)
+    $padrão  reduzir usando a regra 16 (Declaracoes)
 
 
-State 55
+Estado 55
 
    14 BlocoPrincipal: T_ABRE_CHAVES Declaracoes ListaCmd . T_FECHA_CHAVES
    25 ListaCmd: ListaCmd . Comando
 
-    T_FECHA_CHAVES  shift, and go to state 92
-    T_IF            shift, and go to state 14
-    T_WHILE         shift, and go to state 15
-    T_PRINT         shift, and go to state 16
-    T_READ          shift, and go to state 17
-    T_RETURN        shift, and go to state 18
-    T_ID            shift, and go to state 19
+    T_FECHA_CHAVES  deslocar, e ir ao estado 92
+    T_IF            deslocar, e ir ao estado 14
+    T_WHILE         deslocar, e ir ao estado 15
+    T_PRINT         deslocar, e ir ao estado 16
+    T_READ          deslocar, e ir ao estado 17
+    T_RETURN        deslocar, e ir ao estado 18
+    T_ID            deslocar, e ir ao estado 19
 
-    Comando        go to state 59
-    Retorno        go to state 25
-    CmdSe          go to state 26
-    CmdEnquanto    go to state 27
-    CmdAtrib       go to state 28
-    CmdEscrita     go to state 29
-    CmdLeitura     go to state 30
-    ChamadaProc    go to state 31
-    ChamadaFuncao  go to state 32
+    Comando        ir ao estado 59
+    Retorno        ir ao estado 25
+    CmdSe          ir ao estado 26
+    CmdEnquanto    ir ao estado 27
+    CmdAtrib       ir ao estado 28
+    CmdEscrita     ir ao estado 29
+    CmdLeitura     ir ao estado 30
+    ChamadaProc    ir ao estado 31
+    ChamadaFuncao  ir ao estado 32
 
 
-State 56
+Estado 56
 
    23 ListaId: T_ID .
 
-    $default  reduce using rule 23 (ListaId)
+    $padrão  reduzir usando a regra 23 (ListaId)
 
 
-State 57
+Estado 57
 
    18 Declaracao: Tipo ListaId . T_PONTO_E_VIRGULA
    22 ListaId: ListaId . T_VIRGULA T_ID
 
-    T_VIRGULA          shift, and go to state 93
-    T_PONTO_E_VIRGULA  shift, and go to state 94
+    T_VIRGULA          deslocar, e ir ao estado 93
+    T_PONTO_E_VIRGULA  deslocar, e ir ao estado 94
 
 
-State 58
+Estado 58
 
    15 BlocoPrincipal: T_ABRE_CHAVES ListaCmd T_FECHA_CHAVES .
 
-    $default  reduce using rule 15 (BlocoPrincipal)
+    $padrão  reduzir usando a regra 15 (BlocoPrincipal)
 
 
-State 59
+Estado 59
 
    25 ListaCmd: ListaCmd Comando .
 
-    $default  reduce using rule 25 (ListaCmd)
+    $padrão  reduzir usando a regra 25 (ListaCmd)
 
 
-State 60
+Estado 60
 
    50 ChamadaProc: ChamadaFuncao T_PONTO_E_VIRGULA .
 
-    $default  reduce using rule 50 (ChamadaProc)
+    $padrão  reduzir usando a regra 50 (ChamadaProc)
 
 
-State 61
+Estado 61
 
     5 Funcao: TipoRetorno T_ID T_ABRE_PARENTESES . DeclParametros T_FECHA_PARENTESES BlocoPrincipal
     6       | TipoRetorno T_ID T_ABRE_PARENTESES . T_FECHA_PARENTESES BlocoPrincipal
 
-    T_FECHA_PARENTESES  shift, and go to state 95
-    T_INT               shift, and go to state 11
-    T_DOUBLE            shift, and go to state 12
-    T_STRING            shift, and go to state 13
+    T_FECHA_PARENTESES  deslocar, e ir ao estado 95
+    T_INT               deslocar, e ir ao estado 11
+    T_DOUBLE            deslocar, e ir ao estado 12
+    T_STRING            deslocar, e ir ao estado 13
 
-    DeclParametros  go to state 96
-    Parametro       go to state 97
-    Tipo            go to state 98
+    DeclParametros  ir ao estado 96
+    Parametro       ir ao estado 97
+    Tipo            ir ao estado 98
 
 
-State 62
+Estado 62
 
    67 FExpressaoAritmetica: T_ABRE_PARENTESES . ExpressaoAritmetica T_FECHA_PARENTESES
    76 FExpressaoLogica: T_ABRE_PARENTESES . ExpressaoLogica T_FECHA_PARENTESES
 
-    T_SUBTRACAO        shift, and go to state 41
-    T_ABRE_PARENTESES  shift, and go to state 62
-    T_ID               shift, and go to state 43
-    T_NUM              shift, and go to state 45
-    T_NOT              shift, and go to state 63
+    T_SUBTRACAO        deslocar, e ir ao estado 41
+    T_ABRE_PARENTESES  deslocar, e ir ao estado 62
+    T_ID               deslocar, e ir ao estado 43
+    T_NUM              deslocar, e ir ao estado 45
+    T_NOT              deslocar, e ir ao estado 63
 
-    ChamadaFuncao         go to state 46
-    ExpressaoAritmetica   go to state 99
-    TExpressaoAritmetica  go to state 48
-    FExpressaoAritmetica  go to state 49
-    ExpressaoLogica       go to state 100
-    FExpressaoLogica      go to state 66
+    ChamadaFuncao         ir ao estado 46
+    ExpressaoAritmetica   ir ao estado 99
+    TExpressaoAritmetica  ir ao estado 48
+    FExpressaoAritmetica  ir ao estado 49
+    ExpressaoLogica       ir ao estado 100
+    FExpressaoLogica      ir ao estado 66
 
 
-State 63
+Estado 63
 
    75 FExpressaoLogica: T_NOT . FExpressaoLogica
 
-    T_SUBTRACAO        shift, and go to state 41
-    T_ABRE_PARENTESES  shift, and go to state 62
-    T_ID               shift, and go to state 43
-    T_NUM              shift, and go to state 45
-    T_NOT              shift, and go to state 63
+    T_SUBTRACAO        deslocar, e ir ao estado 41
+    T_ABRE_PARENTESES  deslocar, e ir ao estado 62
+    T_ID               deslocar, e ir ao estado 43
+    T_NUM              deslocar, e ir ao estado 45
+    T_NOT              deslocar, e ir ao estado 63
 
-    ChamadaFuncao         go to state 46
-    ExpressaoAritmetica   go to state 64
-    TExpressaoAritmetica  go to state 48
-    FExpressaoAritmetica  go to state 49
-    FExpressaoLogica      go to state 101
+    ChamadaFuncao         ir ao estado 46
+    ExpressaoAritmetica   ir ao estado 64
+    TExpressaoAritmetica  ir ao estado 48
+    FExpressaoAritmetica  ir ao estado 49
+    FExpressaoLogica      ir ao estado 101
 
 
-State 64
+Estado 64
 
    57 ExpressaoAritmetica: ExpressaoAritmetica . T_ADICAO TExpressaoAritmetica
    58                    | ExpressaoAritmetica . T_SUBTRACAO TExpressaoAritmetica
@@ -929,94 +929,94 @@ State 64
    81                 | ExpressaoAritmetica . T_MENOR ExpressaoAritmetica
    82                 | ExpressaoAritmetica . T_MENOR_IGUAL ExpressaoAritmetica
 
-    T_BIT_DIREITA   shift, and go to state 74
-    T_BIT_ESQUERDA  shift, and go to state 75
-    T_ADICAO        shift, and go to state 76
-    T_SUBTRACAO     shift, and go to state 77
-    T_MAIOR_IGUAL   shift, and go to state 102
-    T_MENOR_IGUAL   shift, and go to state 103
-    T_DIFERENTE     shift, and go to state 104
-    T_IGUAL_IGUAL   shift, and go to state 105
-    T_MAIOR         shift, and go to state 106
-    T_MENOR         shift, and go to state 107
+    T_BIT_DIREITA   deslocar, e ir ao estado 74
+    T_BIT_ESQUERDA  deslocar, e ir ao estado 75
+    T_ADICAO        deslocar, e ir ao estado 76
+    T_SUBTRACAO     deslocar, e ir ao estado 77
+    T_MAIOR_IGUAL   deslocar, e ir ao estado 102
+    T_MENOR_IGUAL   deslocar, e ir ao estado 103
+    T_DIFERENTE     deslocar, e ir ao estado 104
+    T_IGUAL_IGUAL   deslocar, e ir ao estado 105
+    T_MAIOR         deslocar, e ir ao estado 106
+    T_MENOR         deslocar, e ir ao estado 107
 
 
-State 65
+Estado 65
 
    36 CmdSe: T_IF T_ABRE_PARENTESES ExpressaoLogica . T_FECHA_PARENTESES MLogico Bloco
    37      | T_IF T_ABRE_PARENTESES ExpressaoLogica . T_FECHA_PARENTESES MLogico Bloco NLogico T_ELSE MLogico Bloco
    71 ExpressaoLogica: ExpressaoLogica . T_AND MLogico FExpressaoLogica
    72                | ExpressaoLogica . T_OR MLogico FExpressaoLogica
 
-    T_FECHA_PARENTESES  shift, and go to state 108
-    T_AND               shift, and go to state 109
-    T_OR                shift, and go to state 110
+    T_FECHA_PARENTESES  deslocar, e ir ao estado 108
+    T_AND               deslocar, e ir ao estado 109
+    T_OR                deslocar, e ir ao estado 110
 
 
-State 66
+Estado 66
 
    73 ExpressaoLogica: FExpressaoLogica .
 
-    $default  reduce using rule 73 (ExpressaoLogica)
+    $padrão  reduzir usando a regra 73 (ExpressaoLogica)
 
 
-State 67
+Estado 67
 
    39 CmdEnquanto: T_WHILE MLogico T_ABRE_PARENTESES . ExpressaoLogica T_FECHA_PARENTESES MLogico Bloco
 
-    T_SUBTRACAO        shift, and go to state 41
-    T_ABRE_PARENTESES  shift, and go to state 62
-    T_ID               shift, and go to state 43
-    T_NUM              shift, and go to state 45
-    T_NOT              shift, and go to state 63
+    T_SUBTRACAO        deslocar, e ir ao estado 41
+    T_ABRE_PARENTESES  deslocar, e ir ao estado 62
+    T_ID               deslocar, e ir ao estado 43
+    T_NUM              deslocar, e ir ao estado 45
+    T_NOT              deslocar, e ir ao estado 63
 
-    ChamadaFuncao         go to state 46
-    ExpressaoAritmetica   go to state 64
-    TExpressaoAritmetica  go to state 48
-    FExpressaoAritmetica  go to state 49
-    ExpressaoLogica       go to state 111
-    FExpressaoLogica      go to state 66
+    ChamadaFuncao         ir ao estado 46
+    ExpressaoAritmetica   ir ao estado 64
+    TExpressaoAritmetica  ir ao estado 48
+    FExpressaoAritmetica  ir ao estado 49
+    ExpressaoLogica       ir ao estado 111
+    FExpressaoLogica      ir ao estado 66
 
 
-State 68
+Estado 68
 
    46 CmdEscrita: T_PRINT CmdEscritaMarcador T_ABRE_PARENTESES . ExpressaoAritmetica T_FECHA_PARENTESES T_PONTO_E_VIRGULA
    47           | T_PRINT CmdEscritaMarcador T_ABRE_PARENTESES . T_LITERAL T_FECHA_PARENTESES T_PONTO_E_VIRGULA
 
-    T_SUBTRACAO        shift, and go to state 41
-    T_ABRE_PARENTESES  shift, and go to state 42
-    T_ID               shift, and go to state 43
-    T_LITERAL          shift, and go to state 112
-    T_NUM              shift, and go to state 45
+    T_SUBTRACAO        deslocar, e ir ao estado 41
+    T_ABRE_PARENTESES  deslocar, e ir ao estado 42
+    T_ID               deslocar, e ir ao estado 43
+    T_LITERAL          deslocar, e ir ao estado 112
+    T_NUM              deslocar, e ir ao estado 45
 
-    ChamadaFuncao         go to state 46
-    ExpressaoAritmetica   go to state 113
-    TExpressaoAritmetica  go to state 48
-    FExpressaoAritmetica  go to state 49
+    ChamadaFuncao         ir ao estado 46
+    ExpressaoAritmetica   ir ao estado 113
+    TExpressaoAritmetica  ir ao estado 48
+    FExpressaoAritmetica  ir ao estado 49
 
 
-State 69
+Estado 69
 
    49 CmdLeitura: T_READ T_ABRE_PARENTESES T_ID . T_FECHA_PARENTESES T_PONTO_E_VIRGULA
 
-    T_FECHA_PARENTESES  shift, and go to state 114
+    T_FECHA_PARENTESES  deslocar, e ir ao estado 114
 
 
-State 70
+Estado 70
 
    70 FExpressaoAritmetica: T_ID .
 
-    $default  reduce using rule 70 (FExpressaoAritmetica)
+    $padrão  reduzir usando a regra 70 (FExpressaoAritmetica)
 
 
-State 71
+Estado 71
 
    68 FExpressaoAritmetica: T_SUBTRACAO FExpressaoAritmetica .
 
-    $default  reduce using rule 68 (FExpressaoAritmetica)
+    $padrão  reduzir usando a regra 68 (FExpressaoAritmetica)
 
 
-State 72
+Estado 72
 
    57 ExpressaoAritmetica: ExpressaoAritmetica . T_ADICAO TExpressaoAritmetica
    58                    | ExpressaoAritmetica . T_SUBTRACAO TExpressaoAritmetica
@@ -1024,171 +1024,171 @@ State 72
    60                    | ExpressaoAritmetica . T_BIT_ESQUERDA TExpressaoAritmetica
    67 FExpressaoAritmetica: T_ABRE_PARENTESES ExpressaoAritmetica . T_FECHA_PARENTESES
 
-    T_BIT_DIREITA       shift, and go to state 74
-    T_BIT_ESQUERDA      shift, and go to state 75
-    T_ADICAO            shift, and go to state 76
-    T_SUBTRACAO         shift, and go to state 77
-    T_FECHA_PARENTESES  shift, and go to state 115
+    T_BIT_DIREITA       deslocar, e ir ao estado 74
+    T_BIT_ESQUERDA      deslocar, e ir ao estado 75
+    T_ADICAO            deslocar, e ir ao estado 76
+    T_SUBTRACAO         deslocar, e ir ao estado 77
+    T_FECHA_PARENTESES  deslocar, e ir ao estado 115
 
 
-State 73
+Estado 73
 
    35 Retorno: T_RETURN T_LITERAL T_PONTO_E_VIRGULA .
 
-    $default  reduce using rule 35 (Retorno)
+    $padrão  reduzir usando a regra 35 (Retorno)
 
 
-State 74
+Estado 74
 
    59 ExpressaoAritmetica: ExpressaoAritmetica T_BIT_DIREITA . TExpressaoAritmetica
 
-    T_SUBTRACAO        shift, and go to state 41
-    T_ABRE_PARENTESES  shift, and go to state 42
-    T_ID               shift, and go to state 43
-    T_NUM              shift, and go to state 45
+    T_SUBTRACAO        deslocar, e ir ao estado 41
+    T_ABRE_PARENTESES  deslocar, e ir ao estado 42
+    T_ID               deslocar, e ir ao estado 43
+    T_NUM              deslocar, e ir ao estado 45
 
-    ChamadaFuncao         go to state 46
-    TExpressaoAritmetica  go to state 116
-    FExpressaoAritmetica  go to state 49
+    ChamadaFuncao         ir ao estado 46
+    TExpressaoAritmetica  ir ao estado 116
+    FExpressaoAritmetica  ir ao estado 49
 
 
-State 75
+Estado 75
 
    60 ExpressaoAritmetica: ExpressaoAritmetica T_BIT_ESQUERDA . TExpressaoAritmetica
 
-    T_SUBTRACAO        shift, and go to state 41
-    T_ABRE_PARENTESES  shift, and go to state 42
-    T_ID               shift, and go to state 43
-    T_NUM              shift, and go to state 45
+    T_SUBTRACAO        deslocar, e ir ao estado 41
+    T_ABRE_PARENTESES  deslocar, e ir ao estado 42
+    T_ID               deslocar, e ir ao estado 43
+    T_NUM              deslocar, e ir ao estado 45
 
-    ChamadaFuncao         go to state 46
-    TExpressaoAritmetica  go to state 117
-    FExpressaoAritmetica  go to state 49
+    ChamadaFuncao         ir ao estado 46
+    TExpressaoAritmetica  ir ao estado 117
+    FExpressaoAritmetica  ir ao estado 49
 
 
-State 76
+Estado 76
 
    57 ExpressaoAritmetica: ExpressaoAritmetica T_ADICAO . TExpressaoAritmetica
 
-    T_SUBTRACAO        shift, and go to state 41
-    T_ABRE_PARENTESES  shift, and go to state 42
-    T_ID               shift, and go to state 43
-    T_NUM              shift, and go to state 45
+    T_SUBTRACAO        deslocar, e ir ao estado 41
+    T_ABRE_PARENTESES  deslocar, e ir ao estado 42
+    T_ID               deslocar, e ir ao estado 43
+    T_NUM              deslocar, e ir ao estado 45
 
-    ChamadaFuncao         go to state 46
-    TExpressaoAritmetica  go to state 118
-    FExpressaoAritmetica  go to state 49
+    ChamadaFuncao         ir ao estado 46
+    TExpressaoAritmetica  ir ao estado 118
+    FExpressaoAritmetica  ir ao estado 49
 
 
-State 77
+Estado 77
 
    58 ExpressaoAritmetica: ExpressaoAritmetica T_SUBTRACAO . TExpressaoAritmetica
 
-    T_SUBTRACAO        shift, and go to state 41
-    T_ABRE_PARENTESES  shift, and go to state 42
-    T_ID               shift, and go to state 43
-    T_NUM              shift, and go to state 45
+    T_SUBTRACAO        deslocar, e ir ao estado 41
+    T_ABRE_PARENTESES  deslocar, e ir ao estado 42
+    T_ID               deslocar, e ir ao estado 43
+    T_NUM              deslocar, e ir ao estado 45
 
-    ChamadaFuncao         go to state 46
-    TExpressaoAritmetica  go to state 119
-    FExpressaoAritmetica  go to state 49
+    ChamadaFuncao         ir ao estado 46
+    TExpressaoAritmetica  ir ao estado 119
+    FExpressaoAritmetica  ir ao estado 49
 
 
-State 78
+Estado 78
 
    34 Retorno: T_RETURN ExpressaoAritmetica T_PONTO_E_VIRGULA .
 
-    $default  reduce using rule 34 (Retorno)
+    $padrão  reduzir usando a regra 34 (Retorno)
 
 
-State 79
+Estado 79
 
    62 TExpressaoAritmetica: TExpressaoAritmetica T_MULTIPLICACAO . FExpressaoAritmetica
 
-    T_SUBTRACAO        shift, and go to state 41
-    T_ABRE_PARENTESES  shift, and go to state 42
-    T_ID               shift, and go to state 70
-    T_NUM              shift, and go to state 45
+    T_SUBTRACAO        deslocar, e ir ao estado 41
+    T_ABRE_PARENTESES  deslocar, e ir ao estado 42
+    T_ID               deslocar, e ir ao estado 70
+    T_NUM              deslocar, e ir ao estado 45
 
-    FExpressaoAritmetica  go to state 120
+    FExpressaoAritmetica  ir ao estado 120
 
 
-State 80
+Estado 80
 
    63 TExpressaoAritmetica: TExpressaoAritmetica T_DIVISAO . FExpressaoAritmetica
 
-    T_SUBTRACAO        shift, and go to state 41
-    T_ABRE_PARENTESES  shift, and go to state 42
-    T_ID               shift, and go to state 70
-    T_NUM              shift, and go to state 45
+    T_SUBTRACAO        deslocar, e ir ao estado 41
+    T_ABRE_PARENTESES  deslocar, e ir ao estado 42
+    T_ID               deslocar, e ir ao estado 70
+    T_NUM              deslocar, e ir ao estado 45
 
-    FExpressaoAritmetica  go to state 121
+    FExpressaoAritmetica  ir ao estado 121
 
 
-State 81
+Estado 81
 
    64 TExpressaoAritmetica: TExpressaoAritmetica T_RESTO . FExpressaoAritmetica
 
-    T_SUBTRACAO        shift, and go to state 41
-    T_ABRE_PARENTESES  shift, and go to state 42
-    T_ID               shift, and go to state 70
-    T_NUM              shift, and go to state 45
+    T_SUBTRACAO        deslocar, e ir ao estado 41
+    T_ABRE_PARENTESES  deslocar, e ir ao estado 42
+    T_ID               deslocar, e ir ao estado 70
+    T_NUM              deslocar, e ir ao estado 45
 
-    FExpressaoAritmetica  go to state 122
+    FExpressaoAritmetica  ir ao estado 122
 
 
-State 82
+Estado 82
 
    44 CmdAtrib: T_ID T_ADICAO T_ADICAO . T_PONTO_E_VIRGULA
 
-    T_PONTO_E_VIRGULA  shift, and go to state 123
+    T_PONTO_E_VIRGULA  deslocar, e ir ao estado 123
 
 
-State 83
+Estado 83
 
    42 CmdAtrib: T_ID T_ADICAO T_IGUAL . ExpressaoAritmetica T_PONTO_E_VIRGULA
 
-    T_SUBTRACAO        shift, and go to state 41
-    T_ABRE_PARENTESES  shift, and go to state 42
-    T_ID               shift, and go to state 43
-    T_NUM              shift, and go to state 45
+    T_SUBTRACAO        deslocar, e ir ao estado 41
+    T_ABRE_PARENTESES  deslocar, e ir ao estado 42
+    T_ID               deslocar, e ir ao estado 43
+    T_NUM              deslocar, e ir ao estado 45
 
-    ChamadaFuncao         go to state 46
-    ExpressaoAritmetica   go to state 124
-    TExpressaoAritmetica  go to state 48
-    FExpressaoAritmetica  go to state 49
+    ChamadaFuncao         ir ao estado 46
+    ExpressaoAritmetica   ir ao estado 124
+    TExpressaoAritmetica  ir ao estado 48
+    FExpressaoAritmetica  ir ao estado 49
 
 
-State 84
+Estado 84
 
    45 CmdAtrib: T_ID T_SUBTRACAO T_SUBTRACAO . T_PONTO_E_VIRGULA
 
-    T_PONTO_E_VIRGULA  shift, and go to state 125
+    T_PONTO_E_VIRGULA  deslocar, e ir ao estado 125
 
 
-State 85
+Estado 85
 
    43 CmdAtrib: T_ID T_SUBTRACAO T_IGUAL . ExpressaoAritmetica T_PONTO_E_VIRGULA
 
-    T_SUBTRACAO        shift, and go to state 41
-    T_ABRE_PARENTESES  shift, and go to state 42
-    T_ID               shift, and go to state 43
-    T_NUM              shift, and go to state 45
+    T_SUBTRACAO        deslocar, e ir ao estado 41
+    T_ABRE_PARENTESES  deslocar, e ir ao estado 42
+    T_ID               deslocar, e ir ao estado 43
+    T_NUM              deslocar, e ir ao estado 45
 
-    ChamadaFuncao         go to state 46
-    ExpressaoAritmetica   go to state 126
-    TExpressaoAritmetica  go to state 48
-    FExpressaoAritmetica  go to state 49
+    ChamadaFuncao         ir ao estado 46
+    ExpressaoAritmetica   ir ao estado 126
+    TExpressaoAritmetica  ir ao estado 48
+    FExpressaoAritmetica  ir ao estado 49
 
 
-State 86
+Estado 86
 
    41 CmdAtrib: T_ID T_IGUAL T_LITERAL . T_PONTO_E_VIRGULA
 
-    T_PONTO_E_VIRGULA  shift, and go to state 127
+    T_PONTO_E_VIRGULA  deslocar, e ir ao estado 127
 
 
-State 87
+Estado 87
 
    40 CmdAtrib: T_ID T_IGUAL ExpressaoAritmetica . T_PONTO_E_VIRGULA
    57 ExpressaoAritmetica: ExpressaoAritmetica . T_ADICAO TExpressaoAritmetica
@@ -1196,38 +1196,38 @@ State 87
    59                    | ExpressaoAritmetica . T_BIT_DIREITA TExpressaoAritmetica
    60                    | ExpressaoAritmetica . T_BIT_ESQUERDA TExpressaoAritmetica
 
-    T_BIT_DIREITA      shift, and go to state 74
-    T_BIT_ESQUERDA     shift, and go to state 75
-    T_ADICAO           shift, and go to state 76
-    T_SUBTRACAO        shift, and go to state 77
-    T_PONTO_E_VIRGULA  shift, and go to state 128
+    T_BIT_DIREITA      deslocar, e ir ao estado 74
+    T_BIT_ESQUERDA     deslocar, e ir ao estado 75
+    T_ADICAO           deslocar, e ir ao estado 76
+    T_SUBTRACAO        deslocar, e ir ao estado 77
+    T_PONTO_E_VIRGULA  deslocar, e ir ao estado 128
 
 
-State 88
+Estado 88
 
    52 ChamadaFuncao: T_ID T_ABRE_PARENTESES T_FECHA_PARENTESES .
 
-    $default  reduce using rule 52 (ChamadaFuncao)
+    $padrão  reduzir usando a regra 52 (ChamadaFuncao)
 
 
-State 89
+Estado 89
 
    56 ListaParametros: T_LITERAL .
 
-    $default  reduce using rule 56 (ListaParametros)
+    $padrão  reduzir usando a regra 56 (ListaParametros)
 
 
-State 90
+Estado 90
 
    51 ChamadaFuncao: T_ID T_ABRE_PARENTESES ListaParametros . T_FECHA_PARENTESES
    53 ListaParametros: ListaParametros . T_VIRGULA ExpressaoAritmetica
    54                | ListaParametros . T_VIRGULA T_LITERAL
 
-    T_FECHA_PARENTESES  shift, and go to state 129
-    T_VIRGULA           shift, and go to state 130
+    T_FECHA_PARENTESES  deslocar, e ir ao estado 129
+    T_VIRGULA           deslocar, e ir ao estado 130
 
 
-State 91
+Estado 91
 
    55 ListaParametros: ExpressaoAritmetica .
    57 ExpressaoAritmetica: ExpressaoAritmetica . T_ADICAO TExpressaoAritmetica
@@ -1235,68 +1235,68 @@ State 91
    59                    | ExpressaoAritmetica . T_BIT_DIREITA TExpressaoAritmetica
    60                    | ExpressaoAritmetica . T_BIT_ESQUERDA TExpressaoAritmetica
 
-    T_BIT_DIREITA   shift, and go to state 74
-    T_BIT_ESQUERDA  shift, and go to state 75
-    T_ADICAO        shift, and go to state 76
-    T_SUBTRACAO     shift, and go to state 77
+    T_BIT_DIREITA   deslocar, e ir ao estado 74
+    T_BIT_ESQUERDA  deslocar, e ir ao estado 75
+    T_ADICAO        deslocar, e ir ao estado 76
+    T_SUBTRACAO     deslocar, e ir ao estado 77
 
-    $default  reduce using rule 55 (ListaParametros)
+    $padrão  reduzir usando a regra 55 (ListaParametros)
 
 
-State 92
+Estado 92
 
    14 BlocoPrincipal: T_ABRE_CHAVES Declaracoes ListaCmd T_FECHA_CHAVES .
 
-    $default  reduce using rule 14 (BlocoPrincipal)
+    $padrão  reduzir usando a regra 14 (BlocoPrincipal)
 
 
-State 93
+Estado 93
 
    22 ListaId: ListaId T_VIRGULA . T_ID
 
-    T_ID  shift, and go to state 131
+    T_ID  deslocar, e ir ao estado 131
 
 
-State 94
+Estado 94
 
    18 Declaracao: Tipo ListaId T_PONTO_E_VIRGULA .
 
-    $default  reduce using rule 18 (Declaracao)
+    $padrão  reduzir usando a regra 18 (Declaracao)
 
 
-State 95
+Estado 95
 
     6 Funcao: TipoRetorno T_ID T_ABRE_PARENTESES T_FECHA_PARENTESES . BlocoPrincipal
 
-    T_ABRE_CHAVES  shift, and go to state 1
+    T_ABRE_CHAVES  deslocar, e ir ao estado 1
 
-    BlocoPrincipal  go to state 132
+    BlocoPrincipal  ir ao estado 132
 
 
-State 96
+Estado 96
 
     5 Funcao: TipoRetorno T_ID T_ABRE_PARENTESES DeclParametros . T_FECHA_PARENTESES BlocoPrincipal
    11 DeclParametros: DeclParametros . T_VIRGULA Parametro
 
-    T_FECHA_PARENTESES  shift, and go to state 133
-    T_VIRGULA           shift, and go to state 134
+    T_FECHA_PARENTESES  deslocar, e ir ao estado 133
+    T_VIRGULA           deslocar, e ir ao estado 134
 
 
-State 97
+Estado 97
 
    12 DeclParametros: Parametro .
 
-    $default  reduce using rule 12 (DeclParametros)
+    $padrão  reduzir usando a regra 12 (DeclParametros)
 
 
-State 98
+Estado 98
 
    13 Parametro: Tipo . T_ID
 
-    T_ID  shift, and go to state 135
+    T_ID  deslocar, e ir ao estado 135
 
 
-State 99
+Estado 99
 
    57 ExpressaoAritmetica: ExpressaoAritmetica . T_ADICAO TExpressaoAritmetica
    58                    | ExpressaoAritmetica . T_SUBTRACAO TExpressaoAritmetica
@@ -1310,174 +1310,174 @@ State 99
    81                 | ExpressaoAritmetica . T_MENOR ExpressaoAritmetica
    82                 | ExpressaoAritmetica . T_MENOR_IGUAL ExpressaoAritmetica
 
-    T_BIT_DIREITA       shift, and go to state 74
-    T_BIT_ESQUERDA      shift, and go to state 75
-    T_ADICAO            shift, and go to state 76
-    T_SUBTRACAO         shift, and go to state 77
-    T_FECHA_PARENTESES  shift, and go to state 115
-    T_MAIOR_IGUAL       shift, and go to state 102
-    T_MENOR_IGUAL       shift, and go to state 103
-    T_DIFERENTE         shift, and go to state 104
-    T_IGUAL_IGUAL       shift, and go to state 105
-    T_MAIOR             shift, and go to state 106
-    T_MENOR             shift, and go to state 107
+    T_BIT_DIREITA       deslocar, e ir ao estado 74
+    T_BIT_ESQUERDA      deslocar, e ir ao estado 75
+    T_ADICAO            deslocar, e ir ao estado 76
+    T_SUBTRACAO         deslocar, e ir ao estado 77
+    T_FECHA_PARENTESES  deslocar, e ir ao estado 115
+    T_MAIOR_IGUAL       deslocar, e ir ao estado 102
+    T_MENOR_IGUAL       deslocar, e ir ao estado 103
+    T_DIFERENTE         deslocar, e ir ao estado 104
+    T_IGUAL_IGUAL       deslocar, e ir ao estado 105
+    T_MAIOR             deslocar, e ir ao estado 106
+    T_MENOR             deslocar, e ir ao estado 107
 
 
-State 100
+Estado 100
 
    71 ExpressaoLogica: ExpressaoLogica . T_AND MLogico FExpressaoLogica
    72                | ExpressaoLogica . T_OR MLogico FExpressaoLogica
    76 FExpressaoLogica: T_ABRE_PARENTESES ExpressaoLogica . T_FECHA_PARENTESES
 
-    T_FECHA_PARENTESES  shift, and go to state 136
-    T_AND               shift, and go to state 109
-    T_OR                shift, and go to state 110
+    T_FECHA_PARENTESES  deslocar, e ir ao estado 136
+    T_AND               deslocar, e ir ao estado 109
+    T_OR                deslocar, e ir ao estado 110
 
 
-State 101
+Estado 101
 
    75 FExpressaoLogica: T_NOT FExpressaoLogica .
 
-    $default  reduce using rule 75 (FExpressaoLogica)
+    $padrão  reduzir usando a regra 75 (FExpressaoLogica)
 
 
-State 102
+Estado 102
 
    80 FExpressaoLogica: ExpressaoAritmetica T_MAIOR_IGUAL . ExpressaoAritmetica
 
-    T_SUBTRACAO        shift, and go to state 41
-    T_ABRE_PARENTESES  shift, and go to state 42
-    T_ID               shift, and go to state 43
-    T_NUM              shift, and go to state 45
+    T_SUBTRACAO        deslocar, e ir ao estado 41
+    T_ABRE_PARENTESES  deslocar, e ir ao estado 42
+    T_ID               deslocar, e ir ao estado 43
+    T_NUM              deslocar, e ir ao estado 45
 
-    ChamadaFuncao         go to state 46
-    ExpressaoAritmetica   go to state 137
-    TExpressaoAritmetica  go to state 48
-    FExpressaoAritmetica  go to state 49
+    ChamadaFuncao         ir ao estado 46
+    ExpressaoAritmetica   ir ao estado 137
+    TExpressaoAritmetica  ir ao estado 48
+    FExpressaoAritmetica  ir ao estado 49
 
 
-State 103
+Estado 103
 
    82 FExpressaoLogica: ExpressaoAritmetica T_MENOR_IGUAL . ExpressaoAritmetica
 
-    T_SUBTRACAO        shift, and go to state 41
-    T_ABRE_PARENTESES  shift, and go to state 42
-    T_ID               shift, and go to state 43
-    T_NUM              shift, and go to state 45
+    T_SUBTRACAO        deslocar, e ir ao estado 41
+    T_ABRE_PARENTESES  deslocar, e ir ao estado 42
+    T_ID               deslocar, e ir ao estado 43
+    T_NUM              deslocar, e ir ao estado 45
 
-    ChamadaFuncao         go to state 46
-    ExpressaoAritmetica   go to state 138
-    TExpressaoAritmetica  go to state 48
-    FExpressaoAritmetica  go to state 49
+    ChamadaFuncao         ir ao estado 46
+    ExpressaoAritmetica   ir ao estado 138
+    TExpressaoAritmetica  ir ao estado 48
+    FExpressaoAritmetica  ir ao estado 49
 
 
-State 104
+Estado 104
 
    78 FExpressaoLogica: ExpressaoAritmetica T_DIFERENTE . ExpressaoAritmetica
 
-    T_SUBTRACAO        shift, and go to state 41
-    T_ABRE_PARENTESES  shift, and go to state 42
-    T_ID               shift, and go to state 43
-    T_NUM              shift, and go to state 45
+    T_SUBTRACAO        deslocar, e ir ao estado 41
+    T_ABRE_PARENTESES  deslocar, e ir ao estado 42
+    T_ID               deslocar, e ir ao estado 43
+    T_NUM              deslocar, e ir ao estado 45
 
-    ChamadaFuncao         go to state 46
-    ExpressaoAritmetica   go to state 139
-    TExpressaoAritmetica  go to state 48
-    FExpressaoAritmetica  go to state 49
+    ChamadaFuncao         ir ao estado 46
+    ExpressaoAritmetica   ir ao estado 139
+    TExpressaoAritmetica  ir ao estado 48
+    FExpressaoAritmetica  ir ao estado 49
 
 
-State 105
+Estado 105
 
    77 FExpressaoLogica: ExpressaoAritmetica T_IGUAL_IGUAL . ExpressaoAritmetica
 
-    T_SUBTRACAO        shift, and go to state 41
-    T_ABRE_PARENTESES  shift, and go to state 42
-    T_ID               shift, and go to state 43
-    T_NUM              shift, and go to state 45
+    T_SUBTRACAO        deslocar, e ir ao estado 41
+    T_ABRE_PARENTESES  deslocar, e ir ao estado 42
+    T_ID               deslocar, e ir ao estado 43
+    T_NUM              deslocar, e ir ao estado 45
 
-    ChamadaFuncao         go to state 46
-    ExpressaoAritmetica   go to state 140
-    TExpressaoAritmetica  go to state 48
-    FExpressaoAritmetica  go to state 49
+    ChamadaFuncao         ir ao estado 46
+    ExpressaoAritmetica   ir ao estado 140
+    TExpressaoAritmetica  ir ao estado 48
+    FExpressaoAritmetica  ir ao estado 49
 
 
-State 106
+Estado 106
 
    79 FExpressaoLogica: ExpressaoAritmetica T_MAIOR . ExpressaoAritmetica
 
-    T_SUBTRACAO        shift, and go to state 41
-    T_ABRE_PARENTESES  shift, and go to state 42
-    T_ID               shift, and go to state 43
-    T_NUM              shift, and go to state 45
+    T_SUBTRACAO        deslocar, e ir ao estado 41
+    T_ABRE_PARENTESES  deslocar, e ir ao estado 42
+    T_ID               deslocar, e ir ao estado 43
+    T_NUM              deslocar, e ir ao estado 45
 
-    ChamadaFuncao         go to state 46
-    ExpressaoAritmetica   go to state 141
-    TExpressaoAritmetica  go to state 48
-    FExpressaoAritmetica  go to state 49
+    ChamadaFuncao         ir ao estado 46
+    ExpressaoAritmetica   ir ao estado 141
+    TExpressaoAritmetica  ir ao estado 48
+    FExpressaoAritmetica  ir ao estado 49
 
 
-State 107
+Estado 107
 
    81 FExpressaoLogica: ExpressaoAritmetica T_MENOR . ExpressaoAritmetica
 
-    T_SUBTRACAO        shift, and go to state 41
-    T_ABRE_PARENTESES  shift, and go to state 42
-    T_ID               shift, and go to state 43
-    T_NUM              shift, and go to state 45
+    T_SUBTRACAO        deslocar, e ir ao estado 41
+    T_ABRE_PARENTESES  deslocar, e ir ao estado 42
+    T_ID               deslocar, e ir ao estado 43
+    T_NUM              deslocar, e ir ao estado 45
 
-    ChamadaFuncao         go to state 46
-    ExpressaoAritmetica   go to state 142
-    TExpressaoAritmetica  go to state 48
-    FExpressaoAritmetica  go to state 49
+    ChamadaFuncao         ir ao estado 46
+    ExpressaoAritmetica   ir ao estado 142
+    TExpressaoAritmetica  ir ao estado 48
+    FExpressaoAritmetica  ir ao estado 49
 
 
-State 108
+Estado 108
 
    36 CmdSe: T_IF T_ABRE_PARENTESES ExpressaoLogica T_FECHA_PARENTESES . MLogico Bloco
    37      | T_IF T_ABRE_PARENTESES ExpressaoLogica T_FECHA_PARENTESES . MLogico Bloco NLogico T_ELSE MLogico Bloco
 
-    $default  reduce using rule 74 (MLogico)
+    $padrão  reduzir usando a regra 74 (MLogico)
 
-    MLogico  go to state 143
+    MLogico  ir ao estado 143
 
 
-State 109
+Estado 109
 
    71 ExpressaoLogica: ExpressaoLogica T_AND . MLogico FExpressaoLogica
 
-    $default  reduce using rule 74 (MLogico)
+    $padrão  reduzir usando a regra 74 (MLogico)
 
-    MLogico  go to state 144
+    MLogico  ir ao estado 144
 
 
-State 110
+Estado 110
 
    72 ExpressaoLogica: ExpressaoLogica T_OR . MLogico FExpressaoLogica
 
-    $default  reduce using rule 74 (MLogico)
+    $padrão  reduzir usando a regra 74 (MLogico)
 
-    MLogico  go to state 145
+    MLogico  ir ao estado 145
 
 
-State 111
+Estado 111
 
    39 CmdEnquanto: T_WHILE MLogico T_ABRE_PARENTESES ExpressaoLogica . T_FECHA_PARENTESES MLogico Bloco
    71 ExpressaoLogica: ExpressaoLogica . T_AND MLogico FExpressaoLogica
    72                | ExpressaoLogica . T_OR MLogico FExpressaoLogica
 
-    T_FECHA_PARENTESES  shift, and go to state 146
-    T_AND               shift, and go to state 109
-    T_OR                shift, and go to state 110
+    T_FECHA_PARENTESES  deslocar, e ir ao estado 146
+    T_AND               deslocar, e ir ao estado 109
+    T_OR                deslocar, e ir ao estado 110
 
 
-State 112
+Estado 112
 
    47 CmdEscrita: T_PRINT CmdEscritaMarcador T_ABRE_PARENTESES T_LITERAL . T_FECHA_PARENTESES T_PONTO_E_VIRGULA
 
-    T_FECHA_PARENTESES  shift, and go to state 147
+    T_FECHA_PARENTESES  deslocar, e ir ao estado 147
 
 
-State 113
+Estado 113
 
    46 CmdEscrita: T_PRINT CmdEscritaMarcador T_ABRE_PARENTESES ExpressaoAritmetica . T_FECHA_PARENTESES T_PONTO_E_VIRGULA
    57 ExpressaoAritmetica: ExpressaoAritmetica . T_ADICAO TExpressaoAritmetica
@@ -1485,112 +1485,112 @@ State 113
    59                    | ExpressaoAritmetica . T_BIT_DIREITA TExpressaoAritmetica
    60                    | ExpressaoAritmetica . T_BIT_ESQUERDA TExpressaoAritmetica
 
-    T_BIT_DIREITA       shift, and go to state 74
-    T_BIT_ESQUERDA      shift, and go to state 75
-    T_ADICAO            shift, and go to state 76
-    T_SUBTRACAO         shift, and go to state 77
-    T_FECHA_PARENTESES  shift, and go to state 148
+    T_BIT_DIREITA       deslocar, e ir ao estado 74
+    T_BIT_ESQUERDA      deslocar, e ir ao estado 75
+    T_ADICAO            deslocar, e ir ao estado 76
+    T_SUBTRACAO         deslocar, e ir ao estado 77
+    T_FECHA_PARENTESES  deslocar, e ir ao estado 148
 
 
-State 114
+Estado 114
 
    49 CmdLeitura: T_READ T_ABRE_PARENTESES T_ID T_FECHA_PARENTESES . T_PONTO_E_VIRGULA
 
-    T_PONTO_E_VIRGULA  shift, and go to state 149
+    T_PONTO_E_VIRGULA  deslocar, e ir ao estado 149
 
 
-State 115
+Estado 115
 
    67 FExpressaoAritmetica: T_ABRE_PARENTESES ExpressaoAritmetica T_FECHA_PARENTESES .
 
-    $default  reduce using rule 67 (FExpressaoAritmetica)
+    $padrão  reduzir usando a regra 67 (FExpressaoAritmetica)
 
 
-State 116
+Estado 116
 
    59 ExpressaoAritmetica: ExpressaoAritmetica T_BIT_DIREITA TExpressaoAritmetica .
    62 TExpressaoAritmetica: TExpressaoAritmetica . T_MULTIPLICACAO FExpressaoAritmetica
    63                     | TExpressaoAritmetica . T_DIVISAO FExpressaoAritmetica
    64                     | TExpressaoAritmetica . T_RESTO FExpressaoAritmetica
 
-    T_MULTIPLICACAO  shift, and go to state 79
-    T_DIVISAO        shift, and go to state 80
-    T_RESTO          shift, and go to state 81
+    T_MULTIPLICACAO  deslocar, e ir ao estado 79
+    T_DIVISAO        deslocar, e ir ao estado 80
+    T_RESTO          deslocar, e ir ao estado 81
 
-    $default  reduce using rule 59 (ExpressaoAritmetica)
+    $padrão  reduzir usando a regra 59 (ExpressaoAritmetica)
 
 
-State 117
+Estado 117
 
    60 ExpressaoAritmetica: ExpressaoAritmetica T_BIT_ESQUERDA TExpressaoAritmetica .
    62 TExpressaoAritmetica: TExpressaoAritmetica . T_MULTIPLICACAO FExpressaoAritmetica
    63                     | TExpressaoAritmetica . T_DIVISAO FExpressaoAritmetica
    64                     | TExpressaoAritmetica . T_RESTO FExpressaoAritmetica
 
-    T_MULTIPLICACAO  shift, and go to state 79
-    T_DIVISAO        shift, and go to state 80
-    T_RESTO          shift, and go to state 81
+    T_MULTIPLICACAO  deslocar, e ir ao estado 79
+    T_DIVISAO        deslocar, e ir ao estado 80
+    T_RESTO          deslocar, e ir ao estado 81
 
-    $default  reduce using rule 60 (ExpressaoAritmetica)
+    $padrão  reduzir usando a regra 60 (ExpressaoAritmetica)
 
 
-State 118
+Estado 118
 
    57 ExpressaoAritmetica: ExpressaoAritmetica T_ADICAO TExpressaoAritmetica .
    62 TExpressaoAritmetica: TExpressaoAritmetica . T_MULTIPLICACAO FExpressaoAritmetica
    63                     | TExpressaoAritmetica . T_DIVISAO FExpressaoAritmetica
    64                     | TExpressaoAritmetica . T_RESTO FExpressaoAritmetica
 
-    T_MULTIPLICACAO  shift, and go to state 79
-    T_DIVISAO        shift, and go to state 80
-    T_RESTO          shift, and go to state 81
+    T_MULTIPLICACAO  deslocar, e ir ao estado 79
+    T_DIVISAO        deslocar, e ir ao estado 80
+    T_RESTO          deslocar, e ir ao estado 81
 
-    $default  reduce using rule 57 (ExpressaoAritmetica)
+    $padrão  reduzir usando a regra 57 (ExpressaoAritmetica)
 
 
-State 119
+Estado 119
 
    58 ExpressaoAritmetica: ExpressaoAritmetica T_SUBTRACAO TExpressaoAritmetica .
    62 TExpressaoAritmetica: TExpressaoAritmetica . T_MULTIPLICACAO FExpressaoAritmetica
    63                     | TExpressaoAritmetica . T_DIVISAO FExpressaoAritmetica
    64                     | TExpressaoAritmetica . T_RESTO FExpressaoAritmetica
 
-    T_MULTIPLICACAO  shift, and go to state 79
-    T_DIVISAO        shift, and go to state 80
-    T_RESTO          shift, and go to state 81
+    T_MULTIPLICACAO  deslocar, e ir ao estado 79
+    T_DIVISAO        deslocar, e ir ao estado 80
+    T_RESTO          deslocar, e ir ao estado 81
 
-    $default  reduce using rule 58 (ExpressaoAritmetica)
+    $padrão  reduzir usando a regra 58 (ExpressaoAritmetica)
 
 
-State 120
+Estado 120
 
    62 TExpressaoAritmetica: TExpressaoAritmetica T_MULTIPLICACAO FExpressaoAritmetica .
 
-    $default  reduce using rule 62 (TExpressaoAritmetica)
+    $padrão  reduzir usando a regra 62 (TExpressaoAritmetica)
 
 
-State 121
+Estado 121
 
    63 TExpressaoAritmetica: TExpressaoAritmetica T_DIVISAO FExpressaoAritmetica .
 
-    $default  reduce using rule 63 (TExpressaoAritmetica)
+    $padrão  reduzir usando a regra 63 (TExpressaoAritmetica)
 
 
-State 122
+Estado 122
 
    64 TExpressaoAritmetica: TExpressaoAritmetica T_RESTO FExpressaoAritmetica .
 
-    $default  reduce using rule 64 (TExpressaoAritmetica)
+    $padrão  reduzir usando a regra 64 (TExpressaoAritmetica)
 
 
-State 123
+Estado 123
 
    44 CmdAtrib: T_ID T_ADICAO T_ADICAO T_PONTO_E_VIRGULA .
 
-    $default  reduce using rule 44 (CmdAtrib)
+    $padrão  reduzir usando a regra 44 (CmdAtrib)
 
 
-State 124
+Estado 124
 
    42 CmdAtrib: T_ID T_ADICAO T_IGUAL ExpressaoAritmetica . T_PONTO_E_VIRGULA
    57 ExpressaoAritmetica: ExpressaoAritmetica . T_ADICAO TExpressaoAritmetica
@@ -1598,21 +1598,21 @@ State 124
    59                    | ExpressaoAritmetica . T_BIT_DIREITA TExpressaoAritmetica
    60                    | ExpressaoAritmetica . T_BIT_ESQUERDA TExpressaoAritmetica
 
-    T_BIT_DIREITA      shift, and go to state 74
-    T_BIT_ESQUERDA     shift, and go to state 75
-    T_ADICAO           shift, and go to state 76
-    T_SUBTRACAO        shift, and go to state 77
-    T_PONTO_E_VIRGULA  shift, and go to state 150
+    T_BIT_DIREITA      deslocar, e ir ao estado 74
+    T_BIT_ESQUERDA     deslocar, e ir ao estado 75
+    T_ADICAO           deslocar, e ir ao estado 76
+    T_SUBTRACAO        deslocar, e ir ao estado 77
+    T_PONTO_E_VIRGULA  deslocar, e ir ao estado 150
 
 
-State 125
+Estado 125
 
    45 CmdAtrib: T_ID T_SUBTRACAO T_SUBTRACAO T_PONTO_E_VIRGULA .
 
-    $default  reduce using rule 45 (CmdAtrib)
+    $padrão  reduzir usando a regra 45 (CmdAtrib)
 
 
-State 126
+Estado 126
 
    43 CmdAtrib: T_ID T_SUBTRACAO T_IGUAL ExpressaoAritmetica . T_PONTO_E_VIRGULA
    57 ExpressaoAritmetica: ExpressaoAritmetica . T_ADICAO TExpressaoAritmetica
@@ -1620,101 +1620,101 @@ State 126
    59                    | ExpressaoAritmetica . T_BIT_DIREITA TExpressaoAritmetica
    60                    | ExpressaoAritmetica . T_BIT_ESQUERDA TExpressaoAritmetica
 
-    T_BIT_DIREITA      shift, and go to state 74
-    T_BIT_ESQUERDA     shift, and go to state 75
-    T_ADICAO           shift, and go to state 76
-    T_SUBTRACAO        shift, and go to state 77
-    T_PONTO_E_VIRGULA  shift, and go to state 151
+    T_BIT_DIREITA      deslocar, e ir ao estado 74
+    T_BIT_ESQUERDA     deslocar, e ir ao estado 75
+    T_ADICAO           deslocar, e ir ao estado 76
+    T_SUBTRACAO        deslocar, e ir ao estado 77
+    T_PONTO_E_VIRGULA  deslocar, e ir ao estado 151
 
 
-State 127
+Estado 127
 
    41 CmdAtrib: T_ID T_IGUAL T_LITERAL T_PONTO_E_VIRGULA .
 
-    $default  reduce using rule 41 (CmdAtrib)
+    $padrão  reduzir usando a regra 41 (CmdAtrib)
 
 
-State 128
+Estado 128
 
    40 CmdAtrib: T_ID T_IGUAL ExpressaoAritmetica T_PONTO_E_VIRGULA .
 
-    $default  reduce using rule 40 (CmdAtrib)
+    $padrão  reduzir usando a regra 40 (CmdAtrib)
 
 
-State 129
+Estado 129
 
    51 ChamadaFuncao: T_ID T_ABRE_PARENTESES ListaParametros T_FECHA_PARENTESES .
 
-    $default  reduce using rule 51 (ChamadaFuncao)
+    $padrão  reduzir usando a regra 51 (ChamadaFuncao)
 
 
-State 130
+Estado 130
 
    53 ListaParametros: ListaParametros T_VIRGULA . ExpressaoAritmetica
    54                | ListaParametros T_VIRGULA . T_LITERAL
 
-    T_SUBTRACAO        shift, and go to state 41
-    T_ABRE_PARENTESES  shift, and go to state 42
-    T_ID               shift, and go to state 43
-    T_LITERAL          shift, and go to state 152
-    T_NUM              shift, and go to state 45
+    T_SUBTRACAO        deslocar, e ir ao estado 41
+    T_ABRE_PARENTESES  deslocar, e ir ao estado 42
+    T_ID               deslocar, e ir ao estado 43
+    T_LITERAL          deslocar, e ir ao estado 152
+    T_NUM              deslocar, e ir ao estado 45
 
-    ChamadaFuncao         go to state 46
-    ExpressaoAritmetica   go to state 153
-    TExpressaoAritmetica  go to state 48
-    FExpressaoAritmetica  go to state 49
+    ChamadaFuncao         ir ao estado 46
+    ExpressaoAritmetica   ir ao estado 153
+    TExpressaoAritmetica  ir ao estado 48
+    FExpressaoAritmetica  ir ao estado 49
 
 
-State 131
+Estado 131
 
    22 ListaId: ListaId T_VIRGULA T_ID .
 
-    $default  reduce using rule 22 (ListaId)
+    $padrão  reduzir usando a regra 22 (ListaId)
 
 
-State 132
+Estado 132
 
     6 Funcao: TipoRetorno T_ID T_ABRE_PARENTESES T_FECHA_PARENTESES BlocoPrincipal .
 
-    $default  reduce using rule 6 (Funcao)
+    $padrão  reduzir usando a regra 6 (Funcao)
 
 
-State 133
+Estado 133
 
     5 Funcao: TipoRetorno T_ID T_ABRE_PARENTESES DeclParametros T_FECHA_PARENTESES . BlocoPrincipal
 
-    T_ABRE_CHAVES  shift, and go to state 1
+    T_ABRE_CHAVES  deslocar, e ir ao estado 1
 
-    BlocoPrincipal  go to state 154
+    BlocoPrincipal  ir ao estado 154
 
 
-State 134
+Estado 134
 
    11 DeclParametros: DeclParametros T_VIRGULA . Parametro
 
-    T_INT     shift, and go to state 11
-    T_DOUBLE  shift, and go to state 12
-    T_STRING  shift, and go to state 13
+    T_INT     deslocar, e ir ao estado 11
+    T_DOUBLE  deslocar, e ir ao estado 12
+    T_STRING  deslocar, e ir ao estado 13
 
-    Parametro  go to state 155
-    Tipo       go to state 98
+    Parametro  ir ao estado 155
+    Tipo       ir ao estado 98
 
 
-State 135
+Estado 135
 
    13 Parametro: Tipo T_ID .
 
-    $default  reduce using rule 13 (Parametro)
+    $padrão  reduzir usando a regra 13 (Parametro)
 
 
-State 136
+Estado 136
 
    76 FExpressaoLogica: T_ABRE_PARENTESES ExpressaoLogica T_FECHA_PARENTESES .
 
-    $default  reduce using rule 76 (FExpressaoLogica)
+    $padrão  reduzir usando a regra 76 (FExpressaoLogica)
 
 
-State 137
+Estado 137
 
    57 ExpressaoAritmetica: ExpressaoAritmetica . T_ADICAO TExpressaoAritmetica
    58                    | ExpressaoAritmetica . T_SUBTRACAO TExpressaoAritmetica
@@ -1722,15 +1722,15 @@ State 137
    60                    | ExpressaoAritmetica . T_BIT_ESQUERDA TExpressaoAritmetica
    80 FExpressaoLogica: ExpressaoAritmetica T_MAIOR_IGUAL ExpressaoAritmetica .
 
-    T_BIT_DIREITA   shift, and go to state 74
-    T_BIT_ESQUERDA  shift, and go to state 75
-    T_ADICAO        shift, and go to state 76
-    T_SUBTRACAO     shift, and go to state 77
+    T_BIT_DIREITA   deslocar, e ir ao estado 74
+    T_BIT_ESQUERDA  deslocar, e ir ao estado 75
+    T_ADICAO        deslocar, e ir ao estado 76
+    T_SUBTRACAO     deslocar, e ir ao estado 77
 
-    $default  reduce using rule 80 (FExpressaoLogica)
+    $padrão  reduzir usando a regra 80 (FExpressaoLogica)
 
 
-State 138
+Estado 138
 
    57 ExpressaoAritmetica: ExpressaoAritmetica . T_ADICAO TExpressaoAritmetica
    58                    | ExpressaoAritmetica . T_SUBTRACAO TExpressaoAritmetica
@@ -1738,15 +1738,15 @@ State 138
    60                    | ExpressaoAritmetica . T_BIT_ESQUERDA TExpressaoAritmetica
    82 FExpressaoLogica: ExpressaoAritmetica T_MENOR_IGUAL ExpressaoAritmetica .
 
-    T_BIT_DIREITA   shift, and go to state 74
-    T_BIT_ESQUERDA  shift, and go to state 75
-    T_ADICAO        shift, and go to state 76
-    T_SUBTRACAO     shift, and go to state 77
+    T_BIT_DIREITA   deslocar, e ir ao estado 74
+    T_BIT_ESQUERDA  deslocar, e ir ao estado 75
+    T_ADICAO        deslocar, e ir ao estado 76
+    T_SUBTRACAO     deslocar, e ir ao estado 77
 
-    $default  reduce using rule 82 (FExpressaoLogica)
+    $padrão  reduzir usando a regra 82 (FExpressaoLogica)
 
 
-State 139
+Estado 139
 
    57 ExpressaoAritmetica: ExpressaoAritmetica . T_ADICAO TExpressaoAritmetica
    58                    | ExpressaoAritmetica . T_SUBTRACAO TExpressaoAritmetica
@@ -1754,15 +1754,15 @@ State 139
    60                    | ExpressaoAritmetica . T_BIT_ESQUERDA TExpressaoAritmetica
    78 FExpressaoLogica: ExpressaoAritmetica T_DIFERENTE ExpressaoAritmetica .
 
-    T_BIT_DIREITA   shift, and go to state 74
-    T_BIT_ESQUERDA  shift, and go to state 75
-    T_ADICAO        shift, and go to state 76
-    T_SUBTRACAO     shift, and go to state 77
+    T_BIT_DIREITA   deslocar, e ir ao estado 74
+    T_BIT_ESQUERDA  deslocar, e ir ao estado 75
+    T_ADICAO        deslocar, e ir ao estado 76
+    T_SUBTRACAO     deslocar, e ir ao estado 77
 
-    $default  reduce using rule 78 (FExpressaoLogica)
+    $padrão  reduzir usando a regra 78 (FExpressaoLogica)
 
 
-State 140
+Estado 140
 
    57 ExpressaoAritmetica: ExpressaoAritmetica . T_ADICAO TExpressaoAritmetica
    58                    | ExpressaoAritmetica . T_SUBTRACAO TExpressaoAritmetica
@@ -1770,15 +1770,15 @@ State 140
    60                    | ExpressaoAritmetica . T_BIT_ESQUERDA TExpressaoAritmetica
    77 FExpressaoLogica: ExpressaoAritmetica T_IGUAL_IGUAL ExpressaoAritmetica .
 
-    T_BIT_DIREITA   shift, and go to state 74
-    T_BIT_ESQUERDA  shift, and go to state 75
-    T_ADICAO        shift, and go to state 76
-    T_SUBTRACAO     shift, and go to state 77
+    T_BIT_DIREITA   deslocar, e ir ao estado 74
+    T_BIT_ESQUERDA  deslocar, e ir ao estado 75
+    T_ADICAO        deslocar, e ir ao estado 76
+    T_SUBTRACAO     deslocar, e ir ao estado 77
 
-    $default  reduce using rule 77 (FExpressaoLogica)
+    $padrão  reduzir usando a regra 77 (FExpressaoLogica)
 
 
-State 141
+Estado 141
 
    57 ExpressaoAritmetica: ExpressaoAritmetica . T_ADICAO TExpressaoAritmetica
    58                    | ExpressaoAritmetica . T_SUBTRACAO TExpressaoAritmetica
@@ -1786,15 +1786,15 @@ State 141
    60                    | ExpressaoAritmetica . T_BIT_ESQUERDA TExpressaoAritmetica
    79 FExpressaoLogica: ExpressaoAritmetica T_MAIOR ExpressaoAritmetica .
 
-    T_BIT_DIREITA   shift, and go to state 74
-    T_BIT_ESQUERDA  shift, and go to state 75
-    T_ADICAO        shift, and go to state 76
-    T_SUBTRACAO     shift, and go to state 77
+    T_BIT_DIREITA   deslocar, e ir ao estado 74
+    T_BIT_ESQUERDA  deslocar, e ir ao estado 75
+    T_ADICAO        deslocar, e ir ao estado 76
+    T_SUBTRACAO     deslocar, e ir ao estado 77
 
-    $default  reduce using rule 79 (FExpressaoLogica)
+    $padrão  reduzir usando a regra 79 (FExpressaoLogica)
 
 
-State 142
+Estado 142
 
    57 ExpressaoAritmetica: ExpressaoAritmetica . T_ADICAO TExpressaoAritmetica
    58                    | ExpressaoAritmetica . T_SUBTRACAO TExpressaoAritmetica
@@ -1802,110 +1802,110 @@ State 142
    60                    | ExpressaoAritmetica . T_BIT_ESQUERDA TExpressaoAritmetica
    81 FExpressaoLogica: ExpressaoAritmetica T_MENOR ExpressaoAritmetica .
 
-    T_BIT_DIREITA   shift, and go to state 74
-    T_BIT_ESQUERDA  shift, and go to state 75
-    T_ADICAO        shift, and go to state 76
-    T_SUBTRACAO     shift, and go to state 77
+    T_BIT_DIREITA   deslocar, e ir ao estado 74
+    T_BIT_ESQUERDA  deslocar, e ir ao estado 75
+    T_ADICAO        deslocar, e ir ao estado 76
+    T_SUBTRACAO     deslocar, e ir ao estado 77
 
-    $default  reduce using rule 81 (FExpressaoLogica)
+    $padrão  reduzir usando a regra 81 (FExpressaoLogica)
 
 
-State 143
+Estado 143
 
    36 CmdSe: T_IF T_ABRE_PARENTESES ExpressaoLogica T_FECHA_PARENTESES MLogico . Bloco
    37      | T_IF T_ABRE_PARENTESES ExpressaoLogica T_FECHA_PARENTESES MLogico . Bloco NLogico T_ELSE MLogico Bloco
 
-    T_ABRE_CHAVES  shift, and go to state 156
+    T_ABRE_CHAVES  deslocar, e ir ao estado 156
 
-    Bloco  go to state 157
+    Bloco  ir ao estado 157
 
 
-State 144
+Estado 144
 
    71 ExpressaoLogica: ExpressaoLogica T_AND MLogico . FExpressaoLogica
 
-    T_SUBTRACAO        shift, and go to state 41
-    T_ABRE_PARENTESES  shift, and go to state 62
-    T_ID               shift, and go to state 43
-    T_NUM              shift, and go to state 45
-    T_NOT              shift, and go to state 63
+    T_SUBTRACAO        deslocar, e ir ao estado 41
+    T_ABRE_PARENTESES  deslocar, e ir ao estado 62
+    T_ID               deslocar, e ir ao estado 43
+    T_NUM              deslocar, e ir ao estado 45
+    T_NOT              deslocar, e ir ao estado 63
 
-    ChamadaFuncao         go to state 46
-    ExpressaoAritmetica   go to state 64
-    TExpressaoAritmetica  go to state 48
-    FExpressaoAritmetica  go to state 49
-    FExpressaoLogica      go to state 158
+    ChamadaFuncao         ir ao estado 46
+    ExpressaoAritmetica   ir ao estado 64
+    TExpressaoAritmetica  ir ao estado 48
+    FExpressaoAritmetica  ir ao estado 49
+    FExpressaoLogica      ir ao estado 158
 
 
-State 145
+Estado 145
 
    72 ExpressaoLogica: ExpressaoLogica T_OR MLogico . FExpressaoLogica
 
-    T_SUBTRACAO        shift, and go to state 41
-    T_ABRE_PARENTESES  shift, and go to state 62
-    T_ID               shift, and go to state 43
-    T_NUM              shift, and go to state 45
-    T_NOT              shift, and go to state 63
+    T_SUBTRACAO        deslocar, e ir ao estado 41
+    T_ABRE_PARENTESES  deslocar, e ir ao estado 62
+    T_ID               deslocar, e ir ao estado 43
+    T_NUM              deslocar, e ir ao estado 45
+    T_NOT              deslocar, e ir ao estado 63
 
-    ChamadaFuncao         go to state 46
-    ExpressaoAritmetica   go to state 64
-    TExpressaoAritmetica  go to state 48
-    FExpressaoAritmetica  go to state 49
-    FExpressaoLogica      go to state 159
+    ChamadaFuncao         ir ao estado 46
+    ExpressaoAritmetica   ir ao estado 64
+    TExpressaoAritmetica  ir ao estado 48
+    FExpressaoAritmetica  ir ao estado 49
+    FExpressaoLogica      ir ao estado 159
 
 
-State 146
+Estado 146
 
    39 CmdEnquanto: T_WHILE MLogico T_ABRE_PARENTESES ExpressaoLogica T_FECHA_PARENTESES . MLogico Bloco
 
-    $default  reduce using rule 74 (MLogico)
+    $padrão  reduzir usando a regra 74 (MLogico)
 
-    MLogico  go to state 160
+    MLogico  ir ao estado 160
 
 
-State 147
+Estado 147
 
    47 CmdEscrita: T_PRINT CmdEscritaMarcador T_ABRE_PARENTESES T_LITERAL T_FECHA_PARENTESES . T_PONTO_E_VIRGULA
 
-    T_PONTO_E_VIRGULA  shift, and go to state 161
+    T_PONTO_E_VIRGULA  deslocar, e ir ao estado 161
 
 
-State 148
+Estado 148
 
    46 CmdEscrita: T_PRINT CmdEscritaMarcador T_ABRE_PARENTESES ExpressaoAritmetica T_FECHA_PARENTESES . T_PONTO_E_VIRGULA
 
-    T_PONTO_E_VIRGULA  shift, and go to state 162
+    T_PONTO_E_VIRGULA  deslocar, e ir ao estado 162
 
 
-State 149
+Estado 149
 
    49 CmdLeitura: T_READ T_ABRE_PARENTESES T_ID T_FECHA_PARENTESES T_PONTO_E_VIRGULA .
 
-    $default  reduce using rule 49 (CmdLeitura)
+    $padrão  reduzir usando a regra 49 (CmdLeitura)
 
 
-State 150
+Estado 150
 
    42 CmdAtrib: T_ID T_ADICAO T_IGUAL ExpressaoAritmetica T_PONTO_E_VIRGULA .
 
-    $default  reduce using rule 42 (CmdAtrib)
+    $padrão  reduzir usando a regra 42 (CmdAtrib)
 
 
-State 151
+Estado 151
 
    43 CmdAtrib: T_ID T_SUBTRACAO T_IGUAL ExpressaoAritmetica T_PONTO_E_VIRGULA .
 
-    $default  reduce using rule 43 (CmdAtrib)
+    $padrão  reduzir usando a regra 43 (CmdAtrib)
 
 
-State 152
+Estado 152
 
    54 ListaParametros: ListaParametros T_VIRGULA T_LITERAL .
 
-    $default  reduce using rule 54 (ListaParametros)
+    $padrão  reduzir usando a regra 54 (ListaParametros)
 
 
-State 153
+Estado 153
 
    53 ListaParametros: ListaParametros T_VIRGULA ExpressaoAritmetica .
    57 ExpressaoAritmetica: ExpressaoAritmetica . T_ADICAO TExpressaoAritmetica
@@ -1913,164 +1913,164 @@ State 153
    59                    | ExpressaoAritmetica . T_BIT_DIREITA TExpressaoAritmetica
    60                    | ExpressaoAritmetica . T_BIT_ESQUERDA TExpressaoAritmetica
 
-    T_BIT_DIREITA   shift, and go to state 74
-    T_BIT_ESQUERDA  shift, and go to state 75
-    T_ADICAO        shift, and go to state 76
-    T_SUBTRACAO     shift, and go to state 77
+    T_BIT_DIREITA   deslocar, e ir ao estado 74
+    T_BIT_ESQUERDA  deslocar, e ir ao estado 75
+    T_ADICAO        deslocar, e ir ao estado 76
+    T_SUBTRACAO     deslocar, e ir ao estado 77
 
-    $default  reduce using rule 53 (ListaParametros)
+    $padrão  reduzir usando a regra 53 (ListaParametros)
 
 
-State 154
+Estado 154
 
     5 Funcao: TipoRetorno T_ID T_ABRE_PARENTESES DeclParametros T_FECHA_PARENTESES BlocoPrincipal .
 
-    $default  reduce using rule 5 (Funcao)
+    $padrão  reduzir usando a regra 5 (Funcao)
 
 
-State 155
+Estado 155
 
    11 DeclParametros: DeclParametros T_VIRGULA Parametro .
 
-    $default  reduce using rule 11 (DeclParametros)
+    $padrão  reduzir usando a regra 11 (DeclParametros)
 
 
-State 156
+Estado 156
 
    24 Bloco: T_ABRE_CHAVES . ListaCmd T_FECHA_CHAVES
 
-    T_IF      shift, and go to state 14
-    T_WHILE   shift, and go to state 15
-    T_PRINT   shift, and go to state 16
-    T_READ    shift, and go to state 17
-    T_RETURN  shift, and go to state 18
-    T_ID      shift, and go to state 19
+    T_IF      deslocar, e ir ao estado 14
+    T_WHILE   deslocar, e ir ao estado 15
+    T_PRINT   deslocar, e ir ao estado 16
+    T_READ    deslocar, e ir ao estado 17
+    T_RETURN  deslocar, e ir ao estado 18
+    T_ID      deslocar, e ir ao estado 19
 
-    ListaCmd       go to state 163
-    Comando        go to state 24
-    Retorno        go to state 25
-    CmdSe          go to state 26
-    CmdEnquanto    go to state 27
-    CmdAtrib       go to state 28
-    CmdEscrita     go to state 29
-    CmdLeitura     go to state 30
-    ChamadaProc    go to state 31
-    ChamadaFuncao  go to state 32
+    ListaCmd       ir ao estado 163
+    Comando        ir ao estado 24
+    Retorno        ir ao estado 25
+    CmdSe          ir ao estado 26
+    CmdEnquanto    ir ao estado 27
+    CmdAtrib       ir ao estado 28
+    CmdEscrita     ir ao estado 29
+    CmdLeitura     ir ao estado 30
+    ChamadaProc    ir ao estado 31
+    ChamadaFuncao  ir ao estado 32
 
 
-State 157
+Estado 157
 
    36 CmdSe: T_IF T_ABRE_PARENTESES ExpressaoLogica T_FECHA_PARENTESES MLogico Bloco .
    37      | T_IF T_ABRE_PARENTESES ExpressaoLogica T_FECHA_PARENTESES MLogico Bloco . NLogico T_ELSE MLogico Bloco
 
-    T_ELSE    reduce using rule 38 (NLogico)
-    $default  reduce using rule 36 (CmdSe)
+    T_ELSE    reduzir usando a regra 38 (NLogico)
+    $padrão  reduzir usando a regra 36 (CmdSe)
 
-    NLogico  go to state 164
+    NLogico  ir ao estado 164
 
 
-State 158
+Estado 158
 
    71 ExpressaoLogica: ExpressaoLogica T_AND MLogico FExpressaoLogica .
 
-    $default  reduce using rule 71 (ExpressaoLogica)
+    $padrão  reduzir usando a regra 71 (ExpressaoLogica)
 
 
-State 159
+Estado 159
 
    72 ExpressaoLogica: ExpressaoLogica T_OR MLogico FExpressaoLogica .
 
-    $default  reduce using rule 72 (ExpressaoLogica)
+    $padrão  reduzir usando a regra 72 (ExpressaoLogica)
 
 
-State 160
+Estado 160
 
    39 CmdEnquanto: T_WHILE MLogico T_ABRE_PARENTESES ExpressaoLogica T_FECHA_PARENTESES MLogico . Bloco
 
-    T_ABRE_CHAVES  shift, and go to state 156
+    T_ABRE_CHAVES  deslocar, e ir ao estado 156
 
-    Bloco  go to state 165
+    Bloco  ir ao estado 165
 
 
-State 161
+Estado 161
 
    47 CmdEscrita: T_PRINT CmdEscritaMarcador T_ABRE_PARENTESES T_LITERAL T_FECHA_PARENTESES T_PONTO_E_VIRGULA .
 
-    $default  reduce using rule 47 (CmdEscrita)
+    $padrão  reduzir usando a regra 47 (CmdEscrita)
 
 
-State 162
+Estado 162
 
    46 CmdEscrita: T_PRINT CmdEscritaMarcador T_ABRE_PARENTESES ExpressaoAritmetica T_FECHA_PARENTESES T_PONTO_E_VIRGULA .
 
-    $default  reduce using rule 46 (CmdEscrita)
+    $padrão  reduzir usando a regra 46 (CmdEscrita)
 
 
-State 163
+Estado 163
 
    24 Bloco: T_ABRE_CHAVES ListaCmd . T_FECHA_CHAVES
    25 ListaCmd: ListaCmd . Comando
 
-    T_FECHA_CHAVES  shift, and go to state 166
-    T_IF            shift, and go to state 14
-    T_WHILE         shift, and go to state 15
-    T_PRINT         shift, and go to state 16
-    T_READ          shift, and go to state 17
-    T_RETURN        shift, and go to state 18
-    T_ID            shift, and go to state 19
+    T_FECHA_CHAVES  deslocar, e ir ao estado 166
+    T_IF            deslocar, e ir ao estado 14
+    T_WHILE         deslocar, e ir ao estado 15
+    T_PRINT         deslocar, e ir ao estado 16
+    T_READ          deslocar, e ir ao estado 17
+    T_RETURN        deslocar, e ir ao estado 18
+    T_ID            deslocar, e ir ao estado 19
 
-    Comando        go to state 59
-    Retorno        go to state 25
-    CmdSe          go to state 26
-    CmdEnquanto    go to state 27
-    CmdAtrib       go to state 28
-    CmdEscrita     go to state 29
-    CmdLeitura     go to state 30
-    ChamadaProc    go to state 31
-    ChamadaFuncao  go to state 32
+    Comando        ir ao estado 59
+    Retorno        ir ao estado 25
+    CmdSe          ir ao estado 26
+    CmdEnquanto    ir ao estado 27
+    CmdAtrib       ir ao estado 28
+    CmdEscrita     ir ao estado 29
+    CmdLeitura     ir ao estado 30
+    ChamadaProc    ir ao estado 31
+    ChamadaFuncao  ir ao estado 32
 
 
-State 164
+Estado 164
 
    37 CmdSe: T_IF T_ABRE_PARENTESES ExpressaoLogica T_FECHA_PARENTESES MLogico Bloco NLogico . T_ELSE MLogico Bloco
 
-    T_ELSE  shift, and go to state 167
+    T_ELSE  deslocar, e ir ao estado 167
 
 
-State 165
+Estado 165
 
    39 CmdEnquanto: T_WHILE MLogico T_ABRE_PARENTESES ExpressaoLogica T_FECHA_PARENTESES MLogico Bloco .
 
-    $default  reduce using rule 39 (CmdEnquanto)
+    $padrão  reduzir usando a regra 39 (CmdEnquanto)
 
 
-State 166
+Estado 166
 
    24 Bloco: T_ABRE_CHAVES ListaCmd T_FECHA_CHAVES .
 
-    $default  reduce using rule 24 (Bloco)
+    $padrão  reduzir usando a regra 24 (Bloco)
 
 
-State 167
+Estado 167
 
    37 CmdSe: T_IF T_ABRE_PARENTESES ExpressaoLogica T_FECHA_PARENTESES MLogico Bloco NLogico T_ELSE . MLogico Bloco
 
-    $default  reduce using rule 74 (MLogico)
+    $padrão  reduzir usando a regra 74 (MLogico)
 
-    MLogico  go to state 168
+    MLogico  ir ao estado 168
 
 
-State 168
+Estado 168
 
    37 CmdSe: T_IF T_ABRE_PARENTESES ExpressaoLogica T_FECHA_PARENTESES MLogico Bloco NLogico T_ELSE MLogico . Bloco
 
-    T_ABRE_CHAVES  shift, and go to state 156
+    T_ABRE_CHAVES  deslocar, e ir ao estado 156
 
-    Bloco  go to state 169
+    Bloco  ir ao estado 169
 
 
-State 169
+Estado 169
 
    37 CmdSe: T_IF T_ABRE_PARENTESES ExpressaoLogica T_FECHA_PARENTESES MLogico Bloco NLogico T_ELSE MLogico Bloco .
 
-    $default  reduce using rule 37 (CmdSe)
+    $padrão  reduzir usando a regra 37 (CmdSe)

@@ -1,0 +1,27 @@
+int fat(int n){
+  if(n==0){
+    return 1;
+  }
+  return n*fat(n-1);
+}
+{
+  int a;
+  a = fat(4);
+}
+
+///
+
+.method public static fat(I)I
+  .limit stack 4
+  .limit local 1
+
+  iload 0
+  iconst_0
+  if_cmpeq L2
+  goto L1
+  L1:
+  iconst_1
+  ireturn
+
+  invokestatic fat(I)I
+.end method 
