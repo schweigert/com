@@ -600,7 +600,7 @@ int GetIndexPosition()
   return CmdIndex;
 }
 
-FUNC FuncList[MAX_FUNCS];
+FUNC FuncList[MAX_FUNCS] = {0};
 int funcindex = 0;
 
 void createFunction(struct arvore* arv, char* name, TIPO retType, int size,int *argTypes)

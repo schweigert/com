@@ -49,7 +49,7 @@ DeclParametros : DeclParametros T_VIRGULA Parametro
 	| Parametro
 	;
 
-Parametro : Tipo T_ID
+Parametro : Tipo T_ID {insereArvore(tabelaSimbolosGlobais,$2.nomeId);}
 	;
 
 BlocoPrincipal : T_ABRE_CHAVES Declaracoes ListaCmd T_FECHA_CHAVES  {writeJasminMain();}
@@ -150,13 +150,13 @@ TExpressaoAritmetica : TExpressaoAritmetica T_MULTIPLICACAO FExpressaoAritmetica
 	| TExpressaoAritmetica T_DIVISAO FExpressaoAritmetica {CmdIdiv();}
   | TExpressaoAritmetica T_RESTO FExpressaoAritmetica {CmdIrem();}
   | FExpressaoAritmetica
-	| ChamadaFuncao
 	;
 
 FExpressaoAritmetica : T_ABRE_PARENTESES ExpressaoAritmetica T_FECHA_PARENTESES
 	| T_SUBTRACAO FExpressaoAritmetica {CmdIneg();}
 	| T_NUM {CmdBipush((int)$1.double_value);}
 	| T_ID {CmdIload(tabelaSimbolosGlobais, $1.nomeId);}
+  | ChamadaFuncao
 	;
 
 ExpressaoLogica : ExpressaoLogica T_AND MLogico FExpressaoLogica  { LabelUpdate($1.listav, $3.label); $$.listaf =  juntarIntList($1.listaf, $4.listaf);  $$.listav = $4.listav;}

@@ -100,12 +100,12 @@ Gramática
    63                     | TExpressaoAritmetica T_DIVISAO FExpressaoAritmetica
    64                     | TExpressaoAritmetica T_RESTO FExpressaoAritmetica
    65                     | FExpressaoAritmetica
-   66                     | ChamadaFuncao
 
-   67 FExpressaoAritmetica: T_ABRE_PARENTESES ExpressaoAritmetica T_FECHA_PARENTESES
-   68                     | T_SUBTRACAO FExpressaoAritmetica
-   69                     | T_NUM
-   70                     | T_ID
+   66 FExpressaoAritmetica: T_ABRE_PARENTESES ExpressaoAritmetica T_FECHA_PARENTESES
+   67                     | T_SUBTRACAO FExpressaoAritmetica
+   68                     | T_NUM
+   69                     | T_ID
+   70                     | ChamadaFuncao
 
    71 ExpressaoLogica: ExpressaoLogica T_AND MLogico FExpressaoLogica
    72                | ExpressaoLogica T_OR MLogico FExpressaoLogica
@@ -130,13 +130,13 @@ error (256)
 T_BIT_DIREITA (258) 59
 T_BIT_ESQUERDA (259) 60
 T_ADICAO (260) 42 44 57
-T_SUBTRACAO (261) 43 45 58 68
+T_SUBTRACAO (261) 43 45 58 67
 T_MULTIPLICACAO (262) 62
 T_DIVISAO (263) 63
 T_RESTO (264) 64
 T_IGUAL (265) 40 41 42 43
-T_ABRE_PARENTESES (266) 5 6 36 37 39 46 47 49 51 52 67 76
-T_FECHA_PARENTESES (267) 5 6 36 37 39 46 47 49 51 52 67 76
+T_ABRE_PARENTESES (266) 5 6 36 37 39 46 47 49 51 52 66 76
+T_FECHA_PARENTESES (267) 5 6 36 37 39 46 47 49 51 52 66 76
 T_ABRE_CHAVES (268) 14 15 24
 T_FECHA_CHAVES (269) 14 15 24
 T_INT (270) 8 19
@@ -149,10 +149,10 @@ T_ELSE (276) 37
 T_PRINT (277) 46 47
 T_READ (278) 49
 T_RETURN (279) 34 35
-T_ID (280) 5 6 13 22 23 40 41 42 43 44 45 49 51 52 70
+T_ID (280) 5 6 13 22 23 40 41 42 43 44 45 49 51 52 69
 T_LITERAL (281) 35 41 47 54 56
 T_FIM (282)
-T_NUM (283) 69
+T_NUM (283) 68
 T_VIRGULA (284) 11 22 53 54
 T_PONTO_E_VIRGULA (285) 18 34 35 40 41 42 43 44 45 46 47 49 50
 T_AND (286) 71
@@ -219,16 +219,16 @@ CmdLeitura (64)
 ChamadaProc (65)
     à esquerda: 50, à direita: 32
 ChamadaFuncao (66)
-    à esquerda: 51 52, à direita: 50 66
+    à esquerda: 51 52, à direita: 50 70
 ListaParametros (67)
     à esquerda: 53 54 55 56, à direita: 51 53 54
 ExpressaoAritmetica (68)
     à esquerda: 57 58 59 60 61, à direita: 34 40 42 43 46 53 55 57
-    58 59 60 67 77 78 79 80 81 82
+    58 59 60 66 77 78 79 80 81 82
 TExpressaoAritmetica (69)
-    à esquerda: 62 63 64 65 66, à direita: 57 58 59 60 61 62 63 64
+    à esquerda: 62 63 64 65, à direita: 57 58 59 60 61 62 63 64
 FExpressaoAritmetica (70)
-    à esquerda: 67 68 69 70, à direita: 62 63 64 65 68
+    à esquerda: 66 67 68 69 70, à direita: 62 63 64 65 67
 ExpressaoLogica (71)
     à esquerda: 71 72 73, à direita: 36 37 39 71 72 76
 MLogico (72)
@@ -650,19 +650,7 @@ Estado 40
 
 Estado 41
 
-   68 FExpressaoAritmetica: T_SUBTRACAO . FExpressaoAritmetica
-
-    T_SUBTRACAO        deslocar, e ir ao estado 41
-    T_ABRE_PARENTESES  deslocar, e ir ao estado 42
-    T_ID               deslocar, e ir ao estado 70
-    T_NUM              deslocar, e ir ao estado 45
-
-    FExpressaoAritmetica  ir ao estado 71
-
-
-Estado 42
-
-   67 FExpressaoAritmetica: T_ABRE_PARENTESES . ExpressaoAritmetica T_FECHA_PARENTESES
+   67 FExpressaoAritmetica: T_SUBTRACAO . FExpressaoAritmetica
 
     T_SUBTRACAO        deslocar, e ir ao estado 41
     T_ABRE_PARENTESES  deslocar, e ir ao estado 42
@@ -670,7 +658,20 @@ Estado 42
     T_NUM              deslocar, e ir ao estado 45
 
     ChamadaFuncao         ir ao estado 46
-    ExpressaoAritmetica   ir ao estado 72
+    FExpressaoAritmetica  ir ao estado 70
+
+
+Estado 42
+
+   66 FExpressaoAritmetica: T_ABRE_PARENTESES . ExpressaoAritmetica T_FECHA_PARENTESES
+
+    T_SUBTRACAO        deslocar, e ir ao estado 41
+    T_ABRE_PARENTESES  deslocar, e ir ao estado 42
+    T_ID               deslocar, e ir ao estado 43
+    T_NUM              deslocar, e ir ao estado 45
+
+    ChamadaFuncao         ir ao estado 46
+    ExpressaoAritmetica   ir ao estado 71
     TExpressaoAritmetica  ir ao estado 48
     FExpressaoAritmetica  ir ao estado 49
 
@@ -679,32 +680,32 @@ Estado 43
 
    51 ChamadaFuncao: T_ID . T_ABRE_PARENTESES ListaParametros T_FECHA_PARENTESES
    52              | T_ID . T_ABRE_PARENTESES T_FECHA_PARENTESES
-   70 FExpressaoAritmetica: T_ID .
+   69 FExpressaoAritmetica: T_ID .
 
     T_ABRE_PARENTESES  deslocar, e ir ao estado 53
 
-    $padrão  reduzir usando a regra 70 (FExpressaoAritmetica)
+    $padrão  reduzir usando a regra 69 (FExpressaoAritmetica)
 
 
 Estado 44
 
    35 Retorno: T_RETURN T_LITERAL . T_PONTO_E_VIRGULA
 
-    T_PONTO_E_VIRGULA  deslocar, e ir ao estado 73
+    T_PONTO_E_VIRGULA  deslocar, e ir ao estado 72
 
 
 Estado 45
 
-   69 FExpressaoAritmetica: T_NUM .
+   68 FExpressaoAritmetica: T_NUM .
 
-    $padrão  reduzir usando a regra 69 (FExpressaoAritmetica)
+    $padrão  reduzir usando a regra 68 (FExpressaoAritmetica)
 
 
 Estado 46
 
-   66 TExpressaoAritmetica: ChamadaFuncao .
+   70 FExpressaoAritmetica: ChamadaFuncao .
 
-    $padrão  reduzir usando a regra 66 (TExpressaoAritmetica)
+    $padrão  reduzir usando a regra 70 (FExpressaoAritmetica)
 
 
 Estado 47
@@ -715,11 +716,11 @@ Estado 47
    59                    | ExpressaoAritmetica . T_BIT_DIREITA TExpressaoAritmetica
    60                    | ExpressaoAritmetica . T_BIT_ESQUERDA TExpressaoAritmetica
 
-    T_BIT_DIREITA      deslocar, e ir ao estado 74
-    T_BIT_ESQUERDA     deslocar, e ir ao estado 75
-    T_ADICAO           deslocar, e ir ao estado 76
-    T_SUBTRACAO        deslocar, e ir ao estado 77
-    T_PONTO_E_VIRGULA  deslocar, e ir ao estado 78
+    T_BIT_DIREITA      deslocar, e ir ao estado 73
+    T_BIT_ESQUERDA     deslocar, e ir ao estado 74
+    T_ADICAO           deslocar, e ir ao estado 75
+    T_SUBTRACAO        deslocar, e ir ao estado 76
+    T_PONTO_E_VIRGULA  deslocar, e ir ao estado 77
 
 
 Estado 48
@@ -729,9 +730,9 @@ Estado 48
    63                     | TExpressaoAritmetica . T_DIVISAO FExpressaoAritmetica
    64                     | TExpressaoAritmetica . T_RESTO FExpressaoAritmetica
 
-    T_MULTIPLICACAO  deslocar, e ir ao estado 79
-    T_DIVISAO        deslocar, e ir ao estado 80
-    T_RESTO          deslocar, e ir ao estado 81
+    T_MULTIPLICACAO  deslocar, e ir ao estado 78
+    T_DIVISAO        deslocar, e ir ao estado 79
+    T_RESTO          deslocar, e ir ao estado 80
 
     $padrão  reduzir usando a regra 61 (ExpressaoAritmetica)
 
@@ -748,8 +749,8 @@ Estado 50
    42 CmdAtrib: T_ID T_ADICAO . T_IGUAL ExpressaoAritmetica T_PONTO_E_VIRGULA
    44         | T_ID T_ADICAO . T_ADICAO T_PONTO_E_VIRGULA
 
-    T_ADICAO  deslocar, e ir ao estado 82
-    T_IGUAL   deslocar, e ir ao estado 83
+    T_ADICAO  deslocar, e ir ao estado 81
+    T_IGUAL   deslocar, e ir ao estado 82
 
 
 Estado 51
@@ -757,8 +758,8 @@ Estado 51
    43 CmdAtrib: T_ID T_SUBTRACAO . T_IGUAL ExpressaoAritmetica T_PONTO_E_VIRGULA
    45         | T_ID T_SUBTRACAO . T_SUBTRACAO T_PONTO_E_VIRGULA
 
-    T_SUBTRACAO  deslocar, e ir ao estado 84
-    T_IGUAL      deslocar, e ir ao estado 85
+    T_SUBTRACAO  deslocar, e ir ao estado 83
+    T_IGUAL      deslocar, e ir ao estado 84
 
 
 Estado 52
@@ -769,11 +770,11 @@ Estado 52
     T_SUBTRACAO        deslocar, e ir ao estado 41
     T_ABRE_PARENTESES  deslocar, e ir ao estado 42
     T_ID               deslocar, e ir ao estado 43
-    T_LITERAL          deslocar, e ir ao estado 86
+    T_LITERAL          deslocar, e ir ao estado 85
     T_NUM              deslocar, e ir ao estado 45
 
     ChamadaFuncao         ir ao estado 46
-    ExpressaoAritmetica   ir ao estado 87
+    ExpressaoAritmetica   ir ao estado 86
     TExpressaoAritmetica  ir ao estado 48
     FExpressaoAritmetica  ir ao estado 49
 
@@ -785,14 +786,14 @@ Estado 53
 
     T_SUBTRACAO         deslocar, e ir ao estado 41
     T_ABRE_PARENTESES   deslocar, e ir ao estado 42
-    T_FECHA_PARENTESES  deslocar, e ir ao estado 88
+    T_FECHA_PARENTESES  deslocar, e ir ao estado 87
     T_ID                deslocar, e ir ao estado 43
-    T_LITERAL           deslocar, e ir ao estado 89
+    T_LITERAL           deslocar, e ir ao estado 88
     T_NUM               deslocar, e ir ao estado 45
 
     ChamadaFuncao         ir ao estado 46
-    ListaParametros       ir ao estado 90
-    ExpressaoAritmetica   ir ao estado 91
+    ListaParametros       ir ao estado 89
+    ExpressaoAritmetica   ir ao estado 90
     TExpressaoAritmetica  ir ao estado 48
     FExpressaoAritmetica  ir ao estado 49
 
@@ -809,7 +810,7 @@ Estado 55
    14 BlocoPrincipal: T_ABRE_CHAVES Declaracoes ListaCmd . T_FECHA_CHAVES
    25 ListaCmd: ListaCmd . Comando
 
-    T_FECHA_CHAVES  deslocar, e ir ao estado 92
+    T_FECHA_CHAVES  deslocar, e ir ao estado 91
     T_IF            deslocar, e ir ao estado 14
     T_WHILE         deslocar, e ir ao estado 15
     T_PRINT         deslocar, e ir ao estado 16
@@ -840,8 +841,8 @@ Estado 57
    18 Declaracao: Tipo ListaId . T_PONTO_E_VIRGULA
    22 ListaId: ListaId . T_VIRGULA T_ID
 
-    T_VIRGULA          deslocar, e ir ao estado 93
-    T_PONTO_E_VIRGULA  deslocar, e ir ao estado 94
+    T_VIRGULA          deslocar, e ir ao estado 92
+    T_PONTO_E_VIRGULA  deslocar, e ir ao estado 93
 
 
 Estado 58
@@ -870,19 +871,19 @@ Estado 61
     5 Funcao: TipoRetorno T_ID T_ABRE_PARENTESES . DeclParametros T_FECHA_PARENTESES BlocoPrincipal
     6       | TipoRetorno T_ID T_ABRE_PARENTESES . T_FECHA_PARENTESES BlocoPrincipal
 
-    T_FECHA_PARENTESES  deslocar, e ir ao estado 95
+    T_FECHA_PARENTESES  deslocar, e ir ao estado 94
     T_INT               deslocar, e ir ao estado 11
     T_DOUBLE            deslocar, e ir ao estado 12
     T_STRING            deslocar, e ir ao estado 13
 
-    DeclParametros  ir ao estado 96
-    Parametro       ir ao estado 97
-    Tipo            ir ao estado 98
+    DeclParametros  ir ao estado 95
+    Parametro       ir ao estado 96
+    Tipo            ir ao estado 97
 
 
 Estado 62
 
-   67 FExpressaoAritmetica: T_ABRE_PARENTESES . ExpressaoAritmetica T_FECHA_PARENTESES
+   66 FExpressaoAritmetica: T_ABRE_PARENTESES . ExpressaoAritmetica T_FECHA_PARENTESES
    76 FExpressaoLogica: T_ABRE_PARENTESES . ExpressaoLogica T_FECHA_PARENTESES
 
     T_SUBTRACAO        deslocar, e ir ao estado 41
@@ -892,10 +893,10 @@ Estado 62
     T_NOT              deslocar, e ir ao estado 63
 
     ChamadaFuncao         ir ao estado 46
-    ExpressaoAritmetica   ir ao estado 99
+    ExpressaoAritmetica   ir ao estado 98
     TExpressaoAritmetica  ir ao estado 48
     FExpressaoAritmetica  ir ao estado 49
-    ExpressaoLogica       ir ao estado 100
+    ExpressaoLogica       ir ao estado 99
     FExpressaoLogica      ir ao estado 66
 
 
@@ -913,7 +914,7 @@ Estado 63
     ExpressaoAritmetica   ir ao estado 64
     TExpressaoAritmetica  ir ao estado 48
     FExpressaoAritmetica  ir ao estado 49
-    FExpressaoLogica      ir ao estado 101
+    FExpressaoLogica      ir ao estado 100
 
 
 Estado 64
@@ -929,16 +930,16 @@ Estado 64
    81                 | ExpressaoAritmetica . T_MENOR ExpressaoAritmetica
    82                 | ExpressaoAritmetica . T_MENOR_IGUAL ExpressaoAritmetica
 
-    T_BIT_DIREITA   deslocar, e ir ao estado 74
-    T_BIT_ESQUERDA  deslocar, e ir ao estado 75
-    T_ADICAO        deslocar, e ir ao estado 76
-    T_SUBTRACAO     deslocar, e ir ao estado 77
-    T_MAIOR_IGUAL   deslocar, e ir ao estado 102
-    T_MENOR_IGUAL   deslocar, e ir ao estado 103
-    T_DIFERENTE     deslocar, e ir ao estado 104
-    T_IGUAL_IGUAL   deslocar, e ir ao estado 105
-    T_MAIOR         deslocar, e ir ao estado 106
-    T_MENOR         deslocar, e ir ao estado 107
+    T_BIT_DIREITA   deslocar, e ir ao estado 73
+    T_BIT_ESQUERDA  deslocar, e ir ao estado 74
+    T_ADICAO        deslocar, e ir ao estado 75
+    T_SUBTRACAO     deslocar, e ir ao estado 76
+    T_MAIOR_IGUAL   deslocar, e ir ao estado 101
+    T_MENOR_IGUAL   deslocar, e ir ao estado 102
+    T_DIFERENTE     deslocar, e ir ao estado 103
+    T_IGUAL_IGUAL   deslocar, e ir ao estado 104
+    T_MAIOR         deslocar, e ir ao estado 105
+    T_MENOR         deslocar, e ir ao estado 106
 
 
 Estado 65
@@ -948,9 +949,9 @@ Estado 65
    71 ExpressaoLogica: ExpressaoLogica . T_AND MLogico FExpressaoLogica
    72                | ExpressaoLogica . T_OR MLogico FExpressaoLogica
 
-    T_FECHA_PARENTESES  deslocar, e ir ao estado 108
-    T_AND               deslocar, e ir ao estado 109
-    T_OR                deslocar, e ir ao estado 110
+    T_FECHA_PARENTESES  deslocar, e ir ao estado 107
+    T_AND               deslocar, e ir ao estado 108
+    T_OR                deslocar, e ir ao estado 109
 
 
 Estado 66
@@ -974,7 +975,7 @@ Estado 67
     ExpressaoAritmetica   ir ao estado 64
     TExpressaoAritmetica  ir ao estado 48
     FExpressaoAritmetica  ir ao estado 49
-    ExpressaoLogica       ir ao estado 111
+    ExpressaoLogica       ir ao estado 110
     FExpressaoLogica      ir ao estado 66
 
 
@@ -986,11 +987,11 @@ Estado 68
     T_SUBTRACAO        deslocar, e ir ao estado 41
     T_ABRE_PARENTESES  deslocar, e ir ao estado 42
     T_ID               deslocar, e ir ao estado 43
-    T_LITERAL          deslocar, e ir ao estado 112
+    T_LITERAL          deslocar, e ir ao estado 111
     T_NUM              deslocar, e ir ao estado 45
 
     ChamadaFuncao         ir ao estado 46
-    ExpressaoAritmetica   ir ao estado 113
+    ExpressaoAritmetica   ir ao estado 112
     TExpressaoAritmetica  ir ao estado 48
     FExpressaoAritmetica  ir ao estado 49
 
@@ -999,48 +1000,55 @@ Estado 69
 
    49 CmdLeitura: T_READ T_ABRE_PARENTESES T_ID . T_FECHA_PARENTESES T_PONTO_E_VIRGULA
 
-    T_FECHA_PARENTESES  deslocar, e ir ao estado 114
+    T_FECHA_PARENTESES  deslocar, e ir ao estado 113
 
 
 Estado 70
 
-   70 FExpressaoAritmetica: T_ID .
+   67 FExpressaoAritmetica: T_SUBTRACAO FExpressaoAritmetica .
 
-    $padrão  reduzir usando a regra 70 (FExpressaoAritmetica)
+    $padrão  reduzir usando a regra 67 (FExpressaoAritmetica)
 
 
 Estado 71
-
-   68 FExpressaoAritmetica: T_SUBTRACAO FExpressaoAritmetica .
-
-    $padrão  reduzir usando a regra 68 (FExpressaoAritmetica)
-
-
-Estado 72
 
    57 ExpressaoAritmetica: ExpressaoAritmetica . T_ADICAO TExpressaoAritmetica
    58                    | ExpressaoAritmetica . T_SUBTRACAO TExpressaoAritmetica
    59                    | ExpressaoAritmetica . T_BIT_DIREITA TExpressaoAritmetica
    60                    | ExpressaoAritmetica . T_BIT_ESQUERDA TExpressaoAritmetica
-   67 FExpressaoAritmetica: T_ABRE_PARENTESES ExpressaoAritmetica . T_FECHA_PARENTESES
+   66 FExpressaoAritmetica: T_ABRE_PARENTESES ExpressaoAritmetica . T_FECHA_PARENTESES
 
-    T_BIT_DIREITA       deslocar, e ir ao estado 74
-    T_BIT_ESQUERDA      deslocar, e ir ao estado 75
-    T_ADICAO            deslocar, e ir ao estado 76
-    T_SUBTRACAO         deslocar, e ir ao estado 77
-    T_FECHA_PARENTESES  deslocar, e ir ao estado 115
+    T_BIT_DIREITA       deslocar, e ir ao estado 73
+    T_BIT_ESQUERDA      deslocar, e ir ao estado 74
+    T_ADICAO            deslocar, e ir ao estado 75
+    T_SUBTRACAO         deslocar, e ir ao estado 76
+    T_FECHA_PARENTESES  deslocar, e ir ao estado 114
 
 
-Estado 73
+Estado 72
 
    35 Retorno: T_RETURN T_LITERAL T_PONTO_E_VIRGULA .
 
     $padrão  reduzir usando a regra 35 (Retorno)
 
 
-Estado 74
+Estado 73
 
    59 ExpressaoAritmetica: ExpressaoAritmetica T_BIT_DIREITA . TExpressaoAritmetica
+
+    T_SUBTRACAO        deslocar, e ir ao estado 41
+    T_ABRE_PARENTESES  deslocar, e ir ao estado 42
+    T_ID               deslocar, e ir ao estado 43
+    T_NUM              deslocar, e ir ao estado 45
+
+    ChamadaFuncao         ir ao estado 46
+    TExpressaoAritmetica  ir ao estado 115
+    FExpressaoAritmetica  ir ao estado 49
+
+
+Estado 74
+
+   60 ExpressaoAritmetica: ExpressaoAritmetica T_BIT_ESQUERDA . TExpressaoAritmetica
 
     T_SUBTRACAO        deslocar, e ir ao estado 41
     T_ABRE_PARENTESES  deslocar, e ir ao estado 42
@@ -1054,7 +1062,7 @@ Estado 74
 
 Estado 75
 
-   60 ExpressaoAritmetica: ExpressaoAritmetica T_BIT_ESQUERDA . TExpressaoAritmetica
+   57 ExpressaoAritmetica: ExpressaoAritmetica T_ADICAO . TExpressaoAritmetica
 
     T_SUBTRACAO        deslocar, e ir ao estado 41
     T_ABRE_PARENTESES  deslocar, e ir ao estado 42
@@ -1068,7 +1076,7 @@ Estado 75
 
 Estado 76
 
-   57 ExpressaoAritmetica: ExpressaoAritmetica T_ADICAO . TExpressaoAritmetica
+   58 ExpressaoAritmetica: ExpressaoAritmetica T_SUBTRACAO . TExpressaoAritmetica
 
     T_SUBTRACAO        deslocar, e ir ao estado 41
     T_ABRE_PARENTESES  deslocar, e ir ao estado 42
@@ -1082,7 +1090,14 @@ Estado 76
 
 Estado 77
 
-   58 ExpressaoAritmetica: ExpressaoAritmetica T_SUBTRACAO . TExpressaoAritmetica
+   34 Retorno: T_RETURN ExpressaoAritmetica T_PONTO_E_VIRGULA .
+
+    $padrão  reduzir usando a regra 34 (Retorno)
+
+
+Estado 78
+
+   62 TExpressaoAritmetica: TExpressaoAritmetica T_MULTIPLICACAO . FExpressaoAritmetica
 
     T_SUBTRACAO        deslocar, e ir ao estado 41
     T_ABRE_PARENTESES  deslocar, e ir ao estado 42
@@ -1090,61 +1105,43 @@ Estado 77
     T_NUM              deslocar, e ir ao estado 45
 
     ChamadaFuncao         ir ao estado 46
-    TExpressaoAritmetica  ir ao estado 119
-    FExpressaoAritmetica  ir ao estado 49
-
-
-Estado 78
-
-   34 Retorno: T_RETURN ExpressaoAritmetica T_PONTO_E_VIRGULA .
-
-    $padrão  reduzir usando a regra 34 (Retorno)
+    FExpressaoAritmetica  ir ao estado 119
 
 
 Estado 79
-
-   62 TExpressaoAritmetica: TExpressaoAritmetica T_MULTIPLICACAO . FExpressaoAritmetica
-
-    T_SUBTRACAO        deslocar, e ir ao estado 41
-    T_ABRE_PARENTESES  deslocar, e ir ao estado 42
-    T_ID               deslocar, e ir ao estado 70
-    T_NUM              deslocar, e ir ao estado 45
-
-    FExpressaoAritmetica  ir ao estado 120
-
-
-Estado 80
 
    63 TExpressaoAritmetica: TExpressaoAritmetica T_DIVISAO . FExpressaoAritmetica
 
     T_SUBTRACAO        deslocar, e ir ao estado 41
     T_ABRE_PARENTESES  deslocar, e ir ao estado 42
-    T_ID               deslocar, e ir ao estado 70
+    T_ID               deslocar, e ir ao estado 43
     T_NUM              deslocar, e ir ao estado 45
 
-    FExpressaoAritmetica  ir ao estado 121
+    ChamadaFuncao         ir ao estado 46
+    FExpressaoAritmetica  ir ao estado 120
 
 
-Estado 81
+Estado 80
 
    64 TExpressaoAritmetica: TExpressaoAritmetica T_RESTO . FExpressaoAritmetica
 
     T_SUBTRACAO        deslocar, e ir ao estado 41
     T_ABRE_PARENTESES  deslocar, e ir ao estado 42
-    T_ID               deslocar, e ir ao estado 70
+    T_ID               deslocar, e ir ao estado 43
     T_NUM              deslocar, e ir ao estado 45
 
-    FExpressaoAritmetica  ir ao estado 122
+    ChamadaFuncao         ir ao estado 46
+    FExpressaoAritmetica  ir ao estado 121
 
 
-Estado 82
+Estado 81
 
    44 CmdAtrib: T_ID T_ADICAO T_ADICAO . T_PONTO_E_VIRGULA
 
-    T_PONTO_E_VIRGULA  deslocar, e ir ao estado 123
+    T_PONTO_E_VIRGULA  deslocar, e ir ao estado 122
 
 
-Estado 83
+Estado 82
 
    42 CmdAtrib: T_ID T_ADICAO T_IGUAL . ExpressaoAritmetica T_PONTO_E_VIRGULA
 
@@ -1154,19 +1151,19 @@ Estado 83
     T_NUM              deslocar, e ir ao estado 45
 
     ChamadaFuncao         ir ao estado 46
-    ExpressaoAritmetica   ir ao estado 124
+    ExpressaoAritmetica   ir ao estado 123
     TExpressaoAritmetica  ir ao estado 48
     FExpressaoAritmetica  ir ao estado 49
 
 
-Estado 84
+Estado 83
 
    45 CmdAtrib: T_ID T_SUBTRACAO T_SUBTRACAO . T_PONTO_E_VIRGULA
 
-    T_PONTO_E_VIRGULA  deslocar, e ir ao estado 125
+    T_PONTO_E_VIRGULA  deslocar, e ir ao estado 124
 
 
-Estado 85
+Estado 84
 
    43 CmdAtrib: T_ID T_SUBTRACAO T_IGUAL . ExpressaoAritmetica T_PONTO_E_VIRGULA
 
@@ -1176,19 +1173,19 @@ Estado 85
     T_NUM              deslocar, e ir ao estado 45
 
     ChamadaFuncao         ir ao estado 46
-    ExpressaoAritmetica   ir ao estado 126
+    ExpressaoAritmetica   ir ao estado 125
     TExpressaoAritmetica  ir ao estado 48
     FExpressaoAritmetica  ir ao estado 49
 
 
-Estado 86
+Estado 85
 
    41 CmdAtrib: T_ID T_IGUAL T_LITERAL . T_PONTO_E_VIRGULA
 
-    T_PONTO_E_VIRGULA  deslocar, e ir ao estado 127
+    T_PONTO_E_VIRGULA  deslocar, e ir ao estado 126
 
 
-Estado 87
+Estado 86
 
    40 CmdAtrib: T_ID T_IGUAL ExpressaoAritmetica . T_PONTO_E_VIRGULA
    57 ExpressaoAritmetica: ExpressaoAritmetica . T_ADICAO TExpressaoAritmetica
@@ -1196,38 +1193,38 @@ Estado 87
    59                    | ExpressaoAritmetica . T_BIT_DIREITA TExpressaoAritmetica
    60                    | ExpressaoAritmetica . T_BIT_ESQUERDA TExpressaoAritmetica
 
-    T_BIT_DIREITA      deslocar, e ir ao estado 74
-    T_BIT_ESQUERDA     deslocar, e ir ao estado 75
-    T_ADICAO           deslocar, e ir ao estado 76
-    T_SUBTRACAO        deslocar, e ir ao estado 77
-    T_PONTO_E_VIRGULA  deslocar, e ir ao estado 128
+    T_BIT_DIREITA      deslocar, e ir ao estado 73
+    T_BIT_ESQUERDA     deslocar, e ir ao estado 74
+    T_ADICAO           deslocar, e ir ao estado 75
+    T_SUBTRACAO        deslocar, e ir ao estado 76
+    T_PONTO_E_VIRGULA  deslocar, e ir ao estado 127
 
 
-Estado 88
+Estado 87
 
    52 ChamadaFuncao: T_ID T_ABRE_PARENTESES T_FECHA_PARENTESES .
 
     $padrão  reduzir usando a regra 52 (ChamadaFuncao)
 
 
-Estado 89
+Estado 88
 
    56 ListaParametros: T_LITERAL .
 
     $padrão  reduzir usando a regra 56 (ListaParametros)
 
 
-Estado 90
+Estado 89
 
    51 ChamadaFuncao: T_ID T_ABRE_PARENTESES ListaParametros . T_FECHA_PARENTESES
    53 ListaParametros: ListaParametros . T_VIRGULA ExpressaoAritmetica
    54                | ListaParametros . T_VIRGULA T_LITERAL
 
-    T_FECHA_PARENTESES  deslocar, e ir ao estado 129
-    T_VIRGULA           deslocar, e ir ao estado 130
+    T_FECHA_PARENTESES  deslocar, e ir ao estado 128
+    T_VIRGULA           deslocar, e ir ao estado 129
 
 
-Estado 91
+Estado 90
 
    55 ListaParametros: ExpressaoAritmetica .
    57 ExpressaoAritmetica: ExpressaoAritmetica . T_ADICAO TExpressaoAritmetica
@@ -1235,74 +1232,74 @@ Estado 91
    59                    | ExpressaoAritmetica . T_BIT_DIREITA TExpressaoAritmetica
    60                    | ExpressaoAritmetica . T_BIT_ESQUERDA TExpressaoAritmetica
 
-    T_BIT_DIREITA   deslocar, e ir ao estado 74
-    T_BIT_ESQUERDA  deslocar, e ir ao estado 75
-    T_ADICAO        deslocar, e ir ao estado 76
-    T_SUBTRACAO     deslocar, e ir ao estado 77
+    T_BIT_DIREITA   deslocar, e ir ao estado 73
+    T_BIT_ESQUERDA  deslocar, e ir ao estado 74
+    T_ADICAO        deslocar, e ir ao estado 75
+    T_SUBTRACAO     deslocar, e ir ao estado 76
 
     $padrão  reduzir usando a regra 55 (ListaParametros)
 
 
-Estado 92
+Estado 91
 
    14 BlocoPrincipal: T_ABRE_CHAVES Declaracoes ListaCmd T_FECHA_CHAVES .
 
     $padrão  reduzir usando a regra 14 (BlocoPrincipal)
 
 
-Estado 93
+Estado 92
 
    22 ListaId: ListaId T_VIRGULA . T_ID
 
-    T_ID  deslocar, e ir ao estado 131
+    T_ID  deslocar, e ir ao estado 130
 
 
-Estado 94
+Estado 93
 
    18 Declaracao: Tipo ListaId T_PONTO_E_VIRGULA .
 
     $padrão  reduzir usando a regra 18 (Declaracao)
 
 
-Estado 95
+Estado 94
 
     6 Funcao: TipoRetorno T_ID T_ABRE_PARENTESES T_FECHA_PARENTESES . BlocoPrincipal
 
     T_ABRE_CHAVES  deslocar, e ir ao estado 1
 
-    BlocoPrincipal  ir ao estado 132
+    BlocoPrincipal  ir ao estado 131
 
 
-Estado 96
+Estado 95
 
     5 Funcao: TipoRetorno T_ID T_ABRE_PARENTESES DeclParametros . T_FECHA_PARENTESES BlocoPrincipal
    11 DeclParametros: DeclParametros . T_VIRGULA Parametro
 
-    T_FECHA_PARENTESES  deslocar, e ir ao estado 133
-    T_VIRGULA           deslocar, e ir ao estado 134
+    T_FECHA_PARENTESES  deslocar, e ir ao estado 132
+    T_VIRGULA           deslocar, e ir ao estado 133
 
 
-Estado 97
+Estado 96
 
    12 DeclParametros: Parametro .
 
     $padrão  reduzir usando a regra 12 (DeclParametros)
 
 
-Estado 98
+Estado 97
 
    13 Parametro: Tipo . T_ID
 
-    T_ID  deslocar, e ir ao estado 135
+    T_ID  deslocar, e ir ao estado 134
 
 
-Estado 99
+Estado 98
 
    57 ExpressaoAritmetica: ExpressaoAritmetica . T_ADICAO TExpressaoAritmetica
    58                    | ExpressaoAritmetica . T_SUBTRACAO TExpressaoAritmetica
    59                    | ExpressaoAritmetica . T_BIT_DIREITA TExpressaoAritmetica
    60                    | ExpressaoAritmetica . T_BIT_ESQUERDA TExpressaoAritmetica
-   67 FExpressaoAritmetica: T_ABRE_PARENTESES ExpressaoAritmetica . T_FECHA_PARENTESES
+   66 FExpressaoAritmetica: T_ABRE_PARENTESES ExpressaoAritmetica . T_FECHA_PARENTESES
    77 FExpressaoLogica: ExpressaoAritmetica . T_IGUAL_IGUAL ExpressaoAritmetica
    78                 | ExpressaoAritmetica . T_DIFERENTE ExpressaoAritmetica
    79                 | ExpressaoAritmetica . T_MAIOR ExpressaoAritmetica
@@ -1310,40 +1307,55 @@ Estado 99
    81                 | ExpressaoAritmetica . T_MENOR ExpressaoAritmetica
    82                 | ExpressaoAritmetica . T_MENOR_IGUAL ExpressaoAritmetica
 
-    T_BIT_DIREITA       deslocar, e ir ao estado 74
-    T_BIT_ESQUERDA      deslocar, e ir ao estado 75
-    T_ADICAO            deslocar, e ir ao estado 76
-    T_SUBTRACAO         deslocar, e ir ao estado 77
-    T_FECHA_PARENTESES  deslocar, e ir ao estado 115
-    T_MAIOR_IGUAL       deslocar, e ir ao estado 102
-    T_MENOR_IGUAL       deslocar, e ir ao estado 103
-    T_DIFERENTE         deslocar, e ir ao estado 104
-    T_IGUAL_IGUAL       deslocar, e ir ao estado 105
-    T_MAIOR             deslocar, e ir ao estado 106
-    T_MENOR             deslocar, e ir ao estado 107
+    T_BIT_DIREITA       deslocar, e ir ao estado 73
+    T_BIT_ESQUERDA      deslocar, e ir ao estado 74
+    T_ADICAO            deslocar, e ir ao estado 75
+    T_SUBTRACAO         deslocar, e ir ao estado 76
+    T_FECHA_PARENTESES  deslocar, e ir ao estado 114
+    T_MAIOR_IGUAL       deslocar, e ir ao estado 101
+    T_MENOR_IGUAL       deslocar, e ir ao estado 102
+    T_DIFERENTE         deslocar, e ir ao estado 103
+    T_IGUAL_IGUAL       deslocar, e ir ao estado 104
+    T_MAIOR             deslocar, e ir ao estado 105
+    T_MENOR             deslocar, e ir ao estado 106
 
 
-Estado 100
+Estado 99
 
    71 ExpressaoLogica: ExpressaoLogica . T_AND MLogico FExpressaoLogica
    72                | ExpressaoLogica . T_OR MLogico FExpressaoLogica
    76 FExpressaoLogica: T_ABRE_PARENTESES ExpressaoLogica . T_FECHA_PARENTESES
 
-    T_FECHA_PARENTESES  deslocar, e ir ao estado 136
-    T_AND               deslocar, e ir ao estado 109
-    T_OR                deslocar, e ir ao estado 110
+    T_FECHA_PARENTESES  deslocar, e ir ao estado 135
+    T_AND               deslocar, e ir ao estado 108
+    T_OR                deslocar, e ir ao estado 109
 
 
-Estado 101
+Estado 100
 
    75 FExpressaoLogica: T_NOT FExpressaoLogica .
 
     $padrão  reduzir usando a regra 75 (FExpressaoLogica)
 
 
-Estado 102
+Estado 101
 
    80 FExpressaoLogica: ExpressaoAritmetica T_MAIOR_IGUAL . ExpressaoAritmetica
+
+    T_SUBTRACAO        deslocar, e ir ao estado 41
+    T_ABRE_PARENTESES  deslocar, e ir ao estado 42
+    T_ID               deslocar, e ir ao estado 43
+    T_NUM              deslocar, e ir ao estado 45
+
+    ChamadaFuncao         ir ao estado 46
+    ExpressaoAritmetica   ir ao estado 136
+    TExpressaoAritmetica  ir ao estado 48
+    FExpressaoAritmetica  ir ao estado 49
+
+
+Estado 102
+
+   82 FExpressaoLogica: ExpressaoAritmetica T_MENOR_IGUAL . ExpressaoAritmetica
 
     T_SUBTRACAO        deslocar, e ir ao estado 41
     T_ABRE_PARENTESES  deslocar, e ir ao estado 42
@@ -1358,7 +1370,7 @@ Estado 102
 
 Estado 103
 
-   82 FExpressaoLogica: ExpressaoAritmetica T_MENOR_IGUAL . ExpressaoAritmetica
+   78 FExpressaoLogica: ExpressaoAritmetica T_DIFERENTE . ExpressaoAritmetica
 
     T_SUBTRACAO        deslocar, e ir ao estado 41
     T_ABRE_PARENTESES  deslocar, e ir ao estado 42
@@ -1373,7 +1385,7 @@ Estado 103
 
 Estado 104
 
-   78 FExpressaoLogica: ExpressaoAritmetica T_DIFERENTE . ExpressaoAritmetica
+   77 FExpressaoLogica: ExpressaoAritmetica T_IGUAL_IGUAL . ExpressaoAritmetica
 
     T_SUBTRACAO        deslocar, e ir ao estado 41
     T_ABRE_PARENTESES  deslocar, e ir ao estado 42
@@ -1388,7 +1400,7 @@ Estado 104
 
 Estado 105
 
-   77 FExpressaoLogica: ExpressaoAritmetica T_IGUAL_IGUAL . ExpressaoAritmetica
+   79 FExpressaoLogica: ExpressaoAritmetica T_MAIOR . ExpressaoAritmetica
 
     T_SUBTRACAO        deslocar, e ir ao estado 41
     T_ABRE_PARENTESES  deslocar, e ir ao estado 42
@@ -1403,7 +1415,7 @@ Estado 105
 
 Estado 106
 
-   79 FExpressaoLogica: ExpressaoAritmetica T_MAIOR . ExpressaoAritmetica
+   81 FExpressaoLogica: ExpressaoAritmetica T_MENOR . ExpressaoAritmetica
 
     T_SUBTRACAO        deslocar, e ir ao estado 41
     T_ABRE_PARENTESES  deslocar, e ir ao estado 42
@@ -1418,23 +1430,17 @@ Estado 106
 
 Estado 107
 
-   81 FExpressaoLogica: ExpressaoAritmetica T_MENOR . ExpressaoAritmetica
+   36 CmdSe: T_IF T_ABRE_PARENTESES ExpressaoLogica T_FECHA_PARENTESES . MLogico Bloco
+   37      | T_IF T_ABRE_PARENTESES ExpressaoLogica T_FECHA_PARENTESES . MLogico Bloco NLogico T_ELSE MLogico Bloco
 
-    T_SUBTRACAO        deslocar, e ir ao estado 41
-    T_ABRE_PARENTESES  deslocar, e ir ao estado 42
-    T_ID               deslocar, e ir ao estado 43
-    T_NUM              deslocar, e ir ao estado 45
+    $padrão  reduzir usando a regra 74 (MLogico)
 
-    ChamadaFuncao         ir ao estado 46
-    ExpressaoAritmetica   ir ao estado 142
-    TExpressaoAritmetica  ir ao estado 48
-    FExpressaoAritmetica  ir ao estado 49
+    MLogico  ir ao estado 142
 
 
 Estado 108
 
-   36 CmdSe: T_IF T_ABRE_PARENTESES ExpressaoLogica T_FECHA_PARENTESES . MLogico Bloco
-   37      | T_IF T_ABRE_PARENTESES ExpressaoLogica T_FECHA_PARENTESES . MLogico Bloco NLogico T_ELSE MLogico Bloco
+   71 ExpressaoLogica: ExpressaoLogica T_AND . MLogico FExpressaoLogica
 
     $padrão  reduzir usando a regra 74 (MLogico)
 
@@ -1443,7 +1449,7 @@ Estado 108
 
 Estado 109
 
-   71 ExpressaoLogica: ExpressaoLogica T_AND . MLogico FExpressaoLogica
+   72 ExpressaoLogica: ExpressaoLogica T_OR . MLogico FExpressaoLogica
 
     $padrão  reduzir usando a regra 74 (MLogico)
 
@@ -1452,32 +1458,23 @@ Estado 109
 
 Estado 110
 
-   72 ExpressaoLogica: ExpressaoLogica T_OR . MLogico FExpressaoLogica
-
-    $padrão  reduzir usando a regra 74 (MLogico)
-
-    MLogico  ir ao estado 145
-
-
-Estado 111
-
    39 CmdEnquanto: T_WHILE MLogico T_ABRE_PARENTESES ExpressaoLogica . T_FECHA_PARENTESES MLogico Bloco
    71 ExpressaoLogica: ExpressaoLogica . T_AND MLogico FExpressaoLogica
    72                | ExpressaoLogica . T_OR MLogico FExpressaoLogica
 
-    T_FECHA_PARENTESES  deslocar, e ir ao estado 146
-    T_AND               deslocar, e ir ao estado 109
-    T_OR                deslocar, e ir ao estado 110
+    T_FECHA_PARENTESES  deslocar, e ir ao estado 145
+    T_AND               deslocar, e ir ao estado 108
+    T_OR                deslocar, e ir ao estado 109
 
 
-Estado 112
+Estado 111
 
    47 CmdEscrita: T_PRINT CmdEscritaMarcador T_ABRE_PARENTESES T_LITERAL . T_FECHA_PARENTESES T_PONTO_E_VIRGULA
 
-    T_FECHA_PARENTESES  deslocar, e ir ao estado 147
+    T_FECHA_PARENTESES  deslocar, e ir ao estado 146
 
 
-Estado 113
+Estado 112
 
    46 CmdEscrita: T_PRINT CmdEscritaMarcador T_ABRE_PARENTESES ExpressaoAritmetica . T_FECHA_PARENTESES T_PONTO_E_VIRGULA
    57 ExpressaoAritmetica: ExpressaoAritmetica . T_ADICAO TExpressaoAritmetica
@@ -1485,112 +1482,112 @@ Estado 113
    59                    | ExpressaoAritmetica . T_BIT_DIREITA TExpressaoAritmetica
    60                    | ExpressaoAritmetica . T_BIT_ESQUERDA TExpressaoAritmetica
 
-    T_BIT_DIREITA       deslocar, e ir ao estado 74
-    T_BIT_ESQUERDA      deslocar, e ir ao estado 75
-    T_ADICAO            deslocar, e ir ao estado 76
-    T_SUBTRACAO         deslocar, e ir ao estado 77
-    T_FECHA_PARENTESES  deslocar, e ir ao estado 148
+    T_BIT_DIREITA       deslocar, e ir ao estado 73
+    T_BIT_ESQUERDA      deslocar, e ir ao estado 74
+    T_ADICAO            deslocar, e ir ao estado 75
+    T_SUBTRACAO         deslocar, e ir ao estado 76
+    T_FECHA_PARENTESES  deslocar, e ir ao estado 147
+
+
+Estado 113
+
+   49 CmdLeitura: T_READ T_ABRE_PARENTESES T_ID T_FECHA_PARENTESES . T_PONTO_E_VIRGULA
+
+    T_PONTO_E_VIRGULA  deslocar, e ir ao estado 148
 
 
 Estado 114
 
-   49 CmdLeitura: T_READ T_ABRE_PARENTESES T_ID T_FECHA_PARENTESES . T_PONTO_E_VIRGULA
+   66 FExpressaoAritmetica: T_ABRE_PARENTESES ExpressaoAritmetica T_FECHA_PARENTESES .
 
-    T_PONTO_E_VIRGULA  deslocar, e ir ao estado 149
+    $padrão  reduzir usando a regra 66 (FExpressaoAritmetica)
 
 
 Estado 115
-
-   67 FExpressaoAritmetica: T_ABRE_PARENTESES ExpressaoAritmetica T_FECHA_PARENTESES .
-
-    $padrão  reduzir usando a regra 67 (FExpressaoAritmetica)
-
-
-Estado 116
 
    59 ExpressaoAritmetica: ExpressaoAritmetica T_BIT_DIREITA TExpressaoAritmetica .
    62 TExpressaoAritmetica: TExpressaoAritmetica . T_MULTIPLICACAO FExpressaoAritmetica
    63                     | TExpressaoAritmetica . T_DIVISAO FExpressaoAritmetica
    64                     | TExpressaoAritmetica . T_RESTO FExpressaoAritmetica
 
-    T_MULTIPLICACAO  deslocar, e ir ao estado 79
-    T_DIVISAO        deslocar, e ir ao estado 80
-    T_RESTO          deslocar, e ir ao estado 81
+    T_MULTIPLICACAO  deslocar, e ir ao estado 78
+    T_DIVISAO        deslocar, e ir ao estado 79
+    T_RESTO          deslocar, e ir ao estado 80
 
     $padrão  reduzir usando a regra 59 (ExpressaoAritmetica)
 
 
-Estado 117
+Estado 116
 
    60 ExpressaoAritmetica: ExpressaoAritmetica T_BIT_ESQUERDA TExpressaoAritmetica .
    62 TExpressaoAritmetica: TExpressaoAritmetica . T_MULTIPLICACAO FExpressaoAritmetica
    63                     | TExpressaoAritmetica . T_DIVISAO FExpressaoAritmetica
    64                     | TExpressaoAritmetica . T_RESTO FExpressaoAritmetica
 
-    T_MULTIPLICACAO  deslocar, e ir ao estado 79
-    T_DIVISAO        deslocar, e ir ao estado 80
-    T_RESTO          deslocar, e ir ao estado 81
+    T_MULTIPLICACAO  deslocar, e ir ao estado 78
+    T_DIVISAO        deslocar, e ir ao estado 79
+    T_RESTO          deslocar, e ir ao estado 80
 
     $padrão  reduzir usando a regra 60 (ExpressaoAritmetica)
 
 
-Estado 118
+Estado 117
 
    57 ExpressaoAritmetica: ExpressaoAritmetica T_ADICAO TExpressaoAritmetica .
    62 TExpressaoAritmetica: TExpressaoAritmetica . T_MULTIPLICACAO FExpressaoAritmetica
    63                     | TExpressaoAritmetica . T_DIVISAO FExpressaoAritmetica
    64                     | TExpressaoAritmetica . T_RESTO FExpressaoAritmetica
 
-    T_MULTIPLICACAO  deslocar, e ir ao estado 79
-    T_DIVISAO        deslocar, e ir ao estado 80
-    T_RESTO          deslocar, e ir ao estado 81
+    T_MULTIPLICACAO  deslocar, e ir ao estado 78
+    T_DIVISAO        deslocar, e ir ao estado 79
+    T_RESTO          deslocar, e ir ao estado 80
 
     $padrão  reduzir usando a regra 57 (ExpressaoAritmetica)
 
 
-Estado 119
+Estado 118
 
    58 ExpressaoAritmetica: ExpressaoAritmetica T_SUBTRACAO TExpressaoAritmetica .
    62 TExpressaoAritmetica: TExpressaoAritmetica . T_MULTIPLICACAO FExpressaoAritmetica
    63                     | TExpressaoAritmetica . T_DIVISAO FExpressaoAritmetica
    64                     | TExpressaoAritmetica . T_RESTO FExpressaoAritmetica
 
-    T_MULTIPLICACAO  deslocar, e ir ao estado 79
-    T_DIVISAO        deslocar, e ir ao estado 80
-    T_RESTO          deslocar, e ir ao estado 81
+    T_MULTIPLICACAO  deslocar, e ir ao estado 78
+    T_DIVISAO        deslocar, e ir ao estado 79
+    T_RESTO          deslocar, e ir ao estado 80
 
     $padrão  reduzir usando a regra 58 (ExpressaoAritmetica)
 
 
-Estado 120
+Estado 119
 
    62 TExpressaoAritmetica: TExpressaoAritmetica T_MULTIPLICACAO FExpressaoAritmetica .
 
     $padrão  reduzir usando a regra 62 (TExpressaoAritmetica)
 
 
-Estado 121
+Estado 120
 
    63 TExpressaoAritmetica: TExpressaoAritmetica T_DIVISAO FExpressaoAritmetica .
 
     $padrão  reduzir usando a regra 63 (TExpressaoAritmetica)
 
 
-Estado 122
+Estado 121
 
    64 TExpressaoAritmetica: TExpressaoAritmetica T_RESTO FExpressaoAritmetica .
 
     $padrão  reduzir usando a regra 64 (TExpressaoAritmetica)
 
 
-Estado 123
+Estado 122
 
    44 CmdAtrib: T_ID T_ADICAO T_ADICAO T_PONTO_E_VIRGULA .
 
     $padrão  reduzir usando a regra 44 (CmdAtrib)
 
 
-Estado 124
+Estado 123
 
    42 CmdAtrib: T_ID T_ADICAO T_IGUAL ExpressaoAritmetica . T_PONTO_E_VIRGULA
    57 ExpressaoAritmetica: ExpressaoAritmetica . T_ADICAO TExpressaoAritmetica
@@ -1598,21 +1595,21 @@ Estado 124
    59                    | ExpressaoAritmetica . T_BIT_DIREITA TExpressaoAritmetica
    60                    | ExpressaoAritmetica . T_BIT_ESQUERDA TExpressaoAritmetica
 
-    T_BIT_DIREITA      deslocar, e ir ao estado 74
-    T_BIT_ESQUERDA     deslocar, e ir ao estado 75
-    T_ADICAO           deslocar, e ir ao estado 76
-    T_SUBTRACAO        deslocar, e ir ao estado 77
-    T_PONTO_E_VIRGULA  deslocar, e ir ao estado 150
+    T_BIT_DIREITA      deslocar, e ir ao estado 73
+    T_BIT_ESQUERDA     deslocar, e ir ao estado 74
+    T_ADICAO           deslocar, e ir ao estado 75
+    T_SUBTRACAO        deslocar, e ir ao estado 76
+    T_PONTO_E_VIRGULA  deslocar, e ir ao estado 149
 
 
-Estado 125
+Estado 124
 
    45 CmdAtrib: T_ID T_SUBTRACAO T_SUBTRACAO T_PONTO_E_VIRGULA .
 
     $padrão  reduzir usando a regra 45 (CmdAtrib)
 
 
-Estado 126
+Estado 125
 
    43 CmdAtrib: T_ID T_SUBTRACAO T_IGUAL ExpressaoAritmetica . T_PONTO_E_VIRGULA
    57 ExpressaoAritmetica: ExpressaoAritmetica . T_ADICAO TExpressaoAritmetica
@@ -1620,35 +1617,35 @@ Estado 126
    59                    | ExpressaoAritmetica . T_BIT_DIREITA TExpressaoAritmetica
    60                    | ExpressaoAritmetica . T_BIT_ESQUERDA TExpressaoAritmetica
 
-    T_BIT_DIREITA      deslocar, e ir ao estado 74
-    T_BIT_ESQUERDA     deslocar, e ir ao estado 75
-    T_ADICAO           deslocar, e ir ao estado 76
-    T_SUBTRACAO        deslocar, e ir ao estado 77
-    T_PONTO_E_VIRGULA  deslocar, e ir ao estado 151
+    T_BIT_DIREITA      deslocar, e ir ao estado 73
+    T_BIT_ESQUERDA     deslocar, e ir ao estado 74
+    T_ADICAO           deslocar, e ir ao estado 75
+    T_SUBTRACAO        deslocar, e ir ao estado 76
+    T_PONTO_E_VIRGULA  deslocar, e ir ao estado 150
 
 
-Estado 127
+Estado 126
 
    41 CmdAtrib: T_ID T_IGUAL T_LITERAL T_PONTO_E_VIRGULA .
 
     $padrão  reduzir usando a regra 41 (CmdAtrib)
 
 
-Estado 128
+Estado 127
 
    40 CmdAtrib: T_ID T_IGUAL ExpressaoAritmetica T_PONTO_E_VIRGULA .
 
     $padrão  reduzir usando a regra 40 (CmdAtrib)
 
 
-Estado 129
+Estado 128
 
    51 ChamadaFuncao: T_ID T_ABRE_PARENTESES ListaParametros T_FECHA_PARENTESES .
 
     $padrão  reduzir usando a regra 51 (ChamadaFuncao)
 
 
-Estado 130
+Estado 129
 
    53 ListaParametros: ListaParametros T_VIRGULA . ExpressaoAritmetica
    54                | ListaParametros T_VIRGULA . T_LITERAL
@@ -1656,39 +1653,39 @@ Estado 130
     T_SUBTRACAO        deslocar, e ir ao estado 41
     T_ABRE_PARENTESES  deslocar, e ir ao estado 42
     T_ID               deslocar, e ir ao estado 43
-    T_LITERAL          deslocar, e ir ao estado 152
+    T_LITERAL          deslocar, e ir ao estado 151
     T_NUM              deslocar, e ir ao estado 45
 
     ChamadaFuncao         ir ao estado 46
-    ExpressaoAritmetica   ir ao estado 153
+    ExpressaoAritmetica   ir ao estado 152
     TExpressaoAritmetica  ir ao estado 48
     FExpressaoAritmetica  ir ao estado 49
 
 
-Estado 131
+Estado 130
 
    22 ListaId: ListaId T_VIRGULA T_ID .
 
     $padrão  reduzir usando a regra 22 (ListaId)
 
 
-Estado 132
+Estado 131
 
     6 Funcao: TipoRetorno T_ID T_ABRE_PARENTESES T_FECHA_PARENTESES BlocoPrincipal .
 
     $padrão  reduzir usando a regra 6 (Funcao)
 
 
-Estado 133
+Estado 132
 
     5 Funcao: TipoRetorno T_ID T_ABRE_PARENTESES DeclParametros T_FECHA_PARENTESES . BlocoPrincipal
 
     T_ABRE_CHAVES  deslocar, e ir ao estado 1
 
-    BlocoPrincipal  ir ao estado 154
+    BlocoPrincipal  ir ao estado 153
 
 
-Estado 134
+Estado 133
 
    11 DeclParametros: DeclParametros T_VIRGULA . Parametro
 
@@ -1696,22 +1693,38 @@ Estado 134
     T_DOUBLE  deslocar, e ir ao estado 12
     T_STRING  deslocar, e ir ao estado 13
 
-    Parametro  ir ao estado 155
-    Tipo       ir ao estado 98
+    Parametro  ir ao estado 154
+    Tipo       ir ao estado 97
 
 
-Estado 135
+Estado 134
 
    13 Parametro: Tipo T_ID .
 
     $padrão  reduzir usando a regra 13 (Parametro)
 
 
-Estado 136
+Estado 135
 
    76 FExpressaoLogica: T_ABRE_PARENTESES ExpressaoLogica T_FECHA_PARENTESES .
 
     $padrão  reduzir usando a regra 76 (FExpressaoLogica)
+
+
+Estado 136
+
+   57 ExpressaoAritmetica: ExpressaoAritmetica . T_ADICAO TExpressaoAritmetica
+   58                    | ExpressaoAritmetica . T_SUBTRACAO TExpressaoAritmetica
+   59                    | ExpressaoAritmetica . T_BIT_DIREITA TExpressaoAritmetica
+   60                    | ExpressaoAritmetica . T_BIT_ESQUERDA TExpressaoAritmetica
+   80 FExpressaoLogica: ExpressaoAritmetica T_MAIOR_IGUAL ExpressaoAritmetica .
+
+    T_BIT_DIREITA   deslocar, e ir ao estado 73
+    T_BIT_ESQUERDA  deslocar, e ir ao estado 74
+    T_ADICAO        deslocar, e ir ao estado 75
+    T_SUBTRACAO     deslocar, e ir ao estado 76
+
+    $padrão  reduzir usando a regra 80 (FExpressaoLogica)
 
 
 Estado 137
@@ -1720,14 +1733,14 @@ Estado 137
    58                    | ExpressaoAritmetica . T_SUBTRACAO TExpressaoAritmetica
    59                    | ExpressaoAritmetica . T_BIT_DIREITA TExpressaoAritmetica
    60                    | ExpressaoAritmetica . T_BIT_ESQUERDA TExpressaoAritmetica
-   80 FExpressaoLogica: ExpressaoAritmetica T_MAIOR_IGUAL ExpressaoAritmetica .
+   82 FExpressaoLogica: ExpressaoAritmetica T_MENOR_IGUAL ExpressaoAritmetica .
 
-    T_BIT_DIREITA   deslocar, e ir ao estado 74
-    T_BIT_ESQUERDA  deslocar, e ir ao estado 75
-    T_ADICAO        deslocar, e ir ao estado 76
-    T_SUBTRACAO     deslocar, e ir ao estado 77
+    T_BIT_DIREITA   deslocar, e ir ao estado 73
+    T_BIT_ESQUERDA  deslocar, e ir ao estado 74
+    T_ADICAO        deslocar, e ir ao estado 75
+    T_SUBTRACAO     deslocar, e ir ao estado 76
 
-    $padrão  reduzir usando a regra 80 (FExpressaoLogica)
+    $padrão  reduzir usando a regra 82 (FExpressaoLogica)
 
 
 Estado 138
@@ -1736,14 +1749,14 @@ Estado 138
    58                    | ExpressaoAritmetica . T_SUBTRACAO TExpressaoAritmetica
    59                    | ExpressaoAritmetica . T_BIT_DIREITA TExpressaoAritmetica
    60                    | ExpressaoAritmetica . T_BIT_ESQUERDA TExpressaoAritmetica
-   82 FExpressaoLogica: ExpressaoAritmetica T_MENOR_IGUAL ExpressaoAritmetica .
+   78 FExpressaoLogica: ExpressaoAritmetica T_DIFERENTE ExpressaoAritmetica .
 
-    T_BIT_DIREITA   deslocar, e ir ao estado 74
-    T_BIT_ESQUERDA  deslocar, e ir ao estado 75
-    T_ADICAO        deslocar, e ir ao estado 76
-    T_SUBTRACAO     deslocar, e ir ao estado 77
+    T_BIT_DIREITA   deslocar, e ir ao estado 73
+    T_BIT_ESQUERDA  deslocar, e ir ao estado 74
+    T_ADICAO        deslocar, e ir ao estado 75
+    T_SUBTRACAO     deslocar, e ir ao estado 76
 
-    $padrão  reduzir usando a regra 82 (FExpressaoLogica)
+    $padrão  reduzir usando a regra 78 (FExpressaoLogica)
 
 
 Estado 139
@@ -1752,14 +1765,14 @@ Estado 139
    58                    | ExpressaoAritmetica . T_SUBTRACAO TExpressaoAritmetica
    59                    | ExpressaoAritmetica . T_BIT_DIREITA TExpressaoAritmetica
    60                    | ExpressaoAritmetica . T_BIT_ESQUERDA TExpressaoAritmetica
-   78 FExpressaoLogica: ExpressaoAritmetica T_DIFERENTE ExpressaoAritmetica .
+   77 FExpressaoLogica: ExpressaoAritmetica T_IGUAL_IGUAL ExpressaoAritmetica .
 
-    T_BIT_DIREITA   deslocar, e ir ao estado 74
-    T_BIT_ESQUERDA  deslocar, e ir ao estado 75
-    T_ADICAO        deslocar, e ir ao estado 76
-    T_SUBTRACAO     deslocar, e ir ao estado 77
+    T_BIT_DIREITA   deslocar, e ir ao estado 73
+    T_BIT_ESQUERDA  deslocar, e ir ao estado 74
+    T_ADICAO        deslocar, e ir ao estado 75
+    T_SUBTRACAO     deslocar, e ir ao estado 76
 
-    $padrão  reduzir usando a regra 78 (FExpressaoLogica)
+    $padrão  reduzir usando a regra 77 (FExpressaoLogica)
 
 
 Estado 140
@@ -1768,14 +1781,14 @@ Estado 140
    58                    | ExpressaoAritmetica . T_SUBTRACAO TExpressaoAritmetica
    59                    | ExpressaoAritmetica . T_BIT_DIREITA TExpressaoAritmetica
    60                    | ExpressaoAritmetica . T_BIT_ESQUERDA TExpressaoAritmetica
-   77 FExpressaoLogica: ExpressaoAritmetica T_IGUAL_IGUAL ExpressaoAritmetica .
+   79 FExpressaoLogica: ExpressaoAritmetica T_MAIOR ExpressaoAritmetica .
 
-    T_BIT_DIREITA   deslocar, e ir ao estado 74
-    T_BIT_ESQUERDA  deslocar, e ir ao estado 75
-    T_ADICAO        deslocar, e ir ao estado 76
-    T_SUBTRACAO     deslocar, e ir ao estado 77
+    T_BIT_DIREITA   deslocar, e ir ao estado 73
+    T_BIT_ESQUERDA  deslocar, e ir ao estado 74
+    T_ADICAO        deslocar, e ir ao estado 75
+    T_SUBTRACAO     deslocar, e ir ao estado 76
 
-    $padrão  reduzir usando a regra 77 (FExpressaoLogica)
+    $padrão  reduzir usando a regra 79 (FExpressaoLogica)
 
 
 Estado 141
@@ -1784,45 +1797,46 @@ Estado 141
    58                    | ExpressaoAritmetica . T_SUBTRACAO TExpressaoAritmetica
    59                    | ExpressaoAritmetica . T_BIT_DIREITA TExpressaoAritmetica
    60                    | ExpressaoAritmetica . T_BIT_ESQUERDA TExpressaoAritmetica
-   79 FExpressaoLogica: ExpressaoAritmetica T_MAIOR ExpressaoAritmetica .
-
-    T_BIT_DIREITA   deslocar, e ir ao estado 74
-    T_BIT_ESQUERDA  deslocar, e ir ao estado 75
-    T_ADICAO        deslocar, e ir ao estado 76
-    T_SUBTRACAO     deslocar, e ir ao estado 77
-
-    $padrão  reduzir usando a regra 79 (FExpressaoLogica)
-
-
-Estado 142
-
-   57 ExpressaoAritmetica: ExpressaoAritmetica . T_ADICAO TExpressaoAritmetica
-   58                    | ExpressaoAritmetica . T_SUBTRACAO TExpressaoAritmetica
-   59                    | ExpressaoAritmetica . T_BIT_DIREITA TExpressaoAritmetica
-   60                    | ExpressaoAritmetica . T_BIT_ESQUERDA TExpressaoAritmetica
    81 FExpressaoLogica: ExpressaoAritmetica T_MENOR ExpressaoAritmetica .
 
-    T_BIT_DIREITA   deslocar, e ir ao estado 74
-    T_BIT_ESQUERDA  deslocar, e ir ao estado 75
-    T_ADICAO        deslocar, e ir ao estado 76
-    T_SUBTRACAO     deslocar, e ir ao estado 77
+    T_BIT_DIREITA   deslocar, e ir ao estado 73
+    T_BIT_ESQUERDA  deslocar, e ir ao estado 74
+    T_ADICAO        deslocar, e ir ao estado 75
+    T_SUBTRACAO     deslocar, e ir ao estado 76
 
     $padrão  reduzir usando a regra 81 (FExpressaoLogica)
 
 
-Estado 143
+Estado 142
 
    36 CmdSe: T_IF T_ABRE_PARENTESES ExpressaoLogica T_FECHA_PARENTESES MLogico . Bloco
    37      | T_IF T_ABRE_PARENTESES ExpressaoLogica T_FECHA_PARENTESES MLogico . Bloco NLogico T_ELSE MLogico Bloco
 
-    T_ABRE_CHAVES  deslocar, e ir ao estado 156
+    T_ABRE_CHAVES  deslocar, e ir ao estado 155
 
-    Bloco  ir ao estado 157
+    Bloco  ir ao estado 156
+
+
+Estado 143
+
+   71 ExpressaoLogica: ExpressaoLogica T_AND MLogico . FExpressaoLogica
+
+    T_SUBTRACAO        deslocar, e ir ao estado 41
+    T_ABRE_PARENTESES  deslocar, e ir ao estado 62
+    T_ID               deslocar, e ir ao estado 43
+    T_NUM              deslocar, e ir ao estado 45
+    T_NOT              deslocar, e ir ao estado 63
+
+    ChamadaFuncao         ir ao estado 46
+    ExpressaoAritmetica   ir ao estado 64
+    TExpressaoAritmetica  ir ao estado 48
+    FExpressaoAritmetica  ir ao estado 49
+    FExpressaoLogica      ir ao estado 157
 
 
 Estado 144
 
-   71 ExpressaoLogica: ExpressaoLogica T_AND MLogico . FExpressaoLogica
+   72 ExpressaoLogica: ExpressaoLogica T_OR MLogico . FExpressaoLogica
 
     T_SUBTRACAO        deslocar, e ir ao estado 41
     T_ABRE_PARENTESES  deslocar, e ir ao estado 62
@@ -1839,73 +1853,56 @@ Estado 144
 
 Estado 145
 
-   72 ExpressaoLogica: ExpressaoLogica T_OR MLogico . FExpressaoLogica
-
-    T_SUBTRACAO        deslocar, e ir ao estado 41
-    T_ABRE_PARENTESES  deslocar, e ir ao estado 62
-    T_ID               deslocar, e ir ao estado 43
-    T_NUM              deslocar, e ir ao estado 45
-    T_NOT              deslocar, e ir ao estado 63
-
-    ChamadaFuncao         ir ao estado 46
-    ExpressaoAritmetica   ir ao estado 64
-    TExpressaoAritmetica  ir ao estado 48
-    FExpressaoAritmetica  ir ao estado 49
-    FExpressaoLogica      ir ao estado 159
-
-
-Estado 146
-
    39 CmdEnquanto: T_WHILE MLogico T_ABRE_PARENTESES ExpressaoLogica T_FECHA_PARENTESES . MLogico Bloco
 
     $padrão  reduzir usando a regra 74 (MLogico)
 
-    MLogico  ir ao estado 160
+    MLogico  ir ao estado 159
+
+
+Estado 146
+
+   47 CmdEscrita: T_PRINT CmdEscritaMarcador T_ABRE_PARENTESES T_LITERAL T_FECHA_PARENTESES . T_PONTO_E_VIRGULA
+
+    T_PONTO_E_VIRGULA  deslocar, e ir ao estado 160
 
 
 Estado 147
 
-   47 CmdEscrita: T_PRINT CmdEscritaMarcador T_ABRE_PARENTESES T_LITERAL T_FECHA_PARENTESES . T_PONTO_E_VIRGULA
+   46 CmdEscrita: T_PRINT CmdEscritaMarcador T_ABRE_PARENTESES ExpressaoAritmetica T_FECHA_PARENTESES . T_PONTO_E_VIRGULA
 
     T_PONTO_E_VIRGULA  deslocar, e ir ao estado 161
 
 
 Estado 148
 
-   46 CmdEscrita: T_PRINT CmdEscritaMarcador T_ABRE_PARENTESES ExpressaoAritmetica T_FECHA_PARENTESES . T_PONTO_E_VIRGULA
-
-    T_PONTO_E_VIRGULA  deslocar, e ir ao estado 162
-
-
-Estado 149
-
    49 CmdLeitura: T_READ T_ABRE_PARENTESES T_ID T_FECHA_PARENTESES T_PONTO_E_VIRGULA .
 
     $padrão  reduzir usando a regra 49 (CmdLeitura)
 
 
-Estado 150
+Estado 149
 
    42 CmdAtrib: T_ID T_ADICAO T_IGUAL ExpressaoAritmetica T_PONTO_E_VIRGULA .
 
     $padrão  reduzir usando a regra 42 (CmdAtrib)
 
 
-Estado 151
+Estado 150
 
    43 CmdAtrib: T_ID T_SUBTRACAO T_IGUAL ExpressaoAritmetica T_PONTO_E_VIRGULA .
 
     $padrão  reduzir usando a regra 43 (CmdAtrib)
 
 
-Estado 152
+Estado 151
 
    54 ListaParametros: ListaParametros T_VIRGULA T_LITERAL .
 
     $padrão  reduzir usando a regra 54 (ListaParametros)
 
 
-Estado 153
+Estado 152
 
    53 ListaParametros: ListaParametros T_VIRGULA ExpressaoAritmetica .
    57 ExpressaoAritmetica: ExpressaoAritmetica . T_ADICAO TExpressaoAritmetica
@@ -1913,29 +1910,29 @@ Estado 153
    59                    | ExpressaoAritmetica . T_BIT_DIREITA TExpressaoAritmetica
    60                    | ExpressaoAritmetica . T_BIT_ESQUERDA TExpressaoAritmetica
 
-    T_BIT_DIREITA   deslocar, e ir ao estado 74
-    T_BIT_ESQUERDA  deslocar, e ir ao estado 75
-    T_ADICAO        deslocar, e ir ao estado 76
-    T_SUBTRACAO     deslocar, e ir ao estado 77
+    T_BIT_DIREITA   deslocar, e ir ao estado 73
+    T_BIT_ESQUERDA  deslocar, e ir ao estado 74
+    T_ADICAO        deslocar, e ir ao estado 75
+    T_SUBTRACAO     deslocar, e ir ao estado 76
 
     $padrão  reduzir usando a regra 53 (ListaParametros)
 
 
-Estado 154
+Estado 153
 
     5 Funcao: TipoRetorno T_ID T_ABRE_PARENTESES DeclParametros T_FECHA_PARENTESES BlocoPrincipal .
 
     $padrão  reduzir usando a regra 5 (Funcao)
 
 
-Estado 155
+Estado 154
 
    11 DeclParametros: DeclParametros T_VIRGULA Parametro .
 
     $padrão  reduzir usando a regra 11 (DeclParametros)
 
 
-Estado 156
+Estado 155
 
    24 Bloco: T_ABRE_CHAVES . ListaCmd T_FECHA_CHAVES
 
@@ -1946,7 +1943,7 @@ Estado 156
     T_RETURN  deslocar, e ir ao estado 18
     T_ID      deslocar, e ir ao estado 19
 
-    ListaCmd       ir ao estado 163
+    ListaCmd       ir ao estado 162
     Comando        ir ao estado 24
     Retorno        ir ao estado 25
     CmdSe          ir ao estado 26
@@ -1958,7 +1955,7 @@ Estado 156
     ChamadaFuncao  ir ao estado 32
 
 
-Estado 157
+Estado 156
 
    36 CmdSe: T_IF T_ABRE_PARENTESES ExpressaoLogica T_FECHA_PARENTESES MLogico Bloco .
    37      | T_IF T_ABRE_PARENTESES ExpressaoLogica T_FECHA_PARENTESES MLogico Bloco . NLogico T_ELSE MLogico Bloco
@@ -1966,52 +1963,52 @@ Estado 157
     T_ELSE    reduzir usando a regra 38 (NLogico)
     $padrão  reduzir usando a regra 36 (CmdSe)
 
-    NLogico  ir ao estado 164
+    NLogico  ir ao estado 163
 
 
-Estado 158
+Estado 157
 
    71 ExpressaoLogica: ExpressaoLogica T_AND MLogico FExpressaoLogica .
 
     $padrão  reduzir usando a regra 71 (ExpressaoLogica)
 
 
-Estado 159
+Estado 158
 
    72 ExpressaoLogica: ExpressaoLogica T_OR MLogico FExpressaoLogica .
 
     $padrão  reduzir usando a regra 72 (ExpressaoLogica)
 
 
-Estado 160
+Estado 159
 
    39 CmdEnquanto: T_WHILE MLogico T_ABRE_PARENTESES ExpressaoLogica T_FECHA_PARENTESES MLogico . Bloco
 
-    T_ABRE_CHAVES  deslocar, e ir ao estado 156
+    T_ABRE_CHAVES  deslocar, e ir ao estado 155
 
-    Bloco  ir ao estado 165
+    Bloco  ir ao estado 164
 
 
-Estado 161
+Estado 160
 
    47 CmdEscrita: T_PRINT CmdEscritaMarcador T_ABRE_PARENTESES T_LITERAL T_FECHA_PARENTESES T_PONTO_E_VIRGULA .
 
     $padrão  reduzir usando a regra 47 (CmdEscrita)
 
 
-Estado 162
+Estado 161
 
    46 CmdEscrita: T_PRINT CmdEscritaMarcador T_ABRE_PARENTESES ExpressaoAritmetica T_FECHA_PARENTESES T_PONTO_E_VIRGULA .
 
     $padrão  reduzir usando a regra 46 (CmdEscrita)
 
 
-Estado 163
+Estado 162
 
    24 Bloco: T_ABRE_CHAVES ListaCmd . T_FECHA_CHAVES
    25 ListaCmd: ListaCmd . Comando
 
-    T_FECHA_CHAVES  deslocar, e ir ao estado 166
+    T_FECHA_CHAVES  deslocar, e ir ao estado 165
     T_IF            deslocar, e ir ao estado 14
     T_WHILE         deslocar, e ir ao estado 15
     T_PRINT         deslocar, e ir ao estado 16
@@ -2030,46 +2027,46 @@ Estado 163
     ChamadaFuncao  ir ao estado 32
 
 
-Estado 164
+Estado 163
 
    37 CmdSe: T_IF T_ABRE_PARENTESES ExpressaoLogica T_FECHA_PARENTESES MLogico Bloco NLogico . T_ELSE MLogico Bloco
 
-    T_ELSE  deslocar, e ir ao estado 167
+    T_ELSE  deslocar, e ir ao estado 166
 
 
-Estado 165
+Estado 164
 
    39 CmdEnquanto: T_WHILE MLogico T_ABRE_PARENTESES ExpressaoLogica T_FECHA_PARENTESES MLogico Bloco .
 
     $padrão  reduzir usando a regra 39 (CmdEnquanto)
 
 
-Estado 166
+Estado 165
 
    24 Bloco: T_ABRE_CHAVES ListaCmd T_FECHA_CHAVES .
 
     $padrão  reduzir usando a regra 24 (Bloco)
 
 
-Estado 167
+Estado 166
 
    37 CmdSe: T_IF T_ABRE_PARENTESES ExpressaoLogica T_FECHA_PARENTESES MLogico Bloco NLogico T_ELSE . MLogico Bloco
 
     $padrão  reduzir usando a regra 74 (MLogico)
 
-    MLogico  ir ao estado 168
+    MLogico  ir ao estado 167
 
 
-Estado 168
+Estado 167
 
    37 CmdSe: T_IF T_ABRE_PARENTESES ExpressaoLogica T_FECHA_PARENTESES MLogico Bloco NLogico T_ELSE MLogico . Bloco
 
-    T_ABRE_CHAVES  deslocar, e ir ao estado 156
+    T_ABRE_CHAVES  deslocar, e ir ao estado 155
 
-    Bloco  ir ao estado 169
+    Bloco  ir ao estado 168
 
 
-Estado 169
+Estado 168
 
    37 CmdSe: T_IF T_ABRE_PARENTESES ExpressaoLogica T_FECHA_PARENTESES MLogico Bloco NLogico T_ELSE MLogico Bloco .
 

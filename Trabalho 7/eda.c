@@ -87,7 +87,8 @@ void insereArvoreInternal(struct no* node, char* valor, int posicao){
 
 struct no* criaNo(char* valor, int num){
 	struct no* ret = (struct no*)malloc(sizeof(struct no));
-	ret->valor = valor;
+	ret->valor = malloc(sizeof(30));
+	strcpy(ret->valor, valor);
 	ret->tipo = NDEFINIDO;
 	ret->num = num;
 	ret->maior = NULL;
