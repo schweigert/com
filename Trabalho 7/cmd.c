@@ -600,9 +600,17 @@ int GetIndexPosition()
   return CmdIndex;
 }
 
+FUNC FuncList[MAX_FUNCS];
+int funcindex = 0;
 
-void createFunction(struct arvore* arv, char* name, TIPO retType)
+void createFunction(struct arvore* arv, char* name, TIPO retType, int size,int *argTypes)
 {
   insereArvore(arv, name);
   atualizaTipoDaArovre(arv->root, retType);
+
+  strcpy(FuncList[funcindex].name, name);
+  FuncList[funcindex].retType = retType;
+
+  funcindex++;
+
 }
