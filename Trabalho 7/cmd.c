@@ -605,12 +605,21 @@ int funcindex = 0;
 
 void createFunction(struct arvore* arv, char* name, TIPO retType, int size,int *argTypes)
 {
+
   insereArvore(arv, name);
   atualizaTipoDaArovre(arv->root, retType);
 
-  strcpy(FuncList[funcindex].name, name);
+  FuncList[funcindex].name = buscaPonteiroDoNome(arv, name);
   FuncList[funcindex].retType = retType;
 
   funcindex++;
+}
 
+void showFunctionTable()
+{
+  printf("\n\tFunction Table:\n");
+  int i;
+  for(i = 0; i < funcindex; i++){
+    printf(".method public static %s()%c\n", FuncList[i].name,FuncList[i].retType);
+  }
 }

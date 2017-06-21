@@ -582,14 +582,12 @@ int LabelCreate()
 {
   LastLabel++;
   CmdList[CmdIndex].label = LastLabel;
-  printf("Criando Label%d em %d\n", LastLabel, CmdIndex);
   return LastLabel;
 }
 
 void LabelUpdate(struct IntList* lista, int label)
 {
   if(lista == NULL) return;
-  printf("Update CMD %d with L%d\n",lista->valor, label);
   if(CmdList[lista->valor].arg1 == 0)CmdList[lista->valor].arg1 = label;
   LabelUpdate(lista->proximo, label);
 }

@@ -4,7 +4,7 @@
 #include "expr.tab.h"
 extern FILE *yyin;
 extern struct arvore* tabelaSimbolosGlobais;
-
+extern struct arvore* tabelaSimbolosFuncoes;
 
 int main(int c, char *argv[])
 {
@@ -19,10 +19,15 @@ int main(int c, char *argv[])
   writeJasminInit(argv[1]);
   writeJasminBody();
   tabelaSimbolosGlobais = criarArvore();
+  tabelaSimbolosFuncoes = criarArvore();
+
 	yyin = file;
 	yyparse();
-
+  printf("\n\tFunctional Tree:\n");
+  printArvore(tabelaSimbolosFuncoes);
+  printf("\n\tMain Tree:\n");
   printArvore(tabelaSimbolosGlobais);
+  showFunctionTable();
   showCmd();
   showLiteralTable();
   ShowCmdAscii();

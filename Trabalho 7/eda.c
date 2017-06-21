@@ -108,7 +108,7 @@ void printNodes (struct no* node, int nivel){
 	for(n = 0; n < nivel; n ++){
 		printf("  ");
 	}
-	printf("|-- %s / %d / %d\n", node->valor, node->tipo, node->num);
+	printf("|-- %s / %c / %d\n", node->valor, node->tipo, node->num);
 
 	printNodes(node->maior, nivel +1);
 	printNodes(node->menor, nivel +1);
@@ -198,4 +198,24 @@ void juntarIntListInternal(struct IntList* cabeca, struct IntList* bunda)
 	}
 
 	juntarIntList(cabeca->proximo, bunda);
+}
+
+
+char* buscaPonteiroDoNome(struct arvore* arv, char* valor)
+{
+	return buscaPonteiroDoNomeInternal(arv->root, valor);
+}
+
+char* buscaPonteiroDoNomeInternal(struct no* node, char* valor)
+{
+	if(node == NULL)
+	{
+		printf("Termo %s não encontrado\n", valor);
+		exit(-1);
+	}
+
+	int decisao = strcmp(node->valor, valor);
+	if(decisao == 0) return node->valor;
+	if(decisao > 0) return buscaPonteiroDoNomeInternal(node->maior, valor);
+	if(decisao < 0) return buscaPonteiroDoNomeInternal(node->menor, valor);
 }

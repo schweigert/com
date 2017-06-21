@@ -113,4 +113,5 @@ void rmJasminOut();
 
 // Functions
 void createFunction(struct arvore* arv, char* name, TIPO retType, int size,int *argTypes);
+void showFunctionTable();
 #endif

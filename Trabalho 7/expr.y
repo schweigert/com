@@ -17,9 +17,11 @@ typedef struct {
 }Atributo;
 
 struct arvore* tabelaSimbolosGlobais;
-
+struct arvore* tabelaSimbolosFuncoes;
 #define YYSTYPE Atributo
 int __linha__ = 1;
+
+int funcNargs = 0;
 
 
 %}
@@ -35,12 +37,12 @@ ListaFuncoes : ListaFuncoes Funcao
 	| Funcao
 	;
 
-Funcao : TipoRetorno T_ID T_ABRE_PARENTESES DeclParametros T_FECHA_PARENTESES BlocoPrincipal
-	| TipoRetorno T_ID T_ABRE_PARENTESES T_FECHA_PARENTESES BlocoPrincipal
+Funcao : TipoRetorno T_ID T_ABRE_PARENTESES DeclParametros T_FECHA_PARENTESES BlocoPrincipal { createFunction(tabelaSimbolosFuncoes, $2.nomeId, $1.tipo,funcNargs, NULL); funcNargs = 0;}
+	| TipoRetorno T_ID T_ABRE_PARENTESES T_FECHA_PARENTESES BlocoPrincipal {createFunction(tabelaSimbolosFuncoes, $2.nomeId, $1.tipo,funcNargs, NULL);funcNargs = 0;}
 	;
 
 TipoRetorno : T_VOID
-	| T_INT
+	| T_INT  {$$.tipo = INT;}
 	| T_DOUBLE
 	| T_STRING
 	;
@@ -49,7 +51,7 @@ DeclParametros : DeclParametros T_VIRGULA Parametro
 	| Parametro
 	;
 
-Parametro : Tipo T_ID {insereArvore(tabelaSimbolosGlobais,$2.nomeId);}
+Parametro : Tipo T_ID {insereArvore(tabelaSimbolosGlobais,$2.nomeId); funcNargs++;}
 	;
 
 BlocoPrincipal : T_ABRE_CHAVES Declaracoes ListaCmd T_FECHA_CHAVES  {writeJasminMain();}

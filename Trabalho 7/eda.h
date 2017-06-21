@@ -1,11 +1,11 @@
 #ifndef _EDA_N_DEF_
 #define _EDA_N_DEF_
 
-#define TIPO int
+#define TIPO char
 #define NDEFINIDO 0
-#define INT 1
-#define DOUBLE 2
-#define STRING 3
+#define INT 'I'
+#define DOUBLE 'D'
+#define STRING 'A'
 
 
 typedef struct List{
@@ -56,6 +56,9 @@ void printArvore (struct arvore* arv);
 void printNodes (struct no* node, int nivel);
 void insereListaNaArvore(List* lista, struct arvore* arv, TIPO tipo);
 void atualizaTipoDaArovre (struct no * root, TIPO tipo);
+
+char* buscaPonteiroDoNome(struct arvore* arv, char* valor);
+char* buscaPonteiroDoNomeInternal(struct no* node, char* valor);
 
 int buscaPosicao (struct arvore* arv ,char* valor);
 int buscaPosicaoInternal (struct no* node, char* valor);
