@@ -1,0 +1,15 @@
+{
+  int a,b,c;
+  a = 1;
+  b = 20;
+  c = (b / a) * 200;
+  print("(b / a) * 200");
+  print(c);
+  c++;
+  print(c);
+  c--;
+  print(c);
+  c -= 10 + 5;
+  print(c);
+  print("Fim algoritmo");
+}

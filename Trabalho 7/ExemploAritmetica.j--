@@ -1,0 +1,60 @@
+.class public ExemploAritmetica
+.super java/lang/Object
+
+.method public <init>()V
+	aload_0
+	invokenonvirtual java/lang/Object/<init>()V
+	return
+.end method
+
+
+.method public static main([Ljava/lang/String;)V
+	.limit stack 8
+	.limit locals 4
+	iconst_1
+	istore 1
+	bipush 20
+	istore 2
+	iload 2
+	iload 1
+	idiv
+	ldc 200
+	imul
+	istore 3
+	getstatic java/lang/System/out Ljava/io/PrintStream;
+	ldc "(b / a) * 200"
+	invokevirtual java/io/PrintStream/println(Ljava/lang/String;)V
+	getstatic java/lang/System/out Ljava/io/PrintStream;
+	iload 3
+	invokevirtual java/io/PrintStream/println(I)V
+	iload 3
+	iconst_1
+	iadd
+	istore 3
+	getstatic java/lang/System/out Ljava/io/PrintStream;
+	iload 3
+	invokevirtual java/io/PrintStream/println(I)V
+	iload 3
+	iconst_1
+	isub
+	istore 3
+	getstatic java/lang/System/out Ljava/io/PrintStream;
+	iload 3
+	invokevirtual java/io/PrintStream/println(I)V
+	bipush 10
+	iconst_5
+	iadd
+	iload 3
+	ineg
+	iadd
+	ineg
+	istore 3
+	getstatic java/lang/System/out Ljava/io/PrintStream;
+	iload 3
+	invokevirtual java/io/PrintStream/println(I)V
+	getstatic java/lang/System/out Ljava/io/PrintStream;
+	ldc "Fim algoritmo"
+	invokevirtual java/io/PrintStream/println(Ljava/lang/String;)V
+Label0:
+	return
+.end method
