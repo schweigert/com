@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 #include <stdlib.h>
 #include "cmd.h"
 #include "eda.h"
@@ -597,4 +598,11 @@ void LabelUpdate(struct IntList* lista, int label)
 int GetIndexPosition()
 {
   return CmdIndex;
+}
+
+
+void createFunction(struct arvore* arv, char* name, TIPO retType)
+{
+  insereArvore(arv, name);
+  atualizaTipoDaArovre(arv->root, retType);
 }

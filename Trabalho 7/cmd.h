@@ -13,6 +13,11 @@ typedef struct {
   int arg2;
 } CMD;
 
+typedef struct {
+  char* name;
+  TIPO retType;
+} FUNC;
+
 // Commands               #Bin ID   #Arg1   #Arg2
 #define CMD_ISTORE        0x0000 // Posi    --
 #define CMD_BIPUSH        0x0001 // Number  --
@@ -105,5 +110,8 @@ void writeJasminExit();
 
 void callJasmin();
 void rmJasminOut();
+
+// Functions
+void createFunction(struct arvore* arv, char* name, TIPO retType);
 
 #endif
