@@ -583,14 +583,12 @@ int LabelCreate()
 {
   LastLabel++;
   CmdList[CmdIndex].label = LastLabel;
-  printf("Criando Label%d em %d\n", LastLabel, CmdIndex);
   return LastLabel;
 }
 
 void LabelUpdate(struct IntList* lista, int label)
 {
   if(lista == NULL) return;
-  printf("Update CMD %d with L%d\n",lista->valor, label);
   if(CmdList[lista->valor].arg1 == 0)CmdList[lista->valor].arg1 = label;
   LabelUpdate(lista->proximo, label);
 }
@@ -603,16 +601,76 @@ int GetIndexPosition()
 FUNC FuncList[MAX_FUNCS] = {0};
 int funcindex = 0;
 
-void createFunction(struct arvore* arv, char* name, TIPO retType, int size,int *argTypes)
+void createFunction(struct arvore* arv, char* name, TIPO retType, int size,TIPO *argTypes)
 {
+  if(argTypes == NULL)
+  {
+    argTypes = criaListatipoVoid();
+  }
 
+  printf("DEF FUNC %s(%s)%c\n",name, argTypes, retType);
   insereArvore(arv, name);
   atualizaTipoDaArovre(arv->root, retType);
-
   FuncList[funcindex].name = buscaPonteiroDoNome(arv, name);
   FuncList[funcindex].retType = retType;
-
+  FuncList[funcindex].args = size;
+  FuncList[funcindex].argsType = argTypes;
   funcindex++;
+
+}
+
+TIPO* criaListatipoVoid()
+{
+
+  TIPO* ret = malloc(sizeof(TIPO)*2);
+  ret[0] = VOID;
+  ret[1] = '\0';
+  return ret;
+}
+
+TIPO* criaListaTipo(TIPO initial)
+{
+  TIPO* ret = malloc(sizeof(TIPO)*256);
+  ret[0] = initial;
+  ret[1] = '\0';
+  return ret;
+}
+
+void adicionaTipo(TIPO* lista , TIPO valor)
+{
+  int i = 0;
+  for(i = 0; ; i++)
+  {
+
+    if(lista[i] == '\0'){
+      lista[i] = valor;
+      lista[i+1] = '\0';
+      break;
+    }
+  }
+}
+
+TIPO* addListaTipo(TIPO* valor1, TIPO* valor2)
+{
+  TIPO* ret = malloc(sizeof(TIPO)*256);
+
+  printf("%s\n", valor2);
+  strcpy(ret, valor1);
+  strcat(ret, valor2);
+  printf("%s", ret);
+  return ret;
+}
+
+TIPO* createListaTipoIntNVezes(int n)
+{
+  TIPO* ret = malloc(sizeof(TIPO)*256);
+  int i;
+  for(i = 0; i < n; i++)
+  {
+    ret[i] = 'I';
+    ret[i+1] = '\0';
+  }
+  return ret;
 }
 
 void showFunctionTable()
@@ -620,6 +678,6 @@ void showFunctionTable()
   printf("\n\tFunction Table:\n");
   int i;
   for(i = 0; i < funcindex; i++){
-    printf(".method public static %s()%c\n", FuncList[i].name,FuncList[i].retType);
+    printf(".method public static %s(%s)%c\n", FuncList[i].name,FuncList[i].argsType,FuncList[i].retType);
   }
 }

@@ -10,6 +10,7 @@ typedef struct {
     char nomeId[10];
     char* strg;
     TIPO tipo;
+    TIPO* listaTipo;
     double double_value;
     struct IntList* listav;
     struct IntList* listaf;
@@ -37,18 +38,18 @@ ListaFuncoes : ListaFuncoes Funcao
 	| Funcao
 	;
 
-Funcao : TipoRetorno T_ID T_ABRE_PARENTESES DeclParametros T_FECHA_PARENTESES BlocoPrincipal { createFunction(tabelaSimbolosFuncoes, $2.nomeId, $1.tipo,funcNargs, NULL); funcNargs = 0;}
+Funcao : TipoRetorno T_ID T_ABRE_PARENTESES DeclParametros T_FECHA_PARENTESES BlocoPrincipal { createFunction(tabelaSimbolosFuncoes, $2.nomeId, $1.tipo,funcNargs,createListaTipoIntNVezes(funcNargs)); funcNargs = 0; }
 	| TipoRetorno T_ID T_ABRE_PARENTESES T_FECHA_PARENTESES BlocoPrincipal {createFunction(tabelaSimbolosFuncoes, $2.nomeId, $1.tipo,funcNargs, NULL);funcNargs = 0;}
 	;
 
 TipoRetorno : T_VOID
-	| T_INT  {$$.tipo = INT;}
+	| T_INT {$$.tipo = INT; }
 	| T_DOUBLE
 	| T_STRING
 	;
 
-DeclParametros : DeclParametros T_VIRGULA Parametro
-	| Parametro
+DeclParametros : DeclParametros T_VIRGULA Parametro {  }
+	| Parametro { funcNargs++; }
 	;
 
 Parametro : Tipo T_ID {insereArvore(tabelaSimbolosGlobais,$2.nomeId); funcNargs++;}

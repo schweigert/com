@@ -48,6 +48,7 @@ struct arvore* criarArvore(){
 
 void insereArvore(struct arvore* arv, char* valor){
 	if(arv->root == NULL){
+
 		arv->qnt++;
 		arv->root = criaNo(valor,arv->qnt);
 		return;
@@ -68,11 +69,13 @@ void insereArvoreInternal(struct no* node, char* valor, int posicao){
 	}
 
 	if(ret >0 && node->maior == NULL){
+
 		node->maior = criaNo(valor,posicao);
 		return;
 	}
 
 	if(ret <0 && node->menor == NULL){
+
 		node->menor = criaNo(valor,posicao);
 		return;
 	}
@@ -86,9 +89,12 @@ void insereArvoreInternal(struct no* node, char* valor, int posicao){
 }
 
 struct no* criaNo(char* valor, int num){
+
 	struct no* ret = (struct no*)malloc(sizeof(struct no));
-	ret->valor = malloc(sizeof(30));
+
+	ret->valor = malloc(sizeof(char)*100);
 	strcpy(ret->valor, valor);
+	ret->valor[99] = '\0';
 	ret->tipo = NDEFINIDO;
 	ret->num = num;
 	ret->maior = NULL;
@@ -102,11 +108,15 @@ void printArvore (struct arvore* arv){
 
 
 void printNodes (struct no* node, int nivel){
-	if(node == NULL) return;
 
 	int n = 0;
 	for(n = 0; n < nivel; n ++){
 		printf("  ");
+	}
+	if(node == NULL)
+	{
+		printf("|-- NULL\n");
+		return;
 	}
 	printf("|-- %s / %c / %d\n", node->valor, node->tipo, node->num);
 

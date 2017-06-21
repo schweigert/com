@@ -75,6 +75,7 @@ typedef struct {
     char nomeId[10];
     char* strg;
     TIPO tipo;
+    TIPO* listaTipo;
     double double_value;
     struct IntList* listav;
     struct IntList* listaf;
@@ -90,7 +91,7 @@ int funcNargs = 0;
 
 
 
-#line 94 "expr.tab.c" /* yacc.c:339  */
+#line 95 "expr.tab.c" /* yacc.c:339  */
 
 # ifndef YY_NULLPTR
 #  if defined __cplusplus && 201103L <= __cplusplus
@@ -180,7 +181,7 @@ int yyparse (void);
 
 /* Copy the second part of user declarations.  */
 
-#line 184 "expr.tab.c" /* yacc.c:358  */
+#line 185 "expr.tab.c" /* yacc.c:358  */
 
 #ifdef short
 # undef short
@@ -481,15 +482,15 @@ static const yytype_uint8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    32,    32,    33,    36,    37,    40,    41,    44,    45,
-      46,    47,    50,    51,    54,    57,    58,    61,    62,    65,
-      69,    70,    71,    74,    75,    78,    81,    82,    85,    86,
-      87,    88,    89,    90,    91,    94,    95,    98,    99,   102,
-     104,   107,   108,   109,   110,   111,   112,   115,   116,   122,
-     126,   129,   132,   133,   136,   137,   138,   139,   144,   145,
-     146,   147,   148,   151,   152,   153,   154,   157,   158,   159,
-     160,   161,   164,   165,   166,   169,   171,   172,   173,   174,
-     175,   176,   177,   178
+       0,    33,    33,    34,    37,    38,    41,    42,    45,    46,
+      47,    48,    51,    52,    55,    58,    59,    62,    63,    66,
+      70,    71,    72,    75,    76,    79,    82,    83,    86,    87,
+      88,    89,    90,    91,    92,    95,    96,    99,   100,   103,
+     105,   108,   109,   110,   111,   112,   113,   116,   117,   123,
+     127,   130,   133,   134,   137,   138,   139,   140,   145,   146,
+     147,   148,   149,   152,   153,   154,   155,   158,   159,   160,
+     161,   162,   165,   166,   167,   170,   172,   173,   174,   175,
+     176,   177,   178,   179
 };
 #endif
 
@@ -1392,292 +1393,304 @@ yyreduce:
   switch (yyn)
     {
         case 6:
-#line 40 "expr.y" /* yacc.c:1646  */
-    { createFunction(tabelaSimbolosFuncoes, (yyvsp[-4]).nomeId, (yyvsp[-5]).tipo,funcNargs, NULL); funcNargs = 0;}
-#line 1398 "expr.tab.c" /* yacc.c:1646  */
+#line 41 "expr.y" /* yacc.c:1646  */
+    { createFunction(tabelaSimbolosFuncoes, (yyvsp[-4]).nomeId, (yyvsp[-5]).tipo,funcNargs,createListaTipoIntNVezes(funcNargs)); funcNargs = 0; }
+#line 1399 "expr.tab.c" /* yacc.c:1646  */
     break;
 
   case 7:
-#line 41 "expr.y" /* yacc.c:1646  */
+#line 42 "expr.y" /* yacc.c:1646  */
     {createFunction(tabelaSimbolosFuncoes, (yyvsp[-3]).nomeId, (yyvsp[-4]).tipo,funcNargs, NULL);funcNargs = 0;}
-#line 1404 "expr.tab.c" /* yacc.c:1646  */
+#line 1405 "expr.tab.c" /* yacc.c:1646  */
     break;
 
   case 9:
-#line 45 "expr.y" /* yacc.c:1646  */
-    {(yyval).tipo = INT;}
-#line 1410 "expr.tab.c" /* yacc.c:1646  */
+#line 46 "expr.y" /* yacc.c:1646  */
+    {(yyval).tipo = INT; }
+#line 1411 "expr.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 12:
+#line 51 "expr.y" /* yacc.c:1646  */
+    {  }
+#line 1417 "expr.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 13:
+#line 52 "expr.y" /* yacc.c:1646  */
+    { funcNargs++; }
+#line 1423 "expr.tab.c" /* yacc.c:1646  */
     break;
 
   case 14:
-#line 54 "expr.y" /* yacc.c:1646  */
+#line 55 "expr.y" /* yacc.c:1646  */
     {insereArvore(tabelaSimbolosGlobais,(yyvsp[0]).nomeId); funcNargs++;}
-#line 1416 "expr.tab.c" /* yacc.c:1646  */
+#line 1429 "expr.tab.c" /* yacc.c:1646  */
     break;
 
   case 15:
-#line 57 "expr.y" /* yacc.c:1646  */
+#line 58 "expr.y" /* yacc.c:1646  */
     {writeJasminMain();}
-#line 1422 "expr.tab.c" /* yacc.c:1646  */
+#line 1435 "expr.tab.c" /* yacc.c:1646  */
     break;
 
   case 16:
-#line 58 "expr.y" /* yacc.c:1646  */
+#line 59 "expr.y" /* yacc.c:1646  */
     {writeJasminMain();}
-#line 1428 "expr.tab.c" /* yacc.c:1646  */
+#line 1441 "expr.tab.c" /* yacc.c:1646  */
     break;
 
   case 19:
-#line 65 "expr.y" /* yacc.c:1646  */
+#line 66 "expr.y" /* yacc.c:1646  */
     {insereListaNaArvore((yyvsp[-1]).listaId, tabelaSimbolosGlobais, (yyvsp[-2]).tipo);}
-#line 1434 "expr.tab.c" /* yacc.c:1646  */
+#line 1447 "expr.tab.c" /* yacc.c:1646  */
     break;
 
   case 20:
-#line 69 "expr.y" /* yacc.c:1646  */
+#line 70 "expr.y" /* yacc.c:1646  */
     {(yyval).tipo = INT;}
-#line 1440 "expr.tab.c" /* yacc.c:1646  */
+#line 1453 "expr.tab.c" /* yacc.c:1646  */
     break;
 
   case 21:
-#line 70 "expr.y" /* yacc.c:1646  */
+#line 71 "expr.y" /* yacc.c:1646  */
     {(yyval).tipo = DOUBLE;}
-#line 1446 "expr.tab.c" /* yacc.c:1646  */
+#line 1459 "expr.tab.c" /* yacc.c:1646  */
     break;
 
   case 22:
-#line 71 "expr.y" /* yacc.c:1646  */
+#line 72 "expr.y" /* yacc.c:1646  */
     {(yyval).tipo = STRING;}
-#line 1452 "expr.tab.c" /* yacc.c:1646  */
+#line 1465 "expr.tab.c" /* yacc.c:1646  */
     break;
 
   case 23:
-#line 74 "expr.y" /* yacc.c:1646  */
+#line 75 "expr.y" /* yacc.c:1646  */
     {insereLista((yyvsp[-2]).listaId, (yyvsp[0]).nomeId); (yyval).listaId = (yyvsp[-2]).listaId;}
-#line 1458 "expr.tab.c" /* yacc.c:1646  */
+#line 1471 "expr.tab.c" /* yacc.c:1646  */
     break;
 
   case 24:
-#line 75 "expr.y" /* yacc.c:1646  */
+#line 76 "expr.y" /* yacc.c:1646  */
     {(yyval).listaId = criaLista((yyvsp[0]).nomeId);}
-#line 1464 "expr.tab.c" /* yacc.c:1646  */
+#line 1477 "expr.tab.c" /* yacc.c:1646  */
     break;
 
   case 37:
-#line 98 "expr.y" /* yacc.c:1646  */
+#line 99 "expr.y" /* yacc.c:1646  */
     { LabelUpdate((yyvsp[-3]).listav, (yyvsp[-1]).label); LabelUpdate((yyvsp[-3]).listaf, LabelCreate());  }
-#line 1470 "expr.tab.c" /* yacc.c:1646  */
+#line 1483 "expr.tab.c" /* yacc.c:1646  */
     break;
 
   case 38:
-#line 99 "expr.y" /* yacc.c:1646  */
+#line 100 "expr.y" /* yacc.c:1646  */
     {LabelUpdate((yyvsp[-7]).listav, (yyvsp[-5]).label); LabelUpdate((yyvsp[-7]).listaf, (yyvsp[-1]).label); LabelUpdate((yyvsp[-3]).listav, LabelCreate());}
-#line 1476 "expr.tab.c" /* yacc.c:1646  */
+#line 1489 "expr.tab.c" /* yacc.c:1646  */
     break;
 
   case 39:
-#line 102 "expr.y" /* yacc.c:1646  */
+#line 103 "expr.y" /* yacc.c:1646  */
     {(yyval).listav = criaIntList(GetIndexPosition()); CmdGOTO();}
-#line 1482 "expr.tab.c" /* yacc.c:1646  */
+#line 1495 "expr.tab.c" /* yacc.c:1646  */
     break;
 
   case 40:
-#line 104 "expr.y" /* yacc.c:1646  */
+#line 105 "expr.y" /* yacc.c:1646  */
     {LabelUpdate((yyvsp[-3]).listav, (yyvsp[-1]).label); CmdGOTOLabel((yyvsp[-5]).label); LabelUpdate((yyvsp[-3]).listaf, LabelCreate()); CmdEndWhile();}
-#line 1488 "expr.tab.c" /* yacc.c:1646  */
+#line 1501 "expr.tab.c" /* yacc.c:1646  */
     break;
 
   case 41:
-#line 107 "expr.y" /* yacc.c:1646  */
+#line 108 "expr.y" /* yacc.c:1646  */
     {CmdIstore(tabelaSimbolosGlobais, (yyvsp[-3]).nomeId);}
-#line 1494 "expr.tab.c" /* yacc.c:1646  */
+#line 1507 "expr.tab.c" /* yacc.c:1646  */
     break;
 
   case 43:
-#line 109 "expr.y" /* yacc.c:1646  */
+#line 110 "expr.y" /* yacc.c:1646  */
     {CmdIload(tabelaSimbolosGlobais, (yyvsp[-4]).nomeId); CmdIadd(); CmdIstore(tabelaSimbolosGlobais, (yyvsp[-4]).nomeId); }
-#line 1500 "expr.tab.c" /* yacc.c:1646  */
+#line 1513 "expr.tab.c" /* yacc.c:1646  */
     break;
 
   case 44:
-#line 110 "expr.y" /* yacc.c:1646  */
+#line 111 "expr.y" /* yacc.c:1646  */
     {CmdIload(tabelaSimbolosGlobais, (yyvsp[-4]).nomeId); CmdIneg(); CmdIadd(); CmdIneg(); CmdIstore(tabelaSimbolosGlobais, (yyvsp[-4]).nomeId); }
-#line 1506 "expr.tab.c" /* yacc.c:1646  */
+#line 1519 "expr.tab.c" /* yacc.c:1646  */
     break;
 
   case 45:
-#line 111 "expr.y" /* yacc.c:1646  */
+#line 112 "expr.y" /* yacc.c:1646  */
     { CmdIload(tabelaSimbolosGlobais, (yyvsp[-3]).nomeId); CmdBipush(1); CmdIadd(); CmdIstore(tabelaSimbolosGlobais, (yyvsp[-3]).nomeId); }
-#line 1512 "expr.tab.c" /* yacc.c:1646  */
+#line 1525 "expr.tab.c" /* yacc.c:1646  */
     break;
 
   case 46:
-#line 112 "expr.y" /* yacc.c:1646  */
+#line 113 "expr.y" /* yacc.c:1646  */
     { CmdIload(tabelaSimbolosGlobais, (yyvsp[-3]).nomeId);  CmdBipush(1); CmdIsub(); CmdIstore(tabelaSimbolosGlobais, (yyvsp[-3]).nomeId); }
-#line 1518 "expr.tab.c" /* yacc.c:1646  */
+#line 1531 "expr.tab.c" /* yacc.c:1646  */
     break;
 
   case 47:
-#line 115 "expr.y" /* yacc.c:1646  */
+#line 116 "expr.y" /* yacc.c:1646  */
     {CmdInvokeOutInt();}
-#line 1524 "expr.tab.c" /* yacc.c:1646  */
+#line 1537 "expr.tab.c" /* yacc.c:1646  */
     break;
 
   case 48:
-#line 116 "expr.y" /* yacc.c:1646  */
+#line 117 "expr.y" /* yacc.c:1646  */
     {
                                                         CmdLdc((yyvsp[-2]).strg);
                                                         CmdInvokeOutLiteral();
 							}
-#line 1533 "expr.tab.c" /* yacc.c:1646  */
+#line 1546 "expr.tab.c" /* yacc.c:1646  */
     break;
 
   case 49:
-#line 122 "expr.y" /* yacc.c:1646  */
+#line 123 "expr.y" /* yacc.c:1646  */
     {CmdGetStaticOut();}
-#line 1539 "expr.tab.c" /* yacc.c:1646  */
+#line 1552 "expr.tab.c" /* yacc.c:1646  */
     break;
 
   case 50:
-#line 126 "expr.y" /* yacc.c:1646  */
+#line 127 "expr.y" /* yacc.c:1646  */
     { CmdReadInt(tabelaSimbolosGlobais, (yyvsp[-2]).nomeId); }
-#line 1545 "expr.tab.c" /* yacc.c:1646  */
+#line 1558 "expr.tab.c" /* yacc.c:1646  */
     break;
 
   case 58:
-#line 144 "expr.y" /* yacc.c:1646  */
+#line 145 "expr.y" /* yacc.c:1646  */
     {CmdIadd();}
-#line 1551 "expr.tab.c" /* yacc.c:1646  */
+#line 1564 "expr.tab.c" /* yacc.c:1646  */
     break;
 
   case 59:
-#line 145 "expr.y" /* yacc.c:1646  */
+#line 146 "expr.y" /* yacc.c:1646  */
     {CmdIsub();}
-#line 1557 "expr.tab.c" /* yacc.c:1646  */
+#line 1570 "expr.tab.c" /* yacc.c:1646  */
     break;
 
   case 60:
-#line 146 "expr.y" /* yacc.c:1646  */
+#line 147 "expr.y" /* yacc.c:1646  */
     {CmdIshr();}
-#line 1563 "expr.tab.c" /* yacc.c:1646  */
+#line 1576 "expr.tab.c" /* yacc.c:1646  */
     break;
 
   case 61:
-#line 147 "expr.y" /* yacc.c:1646  */
+#line 148 "expr.y" /* yacc.c:1646  */
     {CmdIshl();}
-#line 1569 "expr.tab.c" /* yacc.c:1646  */
+#line 1582 "expr.tab.c" /* yacc.c:1646  */
     break;
 
   case 63:
-#line 151 "expr.y" /* yacc.c:1646  */
+#line 152 "expr.y" /* yacc.c:1646  */
     {CmdImull();}
-#line 1575 "expr.tab.c" /* yacc.c:1646  */
+#line 1588 "expr.tab.c" /* yacc.c:1646  */
     break;
 
   case 64:
-#line 152 "expr.y" /* yacc.c:1646  */
+#line 153 "expr.y" /* yacc.c:1646  */
     {CmdIdiv();}
-#line 1581 "expr.tab.c" /* yacc.c:1646  */
+#line 1594 "expr.tab.c" /* yacc.c:1646  */
     break;
 
   case 65:
-#line 153 "expr.y" /* yacc.c:1646  */
+#line 154 "expr.y" /* yacc.c:1646  */
     {CmdIrem();}
-#line 1587 "expr.tab.c" /* yacc.c:1646  */
+#line 1600 "expr.tab.c" /* yacc.c:1646  */
     break;
 
   case 68:
-#line 158 "expr.y" /* yacc.c:1646  */
+#line 159 "expr.y" /* yacc.c:1646  */
     {CmdIneg();}
-#line 1593 "expr.tab.c" /* yacc.c:1646  */
+#line 1606 "expr.tab.c" /* yacc.c:1646  */
     break;
 
   case 69:
-#line 159 "expr.y" /* yacc.c:1646  */
+#line 160 "expr.y" /* yacc.c:1646  */
     {CmdBipush((int)(yyvsp[0]).double_value);}
-#line 1599 "expr.tab.c" /* yacc.c:1646  */
+#line 1612 "expr.tab.c" /* yacc.c:1646  */
     break;
 
   case 70:
-#line 160 "expr.y" /* yacc.c:1646  */
+#line 161 "expr.y" /* yacc.c:1646  */
     {CmdIload(tabelaSimbolosGlobais, (yyvsp[0]).nomeId);}
-#line 1605 "expr.tab.c" /* yacc.c:1646  */
+#line 1618 "expr.tab.c" /* yacc.c:1646  */
     break;
 
   case 72:
-#line 164 "expr.y" /* yacc.c:1646  */
+#line 165 "expr.y" /* yacc.c:1646  */
     { LabelUpdate((yyvsp[-3]).listav, (yyvsp[-1]).label); (yyval).listaf =  juntarIntList((yyvsp[-3]).listaf, (yyvsp[0]).listaf);  (yyval).listav = (yyvsp[0]).listav;}
-#line 1611 "expr.tab.c" /* yacc.c:1646  */
+#line 1624 "expr.tab.c" /* yacc.c:1646  */
     break;
 
   case 73:
-#line 165 "expr.y" /* yacc.c:1646  */
+#line 166 "expr.y" /* yacc.c:1646  */
     { LabelUpdate((yyvsp[-3]).listaf, (yyvsp[-1]).label); (yyval).listav = juntarIntList((yyvsp[-3]).listav, (yyvsp[0]).listav); (yyval).listaf = (yyvsp[0]).listaf; }
-#line 1617 "expr.tab.c" /* yacc.c:1646  */
+#line 1630 "expr.tab.c" /* yacc.c:1646  */
     break;
 
   case 74:
-#line 166 "expr.y" /* yacc.c:1646  */
+#line 167 "expr.y" /* yacc.c:1646  */
     { (yyval).listav = (yyvsp[0]).listav; (yyval).listaf = (yyvsp[0]).listaf;}
-#line 1623 "expr.tab.c" /* yacc.c:1646  */
+#line 1636 "expr.tab.c" /* yacc.c:1646  */
     break;
 
   case 75:
-#line 169 "expr.y" /* yacc.c:1646  */
+#line 170 "expr.y" /* yacc.c:1646  */
     {(yyval).label = LabelCreate();}
-#line 1629 "expr.tab.c" /* yacc.c:1646  */
+#line 1642 "expr.tab.c" /* yacc.c:1646  */
     break;
 
   case 76:
-#line 171 "expr.y" /* yacc.c:1646  */
+#line 172 "expr.y" /* yacc.c:1646  */
     { (yyval).listav = (yyvsp[0]).listaf; (yyval).listaf = (yyvsp[0]).listav; }
-#line 1635 "expr.tab.c" /* yacc.c:1646  */
+#line 1648 "expr.tab.c" /* yacc.c:1646  */
     break;
 
   case 77:
-#line 172 "expr.y" /* yacc.c:1646  */
+#line 173 "expr.y" /* yacc.c:1646  */
     { (yyval).listav = (yyvsp[-1]).listav; (yyval).listaf = (yyvsp[-1]).listaf; }
-#line 1641 "expr.tab.c" /* yacc.c:1646  */
+#line 1654 "expr.tab.c" /* yacc.c:1646  */
     break;
 
   case 78:
-#line 173 "expr.y" /* yacc.c:1646  */
+#line 174 "expr.y" /* yacc.c:1646  */
     { (yyval).listav =  criaIntList(GetIndexPosition()); (yyval).listaf = criaIntList(GetIndexPosition()+1); CmdIfEQ(); CmdGOTO();}
-#line 1647 "expr.tab.c" /* yacc.c:1646  */
+#line 1660 "expr.tab.c" /* yacc.c:1646  */
     break;
 
   case 79:
-#line 174 "expr.y" /* yacc.c:1646  */
+#line 175 "expr.y" /* yacc.c:1646  */
     { (yyval).listav =  criaIntList(GetIndexPosition()); (yyval).listaf = criaIntList(GetIndexPosition()+1); CmdIfNE(); CmdGOTO();}
-#line 1653 "expr.tab.c" /* yacc.c:1646  */
+#line 1666 "expr.tab.c" /* yacc.c:1646  */
     break;
 
   case 80:
-#line 175 "expr.y" /* yacc.c:1646  */
+#line 176 "expr.y" /* yacc.c:1646  */
     { (yyval).listav =  criaIntList(GetIndexPosition()); (yyval).listaf = criaIntList(GetIndexPosition()+1); CmdIfGT(); CmdGOTO();}
-#line 1659 "expr.tab.c" /* yacc.c:1646  */
+#line 1672 "expr.tab.c" /* yacc.c:1646  */
     break;
 
   case 81:
-#line 176 "expr.y" /* yacc.c:1646  */
+#line 177 "expr.y" /* yacc.c:1646  */
     { (yyval).listav =  criaIntList(GetIndexPosition()); (yyval).listaf = criaIntList(GetIndexPosition()+1); CmdIfGE(); CmdGOTO();}
-#line 1665 "expr.tab.c" /* yacc.c:1646  */
+#line 1678 "expr.tab.c" /* yacc.c:1646  */
     break;
 
   case 82:
-#line 177 "expr.y" /* yacc.c:1646  */
+#line 178 "expr.y" /* yacc.c:1646  */
     { (yyval).listav =  criaIntList(GetIndexPosition()); (yyval).listaf = criaIntList(GetIndexPosition()+1); CmdIfLT(); CmdGOTO();}
-#line 1671 "expr.tab.c" /* yacc.c:1646  */
+#line 1684 "expr.tab.c" /* yacc.c:1646  */
     break;
 
   case 83:
-#line 178 "expr.y" /* yacc.c:1646  */
+#line 179 "expr.y" /* yacc.c:1646  */
     { (yyval).listav =  criaIntList(GetIndexPosition()); (yyval).listaf = criaIntList(GetIndexPosition()+1); CmdIfLE(); CmdGOTO();}
-#line 1677 "expr.tab.c" /* yacc.c:1646  */
+#line 1690 "expr.tab.c" /* yacc.c:1646  */
     break;
 
 
-#line 1681 "expr.tab.c" /* yacc.c:1646  */
+#line 1694 "expr.tab.c" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -1905,7 +1918,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 186 "expr.y" /* yacc.c:1906  */
+#line 187 "expr.y" /* yacc.c:1906  */
 
 #include "lex.yy.c"
 

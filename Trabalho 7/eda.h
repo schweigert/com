@@ -6,6 +6,7 @@
 #define INT 'I'
 #define DOUBLE 'D'
 #define STRING 'A'
+#define VOID 'V'
 
 
 typedef struct List{

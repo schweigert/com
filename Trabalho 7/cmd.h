@@ -16,6 +16,8 @@ typedef struct {
 typedef struct {
   char* name;
   TIPO retType;
+  int args;
+  TIPO* argsType;
 } FUNC;
 
 // Commands               #Bin ID   #Arg1   #Arg2
@@ -112,6 +114,12 @@ void callJasmin();
 void rmJasminOut();
 
 // Functions
-void createFunction(struct arvore* arv, char* name, TIPO retType, int size,int *argTypes);
+void createFunction(struct arvore* arv, char* name, TIPO retType, int size,TIPO *argTypes);
 void showFunctionTable();
+
+TIPO* criaListaTipo(TIPO initial);
+void adicionaTipo(TIPO* lista , TIPO valor);
+TIPO* criaListatipoVoid();
+TIPO* addListaTipo(TIPO* valor1, TIPO* valor2);
+TIPO* createListaTipoIntNVezes(int);
 #endif
