@@ -8,6 +8,8 @@ CMD CmdList[MAX_COMMAND] = {0};
 int NumVars = 1;
 int CmdIndex = 0;
 
+int LastLabel = 0;
+
 char* LiteralTable[1000];
 int   LiteralTableIndex = 0;
 
@@ -348,6 +350,11 @@ void CmdReadInt(struct arvore* arv, char* var)
   CmdIstore(arv, var);
 }
 
+void CmdIreturn()
+{
+  cmdGenerate(CMD_IRETURN, -1, -1);
+}
+
 char* removeAsps(char* string){
 
   char* i = string;
@@ -439,6 +446,20 @@ void writeJasminMain()
 
   fprintf(jasminFile, "\treturn\n");
   fprintf(jasminFile, ".end method\n");
+}
+
+void writeJasminFunc(TIPO ret, char* funcName, char* param)
+{
+
+  fprintf(jasminFile, "\n\n.method public static %s(%s)%c\n",funcName, param, ret);
+  fprintf(jasminFile, "\t.limit stack 20\n");
+  fprintf(jasminFile, "\t.limit locals %d\n", NumVars);
+
+  writeCmds();
+
+  fprintf(jasminFile, "\treturn\n");
+  fprintf(jasminFile, ".end method\n");
+
 }
 
 void writeCmds()
@@ -538,6 +559,9 @@ void writeCmds()
     if(CmdList[i].command == CMD_READ )
       fprintf(jasminFile, "\tinvokevirtual java/io/InputStream/read()I\n");
 
+    if(CmdList[i].command == CMD_IRETURN )
+      fprintf(jasminFile, "\tireturn\n");
+
 
 
   }
@@ -545,10 +569,32 @@ void writeCmds()
   if(CmdList[CmdIndex].label != -1) fprintf(jasminFile, "Label%d:\n",CmdList[CmdIndex].label);
 }
 
+
+
+void clearJasmin()
+{
+  // Clear Label
+  LastLabel = 0;
+
+  int i = 0;
+  for(i = 0; i < MAX_COMMAND; i++){
+    CmdList[i].label = -1;
+    CmdList[i].command = -1;
+    CmdList[i].arg1 = -1;
+    CmdList[i].arg2 = -1;
+  }
+
+  // Clear Commands
+  NumVars = 0;
+  CmdIndex = 0;
+
+}
+
 void writeJasminExit()
 {
   fclose(jasminFile);
 }
+
 
 void callJasmin()
 {
@@ -576,8 +622,6 @@ void callJasmin()
 
   int r = system(command);
 }
-
-int LastLabel = 0;
 
 int LabelCreate()
 {
@@ -665,11 +709,11 @@ TIPO* createListaTipoIntNVezes(int n)
 {
   TIPO* ret = malloc(sizeof(TIPO)*256);
   int i;
-  for(i = 0; i < n; i++)
+  for(i = 0; i < n-1; i++)
   {
-    ret[i] = 'I';
-    ret[i+1] = '\0';
+      ret[i] = 'I';
   }
+  ret[i] = '\0';
   return ret;
 }
 

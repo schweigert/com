@@ -5,12 +5,17 @@ int fat(int n){
 	return n*fat(n-1);
 }
 
-int superfat(int j, int l){
-	if(j == 0)
-	{
-		return 1;
-	}
-	return fat(j)*superfat(j-1);
+int foo(int a, int b ,int c)
+{
+	return (a+b+c);
+}
+int bar(int a, int b ,int c, int d)
+{
+	return (a+b+c);
+}
+int foo2(int a, int b ,int c, int d, int e, int f, int g)
+{
+	return (a+b+c);
 }
 
 {

@@ -52,7 +52,7 @@ typedef struct {
 #define CMD_GETSTATICIN   0x001C // --      -- -> getstatic java/lang/System/in Ljava/io/InputStream;
 #define CMD_READ          0x001D // --      -- -> invokevirtual java/io/InputStream/read()I \n istore id
 #define CMD_ENDWHILE      0x001E // --      --
-
+#define CMD_IRETURN        0x001F // --      --
 
 void showCmd();
 void ShowCmdAscii();
@@ -82,6 +82,7 @@ void CmdIsub ();
 void CmdGetStaticOut ();
 void CmdInvokeOutInt ();
 void CmdInvokeOutLiteral ();
+void CmdIreturn();
 
 void CmdReadInt();
 
@@ -108,6 +109,8 @@ void writeCmds();
 void writeJasminInit(char* file);
 void writeJasminBody();
 void writeJasminMain();
+void writeJasminFunc(TIPO ret, char* funcName, char* param);
+void clearJasmin();
 void writeJasminExit();
 
 void callJasmin();

@@ -1,6 +1,7 @@
 %{
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "expr.tab.h"
 #include "eda.h"
 #include "cmd.h"
@@ -31,14 +32,16 @@ int funcNargs = 0;
 
 %%
 Programa : ListaFuncoes BlocoPrincipal
-	| BlocoPrincipal
+	| BlocoPrincipal {writeJasminMain();clearJasmin();}
 	;
 
-ListaFuncoes : ListaFuncoes Funcao
-	| Funcao
+ListaFuncoes :  ListaFuncoes MZerador Funcao {writeJasminFunc($3.tipo,$3.nomeId, $3.listaTipo);ShowCmdAscii();clearJasmin();tabelaSimbolosGlobais = criarArvore();}
+	| Funcao {writeJasminFunc($1.tipo,$1.nomeId, $1.listaTipo);ShowCmdAscii();clearJasmin();tabelaSimbolosGlobais = criarArvore();}
 	;
 
-Funcao : TipoRetorno T_ID T_ABRE_PARENTESES DeclParametros T_FECHA_PARENTESES BlocoPrincipal { createFunction(tabelaSimbolosFuncoes, $2.nomeId, $1.tipo,funcNargs,createListaTipoIntNVezes(funcNargs)); funcNargs = 0; }
+MZerador : {funcNargs = 0;}
+
+Funcao : TipoRetorno T_ID T_ABRE_PARENTESES DeclParametros T_FECHA_PARENTESES BlocoPrincipal {$$.tipo = $1.tipo; strcpy($$.nomeId,$2.nomeId); $$.listaTipo = createListaTipoIntNVezes(funcNargs);createFunction(tabelaSimbolosFuncoes, $2.nomeId, $1.tipo,funcNargs,createListaTipoIntNVezes(funcNargs)); funcNargs = 0; }
 	| TipoRetorno T_ID T_ABRE_PARENTESES T_FECHA_PARENTESES BlocoPrincipal {createFunction(tabelaSimbolosFuncoes, $2.nomeId, $1.tipo,funcNargs, NULL);funcNargs = 0;}
 	;
 
@@ -55,8 +58,8 @@ DeclParametros : DeclParametros T_VIRGULA Parametro {  }
 Parametro : Tipo T_ID {insereArvore(tabelaSimbolosGlobais,$2.nomeId); funcNargs++;}
 	;
 
-BlocoPrincipal : T_ABRE_CHAVES Declaracoes ListaCmd T_FECHA_CHAVES  {writeJasminMain();}
-	| T_ABRE_CHAVES ListaCmd T_FECHA_CHAVES {writeJasminMain();}
+BlocoPrincipal : T_ABRE_CHAVES Declaracoes ListaCmd T_FECHA_CHAVES  {}
+	| T_ABRE_CHAVES ListaCmd T_FECHA_CHAVES {}
 	;
 
 Declaracoes : Declaracoes Declaracao
@@ -92,7 +95,7 @@ Comando : CmdSe
 	| Retorno
 	;
 
-Retorno : T_RETURN ExpressaoAritmetica T_PONTO_E_VIRGULA
+Retorno : T_RETURN ExpressaoAritmetica T_PONTO_E_VIRGULA {CmdIreturn();}
 	| T_RETURN T_LITERAL T_PONTO_E_VIRGULA
 	;
 
