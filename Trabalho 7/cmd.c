@@ -13,6 +13,9 @@ int LastLabel = 0;
 char* LiteralTable[1000];
 int   LiteralTableIndex = 0;
 
+FUNC FuncList[MAX_FUNCS] = {0};
+int funcindex = 0;
+
 void showCmd()
 {
   int i = 0;
@@ -208,6 +211,11 @@ void ShowCmdAscii()
       CmdList[i].label
     );
 
+    if(CmdList[i].command == CMD_INVOKESTATIC)
+      printf("%d.\t%d\tinvokestatic %s\n", i,
+      CmdList[i].label, FuncList[CmdList[i].arg1].name
+    );
+
   }
 
   if(CmdList[CmdIndex].label != -1){
@@ -227,6 +235,7 @@ void cmdGenerate(int command, int arg1, int arg2)
 void CmdIstore (struct arvore* arv, char* var)
 {
   int posicao = buscaPosicao(arv, var);
+  NumVars = arv->qnt + 1;
   cmdGenerate(CMD_ISTORE, posicao, -1);
 }
 
@@ -562,6 +571,9 @@ void writeCmds()
     if(CmdList[i].command == CMD_IRETURN )
       fprintf(jasminFile, "\tireturn\n");
 
+    if(CmdList[i].command == CMD_INVOKESTATIC )
+      fprintf(jasminFile, "\tinvokestatic %s(%s)%c\n", FuncList[CmdList[i].arg1].name, FuncList[CmdList[i].arg1].argsType, FuncList[CmdList[i].arg1].retType);
+
 
 
   }
@@ -585,7 +597,7 @@ void clearJasmin()
   }
 
   // Clear Commands
-  NumVars = 0;
+  NumVars = 1;
   CmdIndex = 0;
 
 }
@@ -642,8 +654,7 @@ int GetIndexPosition()
   return CmdIndex;
 }
 
-FUNC FuncList[MAX_FUNCS] = {0};
-int funcindex = 0;
+
 
 void createFunction(struct arvore* arv, char* name, TIPO retType, int size,TIPO *argTypes)
 {
@@ -652,7 +663,6 @@ void createFunction(struct arvore* arv, char* name, TIPO retType, int size,TIPO 
     argTypes = criaListatipoVoid();
   }
 
-  printf("DEF FUNC %s(%s)%c\n",name, argTypes, retType);
   insereArvore(arv, name);
   atualizaTipoDaArovre(arv->root, retType);
   FuncList[funcindex].name = buscaPonteiroDoNome(arv, name);
@@ -709,7 +719,7 @@ TIPO* createListaTipoIntNVezes(int n)
 {
   TIPO* ret = malloc(sizeof(TIPO)*256);
   int i;
-  for(i = 0; i < n-1; i++)
+  for(i = 0; i < n; i++)
   {
       ret[i] = 'I';
   }
@@ -724,4 +734,32 @@ void showFunctionTable()
   for(i = 0; i < funcindex; i++){
     printf(".method public static %s(%s)%c\n", FuncList[i].name,FuncList[i].argsType,FuncList[i].retType);
   }
+}
+
+void CmdInvokeStatic(int index){
+    cmdGenerate(CMD_INVOKESTATIC, index, -1);
+
+}
+
+
+void CmdInvokeFunction(char* name){
+
+
+      int cmp = 0;
+      int i = 0;
+      for(i = 0; i < funcindex; i++){
+        cmp = strcmp(FuncList[i].name, name);
+        if(cmp == 0)
+        {
+          break;
+        }
+      }
+
+      if(i == funcindex)
+      {
+        printf("Erro: Função %s não encontrada\n", name);
+      }
+
+      CmdInvokeStatic(i);
+
 }

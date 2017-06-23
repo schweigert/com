@@ -53,6 +53,7 @@ typedef struct {
 #define CMD_READ          0x001D // --      -- -> invokevirtual java/io/InputStream/read()I \n istore id
 #define CMD_ENDWHILE      0x001E // --      --
 #define CMD_IRETURN        0x001F // --      --
+#define CMD_INVOKESTATIC   0x0020 // id      --
 
 void showCmd();
 void ShowCmdAscii();
@@ -83,6 +84,8 @@ void CmdGetStaticOut ();
 void CmdInvokeOutInt ();
 void CmdInvokeOutLiteral ();
 void CmdIreturn();
+void CmdInvokeStatic(int index);
+void CmdInvokeFunction(char* name);
 
 void CmdReadInt();
 

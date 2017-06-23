@@ -31,7 +31,7 @@ int funcNargs = 0;
 %token T_BIT_DIREITA T_BIT_ESQUERDA T_ADICAO T_SUBTRACAO T_MULTIPLICACAO T_DIVISAO T_RESTO T_IGUAL T_ABRE_PARENTESES T_FECHA_PARENTESES T_ABRE_CHAVES T_FECHA_CHAVES T_INT T_DOUBLE T_STRING T_VOID T_IF T_WHILE T_ELSE T_PRINT T_READ T_RETURN T_ID T_LITERAL T_FIM T_NUM T_VIRGULA T_PONTO_E_VIRGULA T_AND T_NOT T_OR T_TRUE T_FALSE T_MAIOR_IGUAL T_MENOR_IGUAL T_DIFERENTE T_IGUAL_IGUAL T_MAIOR T_MENOR
 
 %%
-Programa : ListaFuncoes BlocoPrincipal
+Programa : ListaFuncoes BlocoPrincipal {writeJasminMain();clearJasmin();}
 	| BlocoPrincipal {writeJasminMain();clearJasmin();}
 	;
 
@@ -41,9 +41,13 @@ ListaFuncoes :  ListaFuncoes MZerador Funcao {writeJasminFunc($3.tipo,$3.nomeId,
 
 MZerador : {funcNargs = 0;}
 
-Funcao : TipoRetorno T_ID T_ABRE_PARENTESES DeclParametros T_FECHA_PARENTESES BlocoPrincipal {$$.tipo = $1.tipo; strcpy($$.nomeId,$2.nomeId); $$.listaTipo = createListaTipoIntNVezes(funcNargs);createFunction(tabelaSimbolosFuncoes, $2.nomeId, $1.tipo,funcNargs,createListaTipoIntNVezes(funcNargs)); funcNargs = 0; }
-	| TipoRetorno T_ID T_ABRE_PARENTESES T_FECHA_PARENTESES BlocoPrincipal {createFunction(tabelaSimbolosFuncoes, $2.nomeId, $1.tipo,funcNargs, NULL);funcNargs = 0;}
+Funcao : EscopoFuncao BlocoPrincipal
+	| EscopoFuncaoVazia BlocoPrincipal
 	;
+
+EscopoFuncaoVazia : TipoRetorno T_ID T_ABRE_PARENTESES T_FECHA_PARENTESES  {createFunction(tabelaSimbolosFuncoes, $2.nomeId, $1.tipo,funcNargs, NULL);funcNargs = 0;}
+
+EscopoFuncao : TipoRetorno T_ID T_ABRE_PARENTESES DeclParametros T_FECHA_PARENTESES {$$.tipo = $1.tipo; strcpy($$.nomeId,$2.nomeId); $$.listaTipo = createListaTipoIntNVezes(funcNargs);createFunction(tabelaSimbolosFuncoes, $2.nomeId, $1.tipo,funcNargs,createListaTipoIntNVezes(funcNargs)); funcNargs = 0; }
 
 TipoRetorno : T_VOID
 	| T_INT {$$.tipo = INT; }
@@ -52,7 +56,7 @@ TipoRetorno : T_VOID
 	;
 
 DeclParametros : DeclParametros T_VIRGULA Parametro {  }
-	| Parametro { funcNargs++; }
+	| Parametro { }
 	;
 
 Parametro : Tipo T_ID {insereArvore(tabelaSimbolosGlobais,$2.nomeId); funcNargs++;}
@@ -133,7 +137,7 @@ CmdLeitura : T_READ T_ABRE_PARENTESES T_ID T_FECHA_PARENTESES T_PONTO_E_VIRGULA 
 ChamadaProc :  ChamadaFuncao T_PONTO_E_VIRGULA
 	;
 
-ChamadaFuncao : T_ID T_ABRE_PARENTESES ListaParametros T_FECHA_PARENTESES
+ChamadaFuncao : T_ID T_ABRE_PARENTESES ListaParametros T_FECHA_PARENTESES {CmdInvokeFunction($1.nomeId);}
 	| T_ID T_ABRE_PARENTESES T_FECHA_PARENTESES
 	;
 
