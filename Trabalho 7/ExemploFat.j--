@@ -10,7 +10,7 @@
 
 .method public static fat(I)I
 	.limit stack 20
-	.limit locals 2
+	.limit locals 1
 	iload 0
 	bipush 0
 	if_icmpeq Label1
@@ -23,7 +23,7 @@ Label2:
 	iload 0
 	iconst_1
 	isub
-	invokestatic fat(I)I
+	invokestatic ExemploFat.fat(I)I
 	imul
 	ireturn
 .end method
@@ -34,7 +34,7 @@ Label2:
 	.limit locals 1
 	getstatic java/lang/System/out Ljava/io/PrintStream;
 	iconst_3
-	invokestatic fat(I)I
+	invokestatic ExemploFat.fat(I)I
 	invokevirtual java/io/PrintStream/println(I)V
 	return
 .end method
