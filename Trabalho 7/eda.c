@@ -49,12 +49,12 @@ struct arvore* criarArvore(){
 void insereArvore(struct arvore* arv, char* valor){
 	if(arv->root == NULL){
 
-		arv->qnt++;
 		arv->root = criaNo(valor,arv->qnt);
+		arv->qnt++;
 		return;
 	} else {
-		arv->qnt++;
 		insereArvoreInternal(arv->root, valor,arv->qnt);
+		arv->qnt++;
 		return;
 	}
 

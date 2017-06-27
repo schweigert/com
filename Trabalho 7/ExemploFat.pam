@@ -6,5 +6,7 @@ int fat(int n){
 }
 
 {
-	print(fat(3));
+	int k;
+	k = 3;
+	print(fat(k));
 }

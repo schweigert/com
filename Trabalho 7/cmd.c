@@ -16,6 +16,11 @@ int   LiteralTableIndex = 0;
 FUNC FuncList[MAX_FUNCS] = {0};
 int funcindex = 0;
 
+// Operações do Assembler
+
+FILE *jasminFile = NULL;
+char jasminName[256] = {0};
+
 void showCmd()
 {
   int i = 0;
@@ -212,8 +217,8 @@ void ShowCmdAscii()
     );
 
     if(CmdList[i].command == CMD_INVOKESTATIC)
-      printf("%d.\t%d\tinvokestatic %s\n", i,
-      CmdList[i].label, FuncList[CmdList[i].arg1].name
+      printf("%d.\t%d\tinvokestatic %s.%s\n", i,
+      CmdList[i].label,  jasminName, FuncList[CmdList[i].arg1].name
     );
 
   }
@@ -405,10 +410,6 @@ void showLiteralTable()
   }
 }
 
-// Operações do Assembler
-
-FILE *jasminFile = NULL;
-char jasminName[256] = {0};
 
 void writeJasminInit(char* filename)
 {
@@ -572,7 +573,7 @@ void writeCmds()
       fprintf(jasminFile, "\tireturn\n");
 
     if(CmdList[i].command == CMD_INVOKESTATIC )
-      fprintf(jasminFile, "\tinvokestatic %s(%s)%c\n", FuncList[CmdList[i].arg1].name, FuncList[CmdList[i].arg1].argsType, FuncList[CmdList[i].arg1].retType);
+      fprintf(jasminFile, "\tinvokestatic %s.%s(%s)%c\n",  jasminName,FuncList[CmdList[i].arg1].name, FuncList[CmdList[i].arg1].argsType, FuncList[CmdList[i].arg1].retType);
 
 
 
