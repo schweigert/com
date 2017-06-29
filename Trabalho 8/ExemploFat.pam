@@ -1,0 +1,18 @@
+int fat(int n){
+	if(n == 0){
+		return 1;
+	}
+	return n*fat(n-1);
+}
+
+int add(int a, int b)
+{
+	return a*2+b;
+}
+
+{
+	int k;
+	k = 3;
+	print(fat(k));
+	print(add(1,2));
+}

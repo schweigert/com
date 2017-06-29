@@ -1,4 +1,4 @@
-.class public exemploFat
+.class public ExemploFat
 .super java/lang/Object
 
 .method public <init>()V
@@ -23,7 +23,7 @@ Label2:
 	iload 0
 	iconst_1
 	isub
-	invokestatic exemploFat.fat(I)I
+	invokestatic ExemploFat.fat(I)I
 	imul
 	ireturn
 Label0:
@@ -31,39 +31,13 @@ Label0:
 .end method
 
 
-.method public static foo(III)I
+.method public static add(II)I
 	.limit stack 20
-	.limit locals 4
+	.limit locals 3
 	iload 0
+	iconst_2
+	imul
 	iload 1
-	iadd
-	iload 2
-	iadd
-	ireturn
-	return
-.end method
-
-
-.method public static bar(IIII)I
-	.limit stack 20
-	.limit locals 5
-	iload 0
-	iload 1
-	iadd
-	iload 2
-	iadd
-	ireturn
-	return
-.end method
-
-
-.method public static foo2(IIIIIII)I
-	.limit stack 20
-	.limit locals 8
-	iload 0
-	iload 1
-	iadd
-	iload 2
 	iadd
 	ireturn
 	return
@@ -76,8 +50,13 @@ Label0:
 	iconst_3
 	istore 1
 	getstatic java/lang/System/out Ljava/io/PrintStream;
-	iconst_3
-	invokestatic exemploFat.fat(I)I
+	iload 1
+	invokestatic ExemploFat.fat(I)I
+	invokevirtual java/io/PrintStream/println(I)V
+	getstatic java/lang/System/out Ljava/io/PrintStream;
+	iconst_1
+	iconst_2
+	invokestatic ExemploFat.add(II)I
 	invokevirtual java/io/PrintStream/println(I)V
 	return
 .end method

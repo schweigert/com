@@ -1,0 +1,15 @@
+{
+  int a;
+  a = 0;
+  
+  while(a < 100){
+    a++;
+    print("Teste:");
+    print(a);
+    print(sqrt(a));
+    print(" ");
+  }
+
+  print("Fim do Algoritmo");
+
+}

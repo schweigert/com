@@ -1,0 +1,25 @@
+int fat(int n){
+	if(n == 0){
+		return 1;
+	}
+	return n*fat(n-1);
+}
+
+int foo(int a, int b ,int c)
+{
+	return (a+b+c);
+}
+int bar(int a, int b ,int c, int d)
+{
+	return (a+b+c);
+}
+int foo2(int a, int b ,int c, int d, int e, int f, int g)
+{
+	return (a+b+c);
+}
+
+{
+	int k;
+	k = 3;
+	print(fat(3));
+}
